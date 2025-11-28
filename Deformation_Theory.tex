@@ -1,0 +1,152 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{fullpage}
+\usepackage{tikz-cd}
+\usepackage{spectralsequences}
+\usepackage{adjustbox}
+\usepackage{xfrac}
+\usepackage{tcolorbox}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\graphicspath{ {D:/Chrome Downloads./} }
+\usepackage[parfill]{parskip}
+\usepackage{amsthm}
+\usetikzlibrary{calc}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[section]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[theorem]
+\theoremstyle{definition}
+\newtheorem{remark}{Remark}[theorem]
+\theoremstyle{definition}
+\newtheorem{proposition}{Proposition}[theorem]
+\theoremstyle{definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{corollary}{Corollary}[theorem]
+\theoremstyle{definition}
+\newtheorem{example}{Example}[theorem]
+\tikzset{curve/.style={settings={#1},to path={(\tikztostart)
+    .. controls ($(\tikztostart)!\pv{pos}!(\tikztotarget)!\pv{height}!270:(\tikztotarget)$)
+    and ($(\tikztostart)!1-\pv{pos}!(\tikztotarget)!\pv{height}!270:(\tikztotarget)$)
+    .. (\tikztotarget)\tikztonodes}},
+    settings/.code={\tikzset{quiver/.cd,#1}
+        \def\pv##1{\pgfkeysvalueof{/tikz/quiver/##1}}},
+    quiver/.cd,pos/.initial=0.35,height/.initial=0}
+\title{Deformation Theory}
+\author{David Zhu}
+
+\begin{document}
+\maketitle
+
+
+\tableofcontents
+
+\newpage
+
+
+
+\section{Introduction}
+In the section, we will introduce the definitions and intuition for first order deformations. 
+
+\subsection{Intuition}
+\textbf{Embedded Deformation}: Suppose we have a smooth submanifold $X$ embedded an ambient complex manifold $Y$. The embedding is equipped with a normal bundle $N_YX$. By the tubular neighborhood theorem, we have a embedding of its total space: 
+
+\[\begin{tikzcd}
+	X && Y \\
+	& {N_YX}
+	\arrow[hook, from=1-1, to=1-3]
+	\arrow["{\textrm{0-section}}"', from=1-1, to=2-2]
+	\arrow[dotted, hook, from=2-2, to=1-3]
+\end{tikzcd}\]
+
+A smooth deformation of $Y$ inside $X$ is then a smooth section of $N_YX$: at each point $x\in X$, the section give you the normal direction along which to ``infinitesimally" deform $X$ inside $Y$. This definition offers some differential topologically intuition, even though we no longer have an analog of the tubular neighborhood theorem in the holomorphic/algebraic setting.
+
+More generally, we are given the data of 
+\begin{enumerate}
+    \item A morphism of objects $f: X\to Y$ in some category (e.g. schemes, complex manifolds, etc).
+    \item An ``infinitesimal thickening" of $X$ and $Y$, which are prescribed injective morphisms $X\to X'$ and $Y\to Y'$.
+\end{enumerate}
+
+A deformation of $f$ is then a lift of the morphism $X\to Y$ to a morphism $X'\to Y'$
+\[\begin{tikzcd}
+	X & Y \\
+	{X'} & {Y'}
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=1-2, to=2-2]
+	\arrow["{?}"', dotted, from=2-1, to=2-2]
+\end{tikzcd}\]
+
+\textbf{Deformation of Complex Structure}: 
+
+
+
+
+
+\textbf{Deformation as a Family}
+Given an object $X$ in some category, a deformation of $X$ can also be thought of as a family of objects $\mathcal{X}\to S$ over some parameterizing base $S$, such that the fiber over a distinguished point $s_0\in S$ is isomorphic to $X$.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\bibliographystyle{plain}
+\bibliography{citation}
+\end{document}
