@@ -1,2 +1,4 @@
 \contentsline {section}{\numberline {1}Introduction}{2}{section.1}%
 \contentsline {subsection}{\numberline {1.1}Intuition}{2}{subsection.1.1}%
+\contentsline {section}{\numberline {2}First Order Deformation}{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Computations For Affine Curves}{4}{subsection.2.1}%

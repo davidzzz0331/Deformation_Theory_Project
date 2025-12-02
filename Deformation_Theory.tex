@@ -16,6 +16,11 @@
 \graphicspath{ {D:/Chrome Downloads./} }
 \usepackage[parfill]{parskip}
 \usepackage{amsthm}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Spec}{\textrm{Spec}}
+\newcommand{\Proj}{\textrm{Proj}}
+\newcommand{\Hom}{\textrm{Hom}}
 \usetikzlibrary{calc}
 \theoremstyle{definition}
 \newtheorem{theorem}{Theorem}[section]
@@ -83,14 +88,55 @@ A deformation of $f$ is then a lift of the morphism $X\to Y$ to a morphism $X'\t
 	\arrow["{?}"', dotted, from=2-1, to=2-2]
 \end{tikzcd}\]
 
-\textbf{Deformation of Complex Structure}: 
+\textbf{Deformation of Complex Structure}: Viewing a complex manifold $X$ as a real manifold with an integrable almost complex structure $J$, a deformation of the complex structure is a family of almost complex structures $J_t$ parametrized by $t\in (-\epsilon, \epsilon)$ such that $J_0 = J$ and each $J_t$ is integrable. Infinitesimally, we can think of this as a perturbation of the almost complex structure $J$ by a small parameter $t$ in the space of endomorphisms of the tangent bundle $TX$ that satisfy $J_t^2 = -\mathrm{Id}$ and the integrability condition (vanishing of the Nijenhuis tensor).
+
+
+The theory of Kodaira-Spencer describes how such deformations can be understood in terms of certain cohomology groups associated with the manifold. More precisely, first order deformations of the complex structure on $X$ are classified by the cohomology group $H^1(X, T_X)$, where $T_X$ is the holomorphic tangent bundle of $X$.
 
 
 
 
 
-\textbf{Deformation as a Family}
-Given an object $X$ in some category, a deformation of $X$ can also be thought of as a family of objects $\mathcal{X}\to S$ over some parameterizing base $S$, such that the fiber over a distinguished point $s_0\in S$ is isomorphic to $X$.
+\textbf{Deformation and Moduli Problem}
+In relation to deformation of complex structure, suppose we have concretely constructed the moduli space $\mathcal{M}_g$ parameterizing smooth projective curves of genus $g$. A point $[C]\in \mathcal{M}_g$ corresponds to an isomorphism class of a smooth projective curve $C$ of genus $g$. A deformation of the curve $C$ can be thought of as a small perturbation of the complex structure on $C$, leading to a family of curves $C_t$ parameterized by a small parameter $t$. Infinitesimally, this corresponds to moving along a tangent vector at the point $[C]$ in the moduli space $\mathcal{M}_g$. The tangent space at $[C]$ can be identified with the first cohomology group $H^1(C, T_C)$, where $T_C$ is the holomorphic tangent bundle of the curve $C$.
+
+Suppose we have a fine moduli space $\mathcal{M}$ parameterizing certain objects, meaning any family of such objects over a base $B$ is given by a morphism 
+\[B\to \mathcal{M}\]
+Then an infinitesimal deformation of an object $X$ corresponding to a point $[X]\in \mathcal{M}$ is given by a family over the dual numbers $\mathrm{Spec}(\mathbb{C}[\epsilon]/(\epsilon^2))$ (we can think of the dual numbers as a point equipped with a tangent vector), such that the fiber over $0$ is isomorphic to $X$. Then, the classifying map 
+\[T_0B\to T_{[X]}\mathcal{M}\]
+precisely specifies a tangent vector at $[X]$.
+
+\newpage
+\section{First Order Deformation}
+\begin{definition}
+	The \textbf{dual numbers} over a field $k$ is the ring 
+	\[D:= k[t]/(t^2)\]
+\end{definition}
+Note that $\Spec(D)$ is the one-point space consisting of the prime ideal $(t)$. Its Zariski tangent space is given by 
+\[T_{(t)}D:= \Hom_k ((t)/(t^2),k) \]
+which is a one-dimensional $k$-vector space. In contrast, $\Spec(k)$ is also a one-point space, but its Zariski tangent space is zero-dimensional. Thus, we can think of $\Spec(D)$ as a point equipped with a tangent vector. The dual numbers will be our base space for first order deformations.
+
+
+\begin{definition}
+	Let $Y$ be a scheme over $k$, and $X$ be a closed subscheme. A \textbf{first order embedded deformation} of $X$ in $Y$ is a closed subscheme $X'\subset Y\times_k \Spec (D)$ such that 
+	\begin{enumerate}
+		\item $X'$ is flat over $D$
+		\item The fiber over the point is $X$, i.e 
+		\[X'\times_{\Spec(D)}\Spec(k)= X\]
+	\end{enumerate}
+\end{definition}
+We would like to classify all such deformations. 
+
+\subsection{Computations For Affine Curves}
+
+
+
+
+
+
+
+
+
 
 
 
