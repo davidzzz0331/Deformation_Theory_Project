@@ -18,6 +18,7 @@
 \usepackage{amsthm}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
+\newcommand{\A}{\mathbb{A}}
 \newcommand{\Spec}{\textrm{Spec}}
 \newcommand{\Proj}{\textrm{Proj}}
 \newcommand{\Hom}{\textrm{Hom}}
@@ -118,6 +119,7 @@ which is a one-dimensional $k$-vector space. In contrast, $\Spec(k)$ is also a o
 
 
 \begin{definition}
+	\label{deformation_def}
 	Let $Y$ be a scheme over $k$, and $X$ be a closed subscheme. A \textbf{first order embedded deformation} of $X$ in $Y$ is a closed subscheme $X'\subset Y\times_k \Spec (D)$ such that 
 	\begin{enumerate}
 		\item $X'$ is flat over $D$
@@ -127,17 +129,69 @@ which is a one-dimensional $k$-vector space. In contrast, $\Spec(k)$ is also a o
 \end{definition}
 We would like to classify all such deformations. 
 
-\subsection{Computations For Affine Curves}
+\subsection{Embedded Deformation of Affine Schemes}
+\subsection{An Easy Example}
+We first inspect the following example: first-order embedded deformations of a curve $C$ in $\mathbb{A}_k^2$. Translating Definition \ref{deformation_def} into algebra, we have the following setup:
+\begin{enumerate}
+	\item We are given curve $C$ carved out by $f(x,y)$, embedded in $\mathbb{A}^2$ via the canonical map 
+	 \[k[x,y]\to k[x,y]/(f)\]
+	\item An embedded deformation $\mathcal{A}$ is a quotient of 
+	\[k[x,y]\otimes_k D\cong D[x,y]\]
+	i.e of the form $\mathcal{A}= D[x,y]/I$, where $I=(\phi)$ \textcolor{red}{why principal?}, such that $\mathcal{A}$ is a flat $D$-algebra, and an isomorphism 
+	\[D[x,y]/(\phi)\to k[x,y]/(f)\]
+	induced by sending the generator $t\in D$ to $0$.
+\end{enumerate}
+Intuitively, the defining equation for the curve can be expressed as a finite sum
+\[f(x,y)=\sum_{i,j}a_{ij}x^iy^j\]
+where $a_{ij}\in k$. The deformation, defined by the vanishing of $\phi(x,y)$, is of the form
+\[\phi(x,y)=\sum_{i,j}(a_{ij}+b_{ij}t)x^iy^j \]
+so the polynomial $g(x,y)=\sum_{i,j}b_{ij}x^iy^j$ determines the deformation, and can be thought of as the ``deformed'' $f$. However, writing out explicit defining equations as above requires choices up to a unit, i.e $(\phi)=(u\phi)$ as ideals for any unit $u$.
+
+\begin{lemma}
+	The units in $k[x,y]$ are $k^*$. The units in $D[x,y]$ are of the form $c+ht$, where $c\in k^*$, and $h\in k[x,y]$. 
+\end{lemma}
+\begin{proof}
+	The first statement is easy by Gauss lemma. For the second statement, suppose we have $f=\sum_{i,j}(a_{ij}+b_{ij}t)x^iy^j$ and $g=\sum_{i,j}(a'_{ij}+b'_{ij}t)x^iy^j$ such that $fg=1$. By inductively looking at coefficients of the expanded product, we see we must have $a_{00}=a^{-1}_{00}$, and all other $a_{ij}=0$. 
+\end{proof}
 
 
 
+\begin{proposition}
+The set of first order embedded deformations of $C$ in $\mathbb{A}^2$ is in bijection with elements in $k[x,y]/(f)$. 
+\end{proposition}
+\begin{proof}
+	We already see that the deformation is determined by a choice of $g$ and let $\phi=f+gt$. Suppose another choice $g'$ yields the same deformation, i.e 
+	\[f+g't=u\phi=cf+(fh+cg)t\]
+we see $c=1$, and $g'=fh+g$, so $g$ and $g'$ define the same element in $k[x,y]/(f)$. 
+\end{proof}
+
+\subsection{General Results}
+Suppose $X=\Spec(B)$ is affine, and $Y$ is a closed subscheme defined by an ideal $I\subset B$. We see that first-order embedded deformations of $Y$ in $X$ correspond to ideals $J\subset B':= B[t]/(t^2)$ such that 
+\begin{enumerate}
+	\item $B'/J$ is flat over $D$
+	\item The image of $J$ under the canonical collapse 
+	\[B[t]/(t^2)\to B\]
+	is $I$.
+\end{enumerate}
+\begin{proposition}
+	There is a bijection between the set of first-order embedded deformations of $Y$ in $X$ and $\mathrm{Hom}_B (I, B/I)$.
+\end{proposition}
+To prove the proposition, we first need a characterization of flatness. 
+\begin{lemma}
+	Let $A'\to A$ be a surjective homomorphism of Noetherian rings with kernel $J$ such that $J^2=0$. An $A'$-module $M'$ is flat over $A'$ if and only if the following are satisfied:
+	\begin{enumerate}
+		\item $M:=M'\otimes_{A'}A$ is flat over $A$
+		\item the canonical map $M \otimes_A J\to M'$ is injective.
+	\end{enumerate}
+\end{lemma}
+\begin{proof}
+	Note that since $J^2=0$, the ideal $J$ is automatically an $A\cong A'/J$ module, and 
+	\[M\otimes_A J\cong (M'\otimes_{A'}A)\otimes_A J\cong M'\otimes_{A'}J\]
+so the second criterion makes sense. The forward direction is clear:  the first criterion follows from the fact that  flatness is preserved under base change; the second criterion follows from the exactness of the functor $-\otimes_{A'} M'$, applied to the short exact sequence
+\[ 0\to J\to A'\to A\to 0\]
 
 
-
-
-
-
-
+\end{proof}
 
 
 
