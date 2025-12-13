@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex Deformation_Theory"] 1765484400 "Deformation_Theory.aux" "Deformation_Theory.bbl" "Deformation_Theory" 1765490655 0
+["bibtex Deformation_Theory"] 1765665021 "Deformation_Theory.aux" "Deformation_Theory.bbl" "Deformation_Theory" 1765665255 0
   "./citation.bib" 1764699639 1435 9f856e3b72ce70480e70a4649d9d036c ""
   "/usr/local/texlive/2023/texmf-dist/bibtex/bst/base/plain.bst" 1292289607 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "Deformation_Theory.aux" 1765490655 1422 066a316cae853833bcd5da1549a822d2 "pdflatex"
+  "Deformation_Theory.aux" 1765665255 1422 066a316cae853833bcd5da1549a822d2 "pdflatex"
   (generated)
   "Deformation_Theory.bbl"
   "Deformation_Theory.blg"
   (rewritten before read)
-["pdflatex"] 1765490654 "/Users/davidzhu/Documents/GitHub/Deformation_Theory_Project/Deformation_Theory.tex" "Deformation_Theory.pdf" "Deformation_Theory" 1765490655 0
-  "/Users/davidzhu/Documents/GitHub/Deformation_Theory_Project/Deformation_Theory.tex" 1765490654 10379 8c2882cca9177006a8ac7037f01548fa ""
+["pdflatex"] 1765665254 "/Users/davidzhu/Documents/GitHub/Deformation_Theory_Project/Deformation_Theory.tex" "Deformation_Theory.pdf" "Deformation_Theory" 1765665255 0
+  "/Users/davidzhu/Documents/GitHub/Deformation_Theory_Project/Deformation_Theory.tex" 1765665254 10211 ad61da65aef25ec7fb5003569a626a8e ""
   "/usr/local/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -42,7 +42,6 @@
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb" 1248133631 32362 179c33bbf43f19adbb3825bb4e36e57a ""
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb" 1248133631 32762 224316ccc9ad3ca0423a14971cfa7fc1 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1248133631 32569 5e5ddc8df908dea60932f3c484a54c0d ""
-  "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb" 1248133631 32915 7bf7720c61a5b3a7ff25b0964421c9b6 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb" 1248133631 32716 08e384dc442464e7285e891af9f45947 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb" 1248133631 37944 359e864bd06cde3b1cf57bb20757fb06 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb" 1248133631 34694 ad62b13721ee8eda1dcc8993c8bd7041 ""
@@ -225,11 +224,11 @@
   "/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1710130202 4623355 b8cad38412faebe1ce5b780a45db67bd ""
   "/usr/local/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt" 1710130178 7883461 5901c145d91f673e1f689bc83c44d735 ""
   "/usr/local/texlive/2023/texmf.cnf" 1678822455 577 1b2b1af17af2508fb20dd85783af4050 ""
-  "Deformation_Theory.aux" 1765490655 1422 066a316cae853833bcd5da1549a822d2 "pdflatex"
-  "Deformation_Theory.bbl" 1765484400 49 0eba253fc001332e731e8aba3f23127b "bibtex Deformation_Theory"
-  "Deformation_Theory.out" 1765490655 901 e6ffc21f31ea571ea40e4947a2865a0d "pdflatex"
-  "Deformation_Theory.tex" 1765490654 10379 8c2882cca9177006a8ac7037f01548fa ""
-  "Deformation_Theory.toc" 1765490655 488 c139633a195a362532954740696818ea "pdflatex"
+  "Deformation_Theory.aux" 1765665255 1422 066a316cae853833bcd5da1549a822d2 "pdflatex"
+  "Deformation_Theory.bbl" 1765665022 49 0eba253fc001332e731e8aba3f23127b "bibtex Deformation_Theory"
+  "Deformation_Theory.out" 1765665255 901 e6ffc21f31ea571ea40e4947a2865a0d "pdflatex"
+  "Deformation_Theory.tex" 1765665254 10211 ad61da65aef25ec7fb5003569a626a8e ""
+  "Deformation_Theory.toc" 1765665255 488 c139633a195a362532954740696818ea "pdflatex"
   (generated)
   "Deformation_Theory.aux"
   "Deformation_Theory.log"

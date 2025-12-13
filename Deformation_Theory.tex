@@ -176,24 +176,20 @@ Suppose $X=\Spec(B)$ is affine, and $Y$ is a closed subscheme defined by an idea
 \begin{proposition}
 	There is a bijection between the set of first-order embedded deformations of $Y$ in $X$ and $\mathrm{Hom}_B (I, B/I)$.
 \end{proposition}
-To prove the proposition, we first need a characterization of flatness. 
-\begin{lemma}
-	Let $A'\to A$ be a surjective homomorphism of Noetherian rings with kernel $J$ such that $J^2=0$. An $A'$-module $M'$ is flat over $A'$ if and only if the following are satisfied:
-	\begin{enumerate}
-		\item $M:=M'\otimes_{A'}A$ is flat over $A$
-		\item the canonical map $M \otimes_A J\to M'$ is injective.
-	\end{enumerate}
-\end{lemma}
 \begin{proof}
-	Note that since $J^2=0$, the ideal $J$ is automatically an $A\cong A'/J$ module, and 
-	\[M\otimes_A J\cong (M'\otimes_{A'}A)\otimes_A J\cong M'\otimes_{A'}J\]
-so the second criterion makes sense. The forward direction is clear:  the first criterion follows from the fact that  flatness is preserved under base change; the second criterion follows from the exactness of the functor $-\otimes_{A'} M'$, applied to the short exact sequence
-\[ 0\to J\to A'\to A\to 0\]
-
-
+	Suppose we are given an ideal $J\subset B$ such that the $J \textrm{ mod } t =I$. Then for every $f\in I$, there exists lifts of the form $f+tg\in J$. We may then define a set-theoretic function 
+	\[\varphi: I\to B/I\]
+	by $\varphi(f)=f+tg$. It is easy to check this is well-defined and a $B$-module homomorphism. Conversely, given a $B$-module homomorphism $\phi: I\to B/I$, we may define an ideal:
+	\[J:= \{f+t g\mid f\in I, g\in B, g\textrm{ mod } I = \phi(f)\}\] The two constructions are inverse to each other, so we only have to check flatness of $B'/J$. 
 \end{proof}
 
+\begin{lemma}
+	For a module $M$ over a local ring $R$ with nilpotent maximal ideal, then $M$ is flat iff it is free.
 
+\end{lemma}
+\begin{proof}
+	The 
+\end{proof}
 
 
 
