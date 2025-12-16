@@ -14,7 +14,6 @@
 \usepackage{hyperref}
 \usepackage{graphicx}
 \graphicspath{ {D:/Chrome Downloads./} }
-\usepackage[parfill]{parskip}
 \usepackage{amsthm}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
@@ -112,7 +111,8 @@ precisely specifies a tangent vector at $[X]$.
 \begin{definition}
 	The \textbf{dual numbers} over a field $k$ is the ring 
 	\[D:= k[t]/(t^2)\]
-\end{definition}
+\end{definition} 
+
 Note that $\Spec(D)$ is the one-point space consisting of the prime ideal $(t)$. Its Zariski tangent space is given by 
 \[T_{(t)}D:= \Hom_k ((t)/(t^2),k) \]
 which is a one-dimensional $k$-vector space. In contrast, $\Spec(k)$ is also a one-point space, but its Zariski tangent space is zero-dimensional. Thus, we can think of $\Spec(D)$ as a point equipped with a tangent vector. The dual numbers will be our base space for first order deformations.
@@ -127,75 +127,73 @@ which is a one-dimensional $k$-vector space. In contrast, $\Spec(k)$ is also a o
 		\[X'\times_{\Spec(D)}\Spec(k)= X\]
 	\end{enumerate}
 \end{definition}
-We would like to classify all such deformations. 
 
-\subsection{Embedded Deformation of Affine Schemes}
-\subsection{An Easy Example}
-We first inspect the following example: first-order embedded deformations of a curve $C$ in $\mathbb{A}_k^2$. Translating Definition \ref{deformation_def} into algebra, we have the following setup:
-\begin{enumerate}
-	\item We are given curve $C$ carved out by $f(x,y)$, embedded in $\mathbb{A}^2$ via the canonical map 
-	 \[k[x,y]\to k[x,y]/(f)\]
-	\item An embedded deformation $\mathcal{A}$ is a quotient of 
-	\[k[x,y]\otimes_k D\cong D[x,y]\]
-	i.e of the form $\mathcal{A}= D[x,y]/I$, where $I=(\phi)$ \textcolor{red}{why principal?}, such that $\mathcal{A}$ is a flat $D$-algebra, and an isomorphism 
-	\[D[x,y]/(\phi)\to k[x,y]/(f)\]
-	induced by sending the generator $t\in D$ to $0$.
-\end{enumerate}
-Intuitively, the defining equation for the curve can be expressed as a finite sum
-\[f(x,y)=\sum_{i,j}a_{ij}x^iy^j\]
-where $a_{ij}\in k$. The deformation, defined by the vanishing of $\phi(x,y)$, is of the form
-\[\phi(x,y)=\sum_{i,j}(a_{ij}+b_{ij}t)x^iy^j \]
-so the polynomial $g(x,y)=\sum_{i,j}b_{ij}x^iy^j$ determines the deformation, and can be thought of as the ``deformed'' $f$. However, writing out explicit defining equations as above requires choices up to a unit, i.e $(\phi)=(u\phi)$ as ideals for any unit $u$.
+We would like to classify all such deformations. It is useful to characterize flatness over the dual numbers first: 
 
 \begin{lemma}
-	The units in $k[x,y]$ are $k^*$. The units in $D[x,y]$ are of the form $c+ht$, where $c\in k^*$, and $h\in k[x,y]$. 
+	\label{flatness_criterion}
+	A module $M$ over a commutative ring $R$ is flat iff for every ideal $I\subset R,$ the module homomorphism 
+	\[I\otimes_R M\to M\]
+	is injective.
 \end{lemma}
 \begin{proof}
-	The first statement is easy by Gauss lemma. For the second statement, suppose we have $f=\sum_{i,j}(a_{ij}+b_{ij}t)x^iy^j$ and $g=\sum_{i,j}(a'_{ij}+b'_{ij}t)x^iy^j$ such that $fg=1$. By inductively looking at coefficients of the expanded product, we see we must have $a_{00}=a^{-1}_{00}$, and all other $a_{ij}=0$. 
+	Follows directly from the fact that flatness is equivalent to the vanishing of $\mathrm{Tor}_1^R(R/I, M)$ for all ideals $I\subset R$.
 \end{proof}
 
 
 
-\begin{proposition}
-The set of first order embedded deformations of $C$ in $\mathbb{A}^2$ is in bijection with elements in $k[x,y]/(f)$. 
-\end{proposition}
-\begin{proof}
-	We already see that the deformation is determined by a choice of $g$ and let $\phi=f+gt$. Suppose another choice $g'$ yields the same deformation, i.e 
-	\[f+g't=u\phi=cf+(fh+cg)t\]
-we see $c=1$, and $g'=fh+g$, so $g$ and $g'$ define the same element in $k[x,y]/(f)$. 
-\end{proof}
 
-\subsection{General Results}
-Suppose $X=\Spec(B)$ is affine, and $Y$ is a closed subscheme defined by an ideal $I\subset B$. We see that first-order embedded deformations of $Y$ in $X$ correspond to ideals $J\subset B':= B[t]/(t^2)$ such that 
+
+
+
+\subsection{Embedded Deformation of Schemes}
+We first deal with the affine case. Suppose $X=\Spec(B)$ is affine, and $Y$ is a closed subscheme defined by an ideal $I\subset B$. We see that first-order embedded deformations of $Y$ in $X$ correspond to ideals $J\subset B':= B[t]/(t^2)$ such that 
 \begin{enumerate}
 	\item $B'/J$ is flat over $D$
-	\item The image of $J$ under the canonical collapse 
+	\item The image of $J$ under the quotient map
 	\[B[t]/(t^2)\to B\]
 	is $I$.
 \end{enumerate}
 \begin{proposition}
+\label{affine_deformation}
 	There is a bijection between the set of first-order embedded deformations of $Y$ in $X$ and $\mathrm{Hom}_B (I, B/I)$.
 \end{proposition}
 \begin{proof}
-	Suppose we are given an ideal $J\subset B$ such that the $J \textrm{ mod } t =I$. Then for every $f\in I$, there exists lifts of the form $f+tg\in J$. We may then define a set-theoretic function 
+
+
+	Suppose we are given an ideal $J\subset B'$ such that the $J \textrm{ mod } t =I$. By Lemma \ref{flatness_criterion}, flatness of $B'/J$ over $D$ is equivalent to the exactness of
+	\[ 0\to B'/J\otimes_D (t)\to B'/J\to B'/J\otimes_D k\to 0\]
+	Viewing $(t)$ as a $k$-module, we have 
+	\[B/I\otimes_k (t)\cong (B'/J\otimes_D k)\otimes_k (t)\cong  B'/J\otimes_D (t)\]
+	So we may rewrite the exact sequence as
+	\[0\to B/I\xrightarrow{\cdot t} B'/J\to B/I\to 0\]
+	Since $B':=B[t]/(t^2)$ splits as $B\oplus tB$ as $B$-modules, for every $f\in I$, there exist lifts of the form $f+tg\in J$, where $f,g\in B$. By exactness of the sequence above, different lifts differ by an element in $tI$, so we may then define a function
 	\[\varphi: I\to B/I\]
-	by $\varphi(f)=f+tg$. It is easy to check this is well-defined and a $B$-module homomorphism. Conversely, given a $B$-module homomorphism $\phi: I\to B/I$, we may define an ideal:
-	\[J:= \{f+t g\mid f\in I, g\in B, g\textrm{ mod } I = \phi(f)\}\] The two constructions are inverse to each other, so we only have to check flatness of $B'/J$. 
+	by $\varphi(f)=\overline{g}$. It is easy to check this is well-defined and a $B$-module homomorphism. Conversely, given a $B$-module homomorphism $\phi: I\to B/I$, we may define an ideal:
+	\[J:= \{f+t g\mid f\in I, g\in B, g\textrm{ mod } I = \phi(f)\}\]
+	Flatness of $B'/J$  over $D$ can be checked by by the same exact sequence as above: an element $tb$ is in the ideal $J$ iff $b\in I$. The two constructions are inverse to each other, and we have the desired bijection.
+
 \end{proof}
 
-\begin{lemma}
-	For a module $M$ over a local ring $R$ with nilpotent maximal ideal, then $M$ is flat iff it is free.
-
-\end{lemma}
-\begin{proof}
-	The 
-\end{proof}
+\begin{definition}
+	The first order embedded deformations of $Y$ in $X$ is \textbf{trivial} if they correspond to the zero homomorphism in $\mathrm{Hom}_B (I, B/I)$, which corresponds to the ideal $J=I\oplus tI\subset B[t]/(t^2)$.
+\end{definition}
 
 
+\begin{example}
+We are given curve $C$ carved out by $f(x,y)$, embedded in $\mathbb{A}^2$ via the canonical map 
+	 \[k[x,y]\to k[x,y]/(f)\]
+By our above analysis, first order embedded deformations of $C$ in $\mathbb{A}^2$ correspond to elements of 
+\[\mathrm{Hom}_{k[x,y]/(f)} ((f), k[x,y]/(f))\cong k[x,y]/(f)\]
+In particular, each $g\in k[x,y]/(f)$ gives rise to a first order deformation defined by the principal ideal $J=(f+tg)$. We can think of this as perturbing $f$ by $g$ infinitesimally.
 
+\end{example}
 
-
-
+Recall that for a closed embedding of schemes $X\to Y$ defined by an ideal sheaf $\mathcal{I}\subset \mathcal{O}_Y$, the normal sheaf $\mathcal{N}_{X/Y}$ is defined as the dual of the conormal sheaf $\mathcal{I}/\mathcal{I}^2$. Moreover, 
+\[\Hom_Y(\mathcal{I}, \mathcal{O}_X)\cong \Hom_X(\mathcal{I}/\mathcal{I}^2, \mathcal{O}_X)\] Since flatness is a local property, and our construction above is natural and compatible with localization, we may globalize Proposition \ref{affine_deformation} to obtain:
+\begin{theorem}
+	Let $Y$ be a scheme over a field $k$, and let $X$ be a closed subscheme of $Y$. Then the deformations of $X$ over $D$ in $Y$ are in natural one-to-one correspondence with elements of $H^0(X,N_{X/Y})$, with the zero element corresponding to the trivial deformation.
+\end{theorem}
 
 
 
