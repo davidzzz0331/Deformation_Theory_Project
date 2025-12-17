@@ -195,6 +195,21 @@ Recall that for a closed embedding of schemes $X\to Y$ defined by an ideal sheaf
 	Let $Y$ be a scheme over a field $k$, and let $X$ be a closed subscheme of $Y$. Then the deformations of $X$ over $D$ in $Y$ are in natural one-to-one correspondence with elements of $H^0(X,N_{X/Y})$, with the zero element corresponding to the trivial deformation.
 \end{theorem}
 
+\subsection{Deformation of Coherent Sheaves}
+Let $X$ be a scheme over a field $k$, and $\mathcal{F}$ be a coherent sheaf on $X$. A first order deformation of $\mathcal{F}$ is a coherent sheaf $\mathcal{F}'$ on $X':=X\times_k \Spec(D)$ that is 
+\begin{enumerate}
+	\item flat over $D$;
+	\item equipped with a homomorphism  $\mathcal{F'}\to \mathcal{F}$ such that the induced map $\mathcal{F}'\otimes_D k\to \mathcal{F}$ is an isomorphism.
+\end{enumerate}
+
+\begin{theorem}
+	Let $X$ be a scheme over a field $k$, and $\mathcal{F}$ be a coherent sheaf on $X$. Then the set of first order deformations of $\mathcal{F}$ is in natural one-to-one correspondence with elements of $\mathrm{Ext}^1_X(\mathcal{F}, \mathcal{F})$, with the zero element corresponding to the trivial deformation.
+\end{theorem}
+\begin{proof}
+	By Lemma \ref{flatness_criterion}, a first order deformation $\mathcal{F}'$ of $\mathcal{F}$ fits into a short exact sequence of $D$-modules
+	\[0\to \mathcal{F}\xrightarrow{t} \mathcal{F}'\to \mathcal{F}\to 0\]
+\end{proof}
+
 
 
 
