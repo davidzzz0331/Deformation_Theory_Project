@@ -201,18 +201,28 @@ Let $X$ be a scheme over a field $k$, and $\mathcal{F}$ be a coherent sheaf on $
 	\item flat over $D$;
 	\item equipped with a homomorphism  $\mathcal{F'}\to \mathcal{F}$ such that the induced map $\mathcal{F}'\otimes_D k\to \mathcal{F}$ is an isomorphism.
 \end{enumerate}
+Two such deformations $\mathcal{F}',\mathcal{F}''$ are considered isomorphic if there exists an isomorphism $\mathcal{F}'\to \mathcal{F}''$ compatible with their morphisms to $\mathcal{F}$. 
 
 \begin{theorem}
-	Let $X$ be a scheme over a field $k$, and $\mathcal{F}$ be a coherent sheaf on $X$. Then the set of first order deformations of $\mathcal{F}$ is in natural one-to-one correspondence with elements of $\mathrm{Ext}^1_X(\mathcal{F}, \mathcal{F})$, with the zero element corresponding to the trivial deformation.
+	Let $X$ be a scheme over a field $k$, and $\mathcal{F}$ be a coherent sheaf on $X$. Then the isomorphism classes of first order deformations of $\mathcal{F}$ are in bijection with elements of $\mathrm{Ext}^1_X(\mathcal{F}, \mathcal{F})$, with the zero element corresponding to the trivial deformation.
 \end{theorem}
 \begin{proof}
 	By Lemma \ref{flatness_criterion}, a first order deformation $\mathcal{F}'$ of $\mathcal{F}$ fits into a short exact sequence of $D$-modules
 	\[0\to \mathcal{F}\xrightarrow{t} \mathcal{F}'\to \mathcal{F}\to 0\]
+	Note that tensoring the split exact sequence 
+\[0\to k\to D\to k\to 0\]
+with $\mathcal{O}_X$, we get canonical splitting $\mathcal{O}_X\to \mathcal{O}_X'$, so we may view $\mathcal{F}'$ as an $\mathcal{O}_X$-module. Thus, the above short exact sequence of $\mathcal{O}_X$-modules is an element of $\mathrm{Ext}^1_X(\mathcal{F}, \mathcal{F})$. Conversely, given an extension, we may define a $\mathcal{O}_{X'}$-module structure on it by letting $t$ act via first projecting along $\mathcal{F}'\to \mathcal{F}$, and then apply $\mathcal{F}\xrightarrow{t} \mathcal{F}'$. The two constructions are inverse to each other, giving the desired bijection.
+
+\end{proof} 
+
+We may apply the theorem to the special case of vector bundles, i.e locally free sheaves. 
+
+\begin{corollary}
+	The first order deformation of a vector bundle $\mathcal{E}$ on $X$ are classified by elements of $H^1(X, \mathcal{E}nd(\mathcal{E}))$, with the trivial deformation corresponding to the zero element.
+\end{corollary}
+\begin{proof}
+	Note that $H^1(X, \mathcal{E}nd(\mathcal{E}))\cong \textrm{Ext}^1(\mathcal{O}_X,  \mathcal{E}nd(\mathcal{E}))$, since $\Gamma(X, -)= \Hom(\mathcal{O}_X, -)$ so their derived functors are isomorphic.
 \end{proof}
-
-
-
-
 
 
 
