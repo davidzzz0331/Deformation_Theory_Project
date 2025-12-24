@@ -1,3 +1,8 @@
-\begin{thebibliography}{}
+\begin{thebibliography}{1}
+
+\bibitem{Hartshorne}
+Robin Hartshorne.
+\newblock {\em Algebraic Geometry}, volume~52 of {\em Graduate Texts in Mathematics}.
+\newblock Springer-Verlag, New York, 1977.
 
 \end{thebibliography}
