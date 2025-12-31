@@ -2,7 +2,13 @@
 
 \bibitem{Hartshorne}
 Robin Hartshorne.
-\newblock {\em Algebraic Geometry}, volume~52 of {\em Graduate Texts in Mathematics}.
+\newblock {\em Algebraic Geometry}, volume~52 of {\em Graduate Texts in
+  Mathematics}.
 \newblock Springer-Verlag, New York, 1977.
+
+\bibitem{Quillen}
+Daniel Quillen.
+\newblock On the (co-)homology of commutative rings.
+\newblock In {\em Proc. Sympos. Pure Math.}, volume~17, pages 65--87. 1970.
 
 \end{thebibliography}
