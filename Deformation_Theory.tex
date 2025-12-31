@@ -283,6 +283,10 @@ where for a $B$-module $M$, the module $B\oplus M$ is given the $A$-algebra stru
 \[(a,x)(b,y)=(ab,bx+ay)\]
 with $A$-acting diagonally. It is canonically equipped with a $A$-algebra projection map to $B$, so we have a well-defined object in $\mathcal{C},$ denoted by $B\ltimes M$. It is straightforward to check the construction is functorial. 
 
+
+
+
+
 \begin{lemma}
 	\label{derivation_lemma}
 	There is a natural isomorphism 
@@ -354,7 +358,35 @@ is then the desired inverse.
 	\[\Hom_B(B\otimes_A \Omega_{X/A}, M)\cong \Der_A(X,M)\]
 	and Lemma \ref{derivation_lemma}.
 \end{proof}
-Effectively, we see that the functor $B\otimes_A \Omega_{-/A}$ is the abelianization functor from $\mathcal{C}$ to $\mathcal{C}_{ab}$, left adjoint to the forgetful functor. The next step is to find the correct homotopical setting to derive the functor. 
+Effectively, we see that the functor $B\otimes_A \Omega_{-/A}$ is the abelianization functor from $\mathcal{C}$ to $\mathcal{C}_{ab}$, left adjoint to the forgetful functor. The next step is to find the correct homotopical setting to derive the functor. Recall that for the abelian category $\textrm{Mod}_R$, one computes derived functors via projective resolution in $\textrm{Ch}(R)$. But now $\mathcal{C}=(\textrm{Alg}_A)/B$ carries multiplicative structure, and the module of K\"ahler differentials sees such multiplicative structure. A natural first candidate would be replacing $\textrm{Ch}(R)$ with the category of commutative differential graded algebras. It turns out that using $\textrm{CDGA}$ works only in characteristic zero. Instead, we simplicial methods work in full generality.
+
+\begin{theorem}
+	Suppose $\mathcal{D}$ is a category closed under finite limits and having enough projectives. Then, the category of simplicial objects $s \mathcal{D}$ admits a model structure. 
+\end{theorem}
+\begin{proof}
+	See \cite{Quillen1967}.
+\end{proof}
+In particular, this endows the categories $s \mathcal{C}$ and $s \textrm{Mod}_B$ with model structures. The cofibrant objects are characterized by \textcolor{red}{FIX!}
+
+
+
+
+
+
+\begin{remark}
+	
+\end{remark}
+
+
+
+
+
+
+
+
+
+
+
 
 \textcolor{red}{Mumble something on the model structure on sAlg and sMod}
 
@@ -378,9 +410,15 @@ By the general theory of model categories, the cotangent complex can be computed
 	\[D_i(B/A,M):= H_i(L_{B/A}\otimes_B M)\]
 \end{definition}
 
-
+\subsection{Properties of Andr\'e-Quillen (Co)homology}
 
 \subsection{Lichtenbaum-Schlessinger Functors} 
+Agreement in char 0
+\textcolor{red}{Resolution with free cDGA}
+
+
+
+
 The construction starts with making the following choices: given a ring homomorphism $A\to B$, choose a polynomial ring $R=A[x_1,x_2,...]$ large enough to admit an $A$-algebra surjection $R\to B$. Let $I$ be the ideal defining $B$, so we have a short exact sequence
 \[0\to I\to R\to B\to 0\]
 Then, choose a free $R$-module $F$ and a $R$-module surjection $F\to I$, and let $Q$ be the kernel, so we have a short exact sequence

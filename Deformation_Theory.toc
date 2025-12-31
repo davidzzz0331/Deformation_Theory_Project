@@ -5,4 +5,5 @@
 \contentsline {subsection}{\numberline {2.2}Deformation of Coherent Sheaves}{5}{subsection.2.2}%
 \contentsline {section}{\numberline {3}Cohomology of Commutative Rings}{6}{section.3}%
 \contentsline {subsection}{\numberline {3.1}The Cotangent Complex}{7}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Lichtenbaum-Schlessinger Functors}{9}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.2}Properties of Andr\'e-Quillen (Co)homology}{10}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Lichtenbaum-Schlessinger Functors}{10}{subsection.3.3}%
