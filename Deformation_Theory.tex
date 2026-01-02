@@ -228,7 +228,7 @@ We may apply the theorem to the special case of vector bundles, i.e locally free
 	The first order deformation of a vector bundle $\mathcal{E}$ on $X$ are classified by elements of $H^1(X, \mathcal{E}nd(\mathcal{E}))$, with the trivial deformation corresponding to the zero element.
 \end{corollary}
 \begin{proof}
-	Note that $H^1(X, \mathcal{E}nd(\mathcal{E}))\cong \textrm{Ext}^1(\mathcal{O}_X,  \mathcal{E}nd(\mathcal{E}))$, since $\Gamma(X, -)= \Hom(\mathcal{O}_X, -)$ so their derived functors are isomorphic. By \cite{Hartshorne}, Prop 6.7, we have the adjunction 
+		Note that $H^1(X, \mathcal{E}nd(\mathcal{E}))\cong \textrm{Ext}^1(\mathcal{O}_X,  \mathcal{E}nd(\mathcal{E}))$, since $\Gamma(X, -)= \Hom(\mathcal{O}_X, -)$ so their derived functors are isomorphic. By \cite{Hartshorne}, Prop 6.7, we have the adjunction 
 	\[\textrm{Ext}^1(\mathcal{O}_X,  \mathcal{E}nd(\mathcal{E}))\cong \textrm{Ext}^1(\mathcal{E},  \mathcal{E})\].
 \end{proof}
 
@@ -434,7 +434,6 @@ where $L_2=Q/F_0$, $L_1=F\otimes_R B\cong F/IF$ and $L_0=\Omega_{R/A}\otimes_R B
 \begin{definition}
 	For any $B$-module $M$, define 
 	\[T^i(B/A,M):= H^i(\Hom_B(L_{\bullet}, M))\]
-	
 \end{definition}
 
 
@@ -452,9 +451,181 @@ where $L_2=Q/F_0$, $L_1=F\otimes_R B\cong F/IF$ and $L_0=\Omega_{R/A}\otimes_R B
 
 
 
+\newpage
+
+\appendix 
+\section{Model Categories}
+\subsection{Basic Definitions}
+We follow the convention in \cite{Hovey1999} for the definition of model categories. We will assume that all categories are complete and cocomplete. 
+
+\begin{definition}
+	Suppose $\mathcal{C}$ is a category. A \textbf{functorial factorization} $(\alpha,\beta)$ in $\mathcal{C}$ is the data of two functors $\alpha,\beta: \textrm{Mor } \mathcal{C}\to  \textrm{Mor }\mathcal{C}$ such that 
+	\[f= \beta(f)\circ \alpha(f)\]
+	for all $f\in \textrm{Mor } \mathcal{C}$.
+\end{definition}
+
+\begin{definition}
+	Suppose $i: A\to B$ and $p: X\to Y$ are morphisms in $\mathcal{C}$. We say $i$ has the \textbf{left lifting property} with respect to $p$ and $p$ has the \textbf{right lifting property} with respect to $i$ if, for every commutative diagram 
+	\[\begin{tikzcd}
+		A & X \\
+		B & Y
+		\arrow[from=1-1, to=1-2]
+		\arrow["i"', from=1-1, to=2-1]
+		\arrow["p", from=1-2, to=2-2]
+		\arrow[dashed, from=2-1, to=1-2]
+		\arrow[from=2-1, to=2-2]
+	\end{tikzcd}\]
+the dashed lift exists making the entire diagram commute.
+ \end{definition}
 
 
 
+
+
+\begin{definition}
+	A \textbf{model structure} on a category $\mathcal{C}$ is three distinguished classes of morphisms
+	\begin{enumerate}
+		\item weak equivalences;
+		\item cofibrations;
+		\item fibrations
+	\end{enumerate}
+	and two functorial factorizations $(\alpha,\beta)$ and $(\gamma,\delta)$ satisfying the following axioms: 
+\begin{itemize}
+	\item (2-out-of-3) If two of the three morphisms $f,g,g\circ f$ are weak equivalences, so is the third.
+	\item (Retract) Each of the three classes of morphisms is closed under retracts. 
+	\item (Lifting) Call a morphism a \textbf{trivial (co)fibration} if it is both a (co)fibration and a weak equivalence. Then, trivial cofibrations have the left lifting property with respect to fibrations, and cofibrations have the left lifting property with respect to trivial fibrations.
+	\item (Factorization) For any morphism $f$, $(\alpha,\beta)$ factorizes $f$ into a cofibration followed by a trivial fibration, and $(\gamma,\delta)$ factorizes $f$ into a trivial cofibration followed by a fibration.
+\end{itemize}
+
+\end{definition}
+
+\begin{proposition}
+	Suppose $\mathcal{C}$ is a model category. For any fixed object $A$ in $\mathcal{C}$, the over category $\mathcal{C}/A$ admits a model structure. 
+\end{proposition}
+\begin{proof}
+	There is a natural forgetful functor $U: \mathcal{C}/A\to \mathcal{C}$ that forgets the structure map to $A$. We define a morphism in $\mathcal{C}/A$ to be a weak equivalence, cofibration, or fibration if its image under the forgetful functor is such in $\mathcal{C}$. Functorial factorization are also obtained by first factoring in $\mathcal{C}$, then adding the missing structure morphism by composition. The axioms of model categories can then be checked directly from the corresponding axioms in $\mathcal{C}$.
+\end{proof}
+
+\begin{definition}
+	Suppose $\mathcal{C}$ is category with a distinguished class of morphisms called weak equivalences. Then, the \textbf{homotopy category} $\textrm{Ho}(\mathcal{C})$ is the category obtained by formally inverting all weak equivalences in $\mathcal{C}$.
+\end{definition}
+
+
+The standard construction of formally inverting all weak equivalences in $\mathcal{C}$ makes the homotopy category hard to work with directly: the morphsims in $\textrm{Ho}(\mathcal{C})$ are formal zig-zags, and we do not know a priori if $\textrm{Ho}(\mathcal{C})$ is locally small, even if $\mathcal{C}$ is. However, model categories admit a convenient description of morphisms in the homotopy category via cofibrant and fibrant replacements.
+\begin{definition}
+	Suppose $\mathcal{C}$ is a model category, then an object in $\mathcal{C}$ is called \textbf{fibrant} if the morphism to the terminal object is a fibration, and \textbf{cofibrant} if the morphism from the initial object is a cofibration.
+\end{definition}
+By assumption, our category $\mathcal{C}$ is complete and cocomplete, so it admits an initial object $I$ and a terminal object $*$. Applying functorial factorization $(\alpha,\beta)$ to the morphism $I\to X$ for any object $X$, we get factorization 
+\[\begin{tikzcd}
+	& {QX} \\
+	I & {} & X
+	\arrow["q_X", from=1-2, to=2-3]
+	\arrow[from=2-1, to=1-2]
+	\arrow["i"', from=2-1, to=2-3]
+\end{tikzcd}\]
+where $QX$ by definition is a cofibrant, and $q_X$ is a weak equivalence. Similarly, applying $(\gamma,\delta)$ to the morphism $X\to *$ produces 
+\[\begin{tikzcd}
+	& {RX} \\
+	X & {} & *
+	\arrow[from=1-2, to=2-3]
+	\arrow["r_X", from=2-1, to=1-2]
+	\arrow["j"', from=2-1, to=2-3]
+\end{tikzcd}\]
+where $RX$ is fibrant, and $r_X$ is a weak equivalence. 
+
+\begin{definition}
+	The functor $Q: \mathcal{C}\to \mathcal{C}_c$ is called the \textbf{cofibrant replacement functor}, and the functor $R: \mathcal{C}\to \mathcal{C}_f$ is called the \textbf{fibrant replacement functor.}
+\end{definition}
+
+\begin{lemma}
+	Let $\mathcal{C}$ be a model category, and $C_{c},(\textrm{resp. } \mathcal{C}_f,\mathcal{C}_{cf})$ be the subcategories of cofibrant(resp. fibrant, cofibrant-fibrant) objects. Then, the inclusion functors induce equivalences of categories 
+	\[\textrm{Ho}\mathcal{C}_{cf}\to \textrm{Ho}\mathcal{C}_{c}\to \textrm{Ho}\mathcal{C}\]
+	and 
+	\[\textrm{Ho}\mathcal{C}_{cf}\to \textrm{Ho}\mathcal{C}_{f}\to \textrm{Ho}\mathcal{C}\]
+	
+\end{lemma}
+\begin{proof}
+	We will only show the equivalence $\textrm{Ho}\mathcal{C}_c\to \textrm{Ho} \mathcal{C}$, since the other cases are similar. Note that the pair of functors 
+	\[\begin{tikzcd}
+		{\mathcal{C}_c} && \mathcal{C}
+		\arrow["i", shift left=3, from=1-1, to=1-3]
+		\arrow["Q", shift left=2, from=1-3, to=1-1]
+	\end{tikzcd}\]
+	both preserves weak equivalences, so they descend to functors on the homotopy categories. Moreover, the morphism $QX\xrightarrow{q_X} X$ gives us the natural transformations
+	$Q\circ i\to \textrm{Id}_{\mathcal{C}_c}$ and $i\circ Q\to \textrm{Id}_{\mathcal{C}}$, and descends to an isomorphism of functors on the homotopy category since it is a weak equivalence. 
+\end{proof}
+
+
+
+
+
+\begin{definition}
+	Suppose $A,B$ are objects in a model category $\mathcal{C}$. A \textbf{cylinder object} for $A$ is a factorization of the fold map 
+	\[\begin{tikzcd}
+		{A\coprod A} \\
+		A & {A'}
+		\arrow["{\textrm{fold}}"', from=1-1, to=2-1]
+		\arrow["i_0+i_1", from=1-1, to=2-2]
+		\arrow["s"', from=2-2, to=2-1]
+	\end{tikzcd}\]
+	where $i_0+i_1$ is a cofibration and $s$ is a weak equivalence. Dually, a \textbf{path object} for $B$ is a factorization of the diagonal map
+	\[\begin{tikzcd}
+		{B\times B} \\
+		B & {B'}
+		\arrow["{\textrm{diag}}"', from=2-1, to=1-1]
+		\arrow["r"', from=2-1, to=2-2]
+		\arrow["{(p_0,p_1)}"', from=2-2, to=1-1]
+	\end{tikzcd}\]
+	where $(p_0,p_1)$ is a fibration and $r$ is a weak equivalence. 
+\end{definition}
+Note that applying functorial factorization to the fold and diagonal maps give us canonical choices of cylinder and path objects, denoted by $X\times I$ and $X_I$. The notation is suggestive of the topological interval $I=[0,1]$, and that the cylinder and path object are analogs of the mapping cylinder and path space constructions in topology. They will provide us with notions of homotopies between morphisms in a model category.
+\begin{definition}
+	Suppose $f,g: A\to B$ are morphisms in a model category $\mathcal{C}$. A \textbf{left homotopy} from $f$ to $g$ is a morphism $H: A'\to B$, where $A'$ is a cylinder object for $A$, such that $Hi_0=f$ and $Hi_1=g$. Dually, a \textbf{right homotopy} from $f$ to $g$ is a morphism $K: A\to B'$, where $B'$ is a path object for $B$, such that $p_0 K=f$ and $p_1 K=g$. We say $f,g$ are \textbf{homotopic} if there exists a left and right homotopy between them. 
+\end{definition}
+We will write $f\sim g$ if $f$ and $g$ are homotopic. 
+
+\begin{proposition}
+	Homotopy is an equivalence relation on $\Hom_{\mathcal{C}}(A,B)$ if $A$ is cofibrant and $B$ is fibrant.
+\end{proposition}
+
+\begin{proposition}
+	In the subcategory of cofibrant-fibrant objects $\mathcal{C}_{cf}$, weak equivalences and homotopy equivalences coincide.
+\end{proposition}
+
+
+We summarize the results in the following theorem:
+\begin{theorem}
+	Suppose $\mathcal{C}$ is a model category
+\end{theorem}
+
+\subsection{Derived Functors}
+
+\subsection{Simplicial Modules and Rings}
+
+\begin{theorem}[Dold-Kan]
+	There is an equivalence of categories 
+	\[\begin{tikzcd}
+		{s\textrm{Mod}_R} && {\textrm{Ch}(R)}
+		\arrow[shift left=2, from=1-1, to=1-3]
+		\arrow[shift left, from=1-3, to=1-1]
+	\end{tikzcd}\]
+\end{theorem}
+The Dold-Kan correspondence, and the known model structure on $\textrm{Ch}(R)$ induces a model structure on $s\textrm{Mod}_R$. In fact, we can replace $\textrm{Ch}(R)$ with any abelian category $\mathcal{A}$, and get an equivalence between $s\mathcal{A}$ and the category of non-negatively graded chain complexes in $\mathcal{A}$. 
+
+
+
+
+
+
+
+
+\begin{theorem}
+	Let $R$ be a commutative ring and $s \textbf{Alg}_R$ be the category of commutative simplicial $R$-algebras. Then, $s \textbf{Alg}_R$ admits a model structure where a morphism $f: A_{\bullet}\to B_{\bullet}$ is 
+	\begin{enumerate}
+		\item a weak equivalence if $\pi_*X\to \pi_*Y$ is a weak equivalence. 
+		\item a fibration if $X\to \pi_0X\times_{\pi_0Y} Y$ is a surjetion.
+	\end{enumerate}
+\end{theorem}
 
 
 

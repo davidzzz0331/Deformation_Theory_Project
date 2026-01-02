@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex Deformation_Theory"] 1767220887 "Deformation_Theory.aux" "Deformation_Theory.bbl" "Deformation_Theory" 1767220933 0
-  "./citation.bib" 1767219930 2185 8d97e2f8380ece3bad8a7478b85e2a85 ""
+["bibtex Deformation_Theory"] 1767385897 "Deformation_Theory.aux" "Deformation_Theory.bbl" "Deformation_Theory" 1767386113 0
+  "./citation.bib" 1767372594 2465 8c6f1a881a66260ad30d4527863e6f63 ""
   "/usr/local/texlive/2023/texmf-dist/bibtex/bst/base/plain.bst" 1292289607 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "Deformation_Theory.aux" 1767220933 2300 291cee4ee697bde835505d8f410b6626 "pdflatex"
+  "Deformation_Theory.aux" 1767386113 2844 a73b2846f94bb2bd5114e1b449e6b4fa "pdflatex"
   (generated)
   "Deformation_Theory.bbl"
   "Deformation_Theory.blg"
   (rewritten before read)
-["pdflatex"] 1767220932 "/Users/davidzhu/Documents/GitHub/Deformation_Theory_Project/Deformation_Theory.tex" "Deformation_Theory.pdf" "Deformation_Theory" 1767220933 0
-  "/Users/davidzhu/Documents/GitHub/Deformation_Theory_Project/Deformation_Theory.tex" 1767220932 25167 6f7d2e31e69112d223c828aa7d7e6a61 ""
+["pdflatex"] 1767386111 "/Users/davidzhu/Documents/GitHub/Deformation_Theory_Project/Deformation_Theory.tex" "Deformation_Theory.pdf" "Deformation_Theory" 1767386113 0
+  "/Users/davidzhu/Documents/GitHub/Deformation_Theory_Project/Deformation_Theory.tex" 1767386111 34470 5eeefb74bd8d84f525037e4de539d8fd ""
   "/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm" 1136768653 1536 e07581a4bb3136ece9eeb4c3ffab8233 ""
@@ -38,6 +38,7 @@
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmti10.tfm" 1136768653 1480 aa8e34af0eb6a2941b776984cf1dfdc4 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb" 1248133631 34811 78b52f49e893bcba91bd7581cdc144c0 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb" 1248133631 32080 340ef9bf63678554ee606688e7b5339d ""
+  "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb" 1248133631 30251 6afa5cb1d0204815a708a080681d4674 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1248133631 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb" 1248133631 37912 77d683123f92148345f3fc36a38d9ab1 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb" 1248133631 36281 c355509802a035cadc5f15869451dcee ""
@@ -231,11 +232,11 @@
   "/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1710130202 4623355 b8cad38412faebe1ce5b780a45db67bd ""
   "/usr/local/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt" 1710130178 7883461 5901c145d91f673e1f689bc83c44d735 ""
   "/usr/local/texlive/2023/texmf.cnf" 1678822455 577 1b2b1af17af2508fb20dd85783af4050 ""
-  "Deformation_Theory.aux" 1767220933 2300 291cee4ee697bde835505d8f410b6626 "pdflatex"
-  "Deformation_Theory.bbl" 1767220887 562 ce179f24db0bd12b0a4033be1f1912b2 "bibtex Deformation_Theory"
-  "Deformation_Theory.out" 1767220933 1686 624ccf77ee9bd80ead089e749922d85b "pdflatex"
-  "Deformation_Theory.tex" 1767220932 25167 6f7d2e31e69112d223c828aa7d7e6a61 ""
-  "Deformation_Theory.toc" 1767220933 799 ac47d8d294ea790420c941f74e6b0593 "pdflatex"
+  "Deformation_Theory.aux" 1767386113 2844 a73b2846f94bb2bd5114e1b449e6b4fa "pdflatex"
+  "Deformation_Theory.bbl" 1767385897 731 453b0ee2ec426ee2873b04cacd890454 "bibtex Deformation_Theory"
+  "Deformation_Theory.out" 1767386113 2311 41d6e20c454e2da8c708f382dbc949f4 "pdflatex"
+  "Deformation_Theory.tex" 1767386111 34470 5eeefb74bd8d84f525037e4de539d8fd ""
+  "Deformation_Theory.toc" 1767386113 1135 23b3201c9ba99de9593c4f51e40bb92a "pdflatex"
   (generated)
   "Deformation_Theory.aux"
   "Deformation_Theory.log"
