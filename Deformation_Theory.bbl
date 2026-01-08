@@ -1,13 +1,21 @@
 \begin{thebibliography}{1}
 
+\bibitem{Goerss_Jardine}
+Paul~G. Goerss and John~F. Jardine.
+\newblock {\em Simplicial homotopy theory}, volume 174 of {\em Progress in
+  Mathematics}.
+\newblock Birkh\"auser Verlag, Basel, 1999.
+
 \bibitem{Hartshorne}
 Robin Hartshorne.
-\newblock {\em Algebraic Geometry}, volume~52 of {\em Graduate Texts in Mathematics}.
+\newblock {\em Algebraic Geometry}, volume~52 of {\em Graduate Texts in
+  Mathematics}.
 \newblock Springer-Verlag, New York, 1977.
 
 \bibitem{Hovey1999}
 Mark Hovey.
-\newblock {\em Model Categories}, volume~63 of {\em Mathematical Surveys and Monographs}.
+\newblock {\em Model Categories}, volume~63 of {\em Mathematical Surveys and
+  Monographs}.
 \newblock American Mathematical Society, Providence, RI, 1999.
 
 \bibitem{Quillen}
@@ -17,7 +25,8 @@ Daniel Quillen.
 
 \bibitem{Quillen1967}
 Daniel~G. Quillen.
-\newblock {\em Homotopical Algebra}, volume~43 of {\em Lecture Notes in Mathematics}.
+\newblock {\em Homotopical Algebra}, volume~43 of {\em Lecture Notes in
+  Mathematics}.
 \newblock Springer-Verlag, Berlin--New York, 1967.
 
 \end{thebibliography}
