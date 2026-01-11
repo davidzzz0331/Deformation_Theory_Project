@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex Deformation_Theory"] 1767841546.61871 "Deformation_Theory.aux" "Deformation_Theory.bbl" "Deformation_Theory" 1767841652.45887 0
+["bibtex Deformation_Theory"] 1768096580.5599 "Deformation_Theory.aux" "Deformation_Theory.bbl" "Deformation_Theory" 1768099690.03521 0
   "./citation.bib" 1767837609 2928 b0a740c2f255789b17dcb27db4ef526a ""
   "C:/Users/david/AppData/Local/Programs/MiKTeX/bibtex/bst/bibtex/plain.bst" 1291864736 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "Deformation_Theory.aux" 1767841651 2562 177101d3415113a7d77481e2ba7f7fd8 "pdflatex"
+  "Deformation_Theory.aux" 1768099689 2506 d04bcdd109164000e14c6c71d1e14c30 "pdflatex"
   (generated)
   "Deformation_Theory.bbl"
   "Deformation_Theory.blg"
   (rewritten before read)
-["pdflatex"] 1767841651.12579 "c:/Users/david/OneDrive/Documents/GitHub/Deformation_Theory_Project/Deformation_Theory.tex" "Deformation_Theory.pdf" "Deformation_Theory" 1767841652.45925 0
+["pdflatex"] 1768099688.52769 "c:/Users/david/OneDrive/Documents/GitHub/Deformation_Theory_Project/Deformation_Theory.tex" "Deformation_Theory.pdf" "Deformation_Theory" 1768099690.03559 0
   "C:/Users/david/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1764274921 81088 29d6fa367ac022d1b69251d68c0742e6 ""
   "C:/Users/david/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1000.pk" 1765929425 11548 515c591f71fb27805e4fb2e3108534bc ""
   "C:/Users/david/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1758603925 13286966 728ea1aa91f026327a2c575a3d8fd6e4 ""
@@ -218,12 +218,12 @@
   "C:/Users/david/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1729265222 55384 b454dec21c2d9f45ec0b793f0995b992 ""
   "C:/Users/david/AppData/Local/Programs/MiKTeX/tex/latex/xfrac/xfrac.sty" 1718270407 14945 a207ee7fd6b8cf6d82afb367c583ddd3 ""
   "C:/Users/david/AppData/Local/Programs/MiKTeX/tex/latex/xkeyval/xkeyval.sty" 1656236919 4937 4ce600ce9bd4ec84d0250eb6892fcf4f ""
-  "Deformation_Theory.aux" 1767841651 2562 177101d3415113a7d77481e2ba7f7fd8 "pdflatex"
-  "Deformation_Theory.bbl" 1767841546 966 dc3263b0cf4919b744311ec375447f62 "bibtex Deformation_Theory"
-  "Deformation_Theory.out" 1767841651 2311 41d6e20c454e2da8c708f382dbc949f4 "pdflatex"
-  "Deformation_Theory.tex" 1767841650 39489 e89ef1b747506d8d442b2bc61f40f510 ""
-  "Deformation_Theory.toc" 1767841651 1135 23b3201c9ba99de9593c4f51e40bb92a "pdflatex"
-  "c:/Users/david/OneDrive/Documents/GitHub/Deformation_Theory_Project/Deformation_Theory.tex" 1767841650 39489 e89ef1b747506d8d442b2bc61f40f510 ""
+  "Deformation_Theory.aux" 1768099689 2506 d04bcdd109164000e14c6c71d1e14c30 "pdflatex"
+  "Deformation_Theory.bbl" 1768096580 779 306b35bcda3a527e93e83c2dfa4257ea "bibtex Deformation_Theory"
+  "Deformation_Theory.out" 1768099689 2280 13c0fd914dec416a8d861ff09a30979d "pdflatex"
+  "Deformation_Theory.tex" 1768099688 42696 18f64cdde736b79b68006612f012505b ""
+  "Deformation_Theory.toc" 1768099689 1127 c30e41230be351273c1063d8aa6afb36 "pdflatex"
+  "c:/Users/david/OneDrive/Documents/GitHub/Deformation_Theory_Project/Deformation_Theory.tex" 1768099688 42696 18f64cdde736b79b68006612f012505b ""
   (generated)
   "Deformation_Theory.aux"
   "Deformation_Theory.log"

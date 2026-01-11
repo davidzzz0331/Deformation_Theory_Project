@@ -360,43 +360,19 @@ is then the desired inverse.
 \end{proof}
 Effectively, we see that the functor $B\otimes_A \Omega_{-/A}$ is the abelianization functor from $\mathcal{C}$ to $\mathcal{C}_{ab}$, left adjoint to the forgetful functor. The next step is to find the correct homotopical setting to derive the functor. Recall that for the abelian category $\textrm{Mod}_R$, one computes derived functors via projective resolution in $\textrm{Ch}(R)$. But now $\mathcal{C}=(\textrm{Alg}_A)/B$ carries multiplicative structure, and the module of K\"ahler differentials sees such multiplicative structure. A natural first candidate would be replacing $\textrm{Ch}(R)$ with the category of commutative differential graded algebras. It turns out that using $\textrm{CDGA}$ works only in characteristic zero. Instead, we simplicial methods work in full generality.
 
-\begin{theorem}
-	Suppose $\mathcal{D}$ is a category closed under finite limits and having enough projectives. Then, the category of simplicial objects $s \mathcal{D}$ admits a model structure. 
+
+\begin{theorem}[Model Structure on $s \textrm{Alg}_R$]
+	The category of simplicial commutative $R$-algebras $s\textrm{Alg}_R$ admits a model structure where a morphism $f: A_{\bullet}\to B_{\bullet}$ is 
+	\begin{enumerate}
+		\item a weak equivalence is the underlying map of simplicial $R$-modules is a weak equivalence;
+		\item a fibration if the underlying map of simplicial $R$-modules is a fibration
+	\end{enumerate}
+	
 \end{theorem}
-\begin{proof}
-	See \cite{Quillen1967}.
-\end{proof}
-In particular, this endows the categories $s \mathcal{C}$ and $s \textrm{Mod}_B$ with model structures. The cofibrant objects are characterized by \textcolor{red}{FIX!}
 
-
-
-
-
-
-\begin{remark}
-	
-\end{remark}
-
-
-
-
-
-
-
-
-
-
-
-
-\textcolor{red}{Mumble something on the model structure on sAlg and sMod}
-
-\begin{proposition}
-	The abelianization functor extends levelwise to a functor between the corresponding simplicial categories
+The abelianization functor extends levelwise to a functor between the corresponding simplicial categories
 	\[B\otimes_A \Omega_{-/A}: s\mathcal{C}\to s\textbf{Mod}_B\]
-	Moreover, it preserves cofibrations and weak equivalences between cofibrant objects, so the adjunction in Proposition \ref{abelianization_adjunction} promotes to a Quillen adjunction between simplicial model categories.
-	
-\end{proposition}
-
+Since the right adjoint $B\ltimes -$ preserves weak equivalences and fibrantions, the adjunction in Proposition \ref{abelianization_adjunction} promotes to a Quillen adjunction between simplicial model categories.
 
 \begin{definition}
 	The \textbf{Cotangent Complex} $L_{B/A}$ is defined to be the total left derived functor of the abelianization functor evaluated at $B$. 
@@ -410,7 +386,138 @@ By the general theory of model categories, the cotangent complex can be computed
 	\[D_i(B/A,M):= H_i(L_{B/A}\otimes_B M)\]
 \end{definition}
 
-\subsection{Properties of Andr\'e-Quillen (Co)homology}
+\subsection{Properties of the Cotangent Complex}
+Note given ordinary ring homomorphism $R\to S$, there is a Quillen adjunction 
+\[\begin{tikzcd}
+	{} & {S\otimes_R-:\textrm{sAlg}_R} & {} & {\textrm{sAlg}_S: \textrm{res}_R}
+	\arrow[shift left=2, from=1-2, to=1-4]
+	\arrow[shift left=2, from=1-4, to=1-2]
+\end{tikzcd}\]
+since the right adjoint $\textrm{res}_R$ preserves fibrations and weak equivalences. Therefore, given a commutative diagram of ring homomorphisms
+	\[\begin{tikzcd}
+	R & S \\
+	A & B
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=2-1, to=2-2]
+\end{tikzcd}\]
+there is a natural morphism in the homotopy category of simplicial $B$-modules
+\[B\otimes_A L_{A/R}\to L_{B/S}\]
+This can be realized by first choosing cofibrant replacements $cA\to A$ in $s \textrm{Alg}_R$. Since $R\to cA$ is a cofibration, the base change $S\to S\otimes_R cA$ is also a cofibration, and $S\otimes_R cA$ is a cofibrant $S$-algebra. We may then factor the induced map $S\otimes_R cA\to B$ as a cofibration followed by a trivial fibration
+\[S\otimes_R cA\xrightarrow{i} cB\xrightarrow{p} B\]
+where $cB$ is automatically a cofibrant $S$-algebra since $S\otimes_R cA$ is. We now have a commutative diagram of simplicial rings
+\[\begin{tikzcd}
+	R & S \\
+	cA & cB \\
+	A & B
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=2-1, to=2-2]
+	\arrow[from=2-1, to=3-1]
+	\arrow[from=2-2, to=3-2]
+	\arrow[from=3-1, to=3-2]
+\end{tikzcd}\]
+which induces the desired morphism of simplicial $B$-modules
+\[B\otimes_A(A\otimes_{cA} \Omega_{cA/R})\to B\otimes_{cB}\Omega_{cB/S}\]
+
+
+\begin{theorem}[Transitivity Sequence]
+	Given a sequence of ring homomorphisms 
+	\[A\xrightarrow{f} B\xrightarrow{g} C\]
+	there is a natural distinguished triangle in the derived category of $C$-modules
+	\[C\otimes_B L_{B/A}\to L_{C/A}\to L_{C/B}\to C\otimes_B L_{B/A}[1]\]
+\end{theorem}
+\begin{proof}
+	First choose cofibrant replacement $P\to B$ in $s \textrm{Alg}_A$, and  factorize the composition $P\to B\to C$ as a cofibration followed by a trivial fibration
+	\[P\to Q\to C\]
+	We then get a commutative diagram of simplicial rings
+\[\begin{tikzcd}
+	& P & Q \\
+	A & B & {B\otimes_PQ} \\
+	&&& C
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=1-3, to=2-3]
+	\arrow[curve={height=-18pt}, from=1-3, to=3-4]
+	\arrow[from=2-1, to=1-2]
+	\arrow[from=2-1, to=2-2]
+	\arrow[from=2-2, to=2-3]
+	\arrow[curve={height=12pt}, from=2-2, to=3-4]
+	\arrow[from=2-3, to=3-4]
+\end{tikzcd}\]
+The diagram induces a commutative diagram of simplicial $C$-modules
+\[\begin{tikzcd}
+	0 & {C\otimes_B(B\otimes_P\Omega_{P/A})} & {C\otimes_Q\Omega_{Q/A}} & {C\otimes_{Q\otimes_PB}\Omega_{Q\otimes_pB/B}} & 0
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-3, to=1-4]
+	\arrow[from=1-4, to=1-5]
+\end{tikzcd}\]
+where exactness on the left \textcolor{red}{Requires we choose a free resolution!}. We can immediately identify the left two terms as $C\otimes_B L_{B/A}$ and $L_{C/B}$, so it remains to identify the last term as $L_{C/B}$. The identification follows from showing that $Q\otimes_P B\to C$ is a cofibrant replacement of $C$ in $s \textrm{Alg}_B$.
+
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{theorem}[Flat Base Change]
+	
+\end{theorem}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \subsection{Lichtenbaum-Schlessinger Functors} 
 Agreement in char 0
@@ -655,7 +762,7 @@ The proof goes as follows: since $G$ commutes with filtered colimits, the adjoin
 
 In our case where $\mathcal{C} = \textbf{Alg}_R$, the forgetful functor 
 \[G: s\textbf{Alg}_R \to \textrm{sSet}\]
-factors through the subcategory of simplicial groups, so every object is automatically fibrant. In particular, we can take the fibrant replacement functor to be the identity functor. Therefore, applying Theorem \ref{transfer_theorem} gives us the desired model structure on $s\textbf{Alg}_R$. However, in order to make computations possible, we need an explicit description of the cofibrations. 
+factors through the subcategory of simplicial groups, so every object is automatically fibrant. In particular, we can take the fibrant replacement functor to be the identity functor. Therefore, applying Theorem \ref{transfer_theorem} gives us the desired model structure on $s\textbf{Alg}_R$. However, in order to make computations possible, we need an explicit description of the cofibrations.
 
 
 
