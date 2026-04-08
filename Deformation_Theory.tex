@@ -20,8 +20,9 @@
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\A}{\mathbb{A}}
 \newcommand{\Spec}{\textrm{Spec}}
-\newcommand{\Proj}{\textrm{Proj}}
+\newcommand{\Proj}{\textrm{Proj }}
 \newcommand{\Hom}{\textrm{Hom}}
+\newcommand{\Aut}{\textrm{Aut}}
 \newcommand{\Ext}{\textrm{Ext}}
 \newcommand{\Tor}{\textrm{Tor}}
 \newcommand{\Der}{\textrm{Der}}
@@ -646,6 +647,193 @@ where $L_2=Q/F_0$, $L_1=F\otimes_R B\cong F/IF$ and $L_0=\Omega_{R/A}\otimes_R B
 
 
 
+\section{Infinitesimal Deformation}
+
+
+
+In order to check Schlessinger's criterion, we repeatedly use the following algebraic lemma on flatness:
+\begin{proposition}
+	Suppose we are given the fiber product of rings
+	\[\begin{tikzcd}
+	{A^*} & {A''} \\
+	{A'} & A
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=2-1, to=2-2]
+\end{tikzcd}\]
+and modules $M,M',M''$ over $A,A',A''$, respectively, with compatible maps 
+$M'\to M$ and $M''\to M$. Further assume that $M'\otimes_{A'} A\to M $ and $M''\otimes_{A''} A\to M$ are isomorphisms. Let $M^*= M'\times_{M}M''$. 
+\begin{enumerate}
+	\item If $A''\to A$ is surjective, then $M^*\otimes_{A^*} A'\to M'$ is an isomorphism.
+	\item If $A''\to A$ is a square zero extension, and $M',M''$ are flat over $A',A''$, respectively. Then, $M^*$ is flat over $A^*$, and $M^*\otimes_{A^*}A''\to M''$ is an isomorphism.
+\end{enumerate}
+
+\end{proposition}
+\begin{proof}
+	For $1.$ it suffices to note that tensoring the surjection $A''\to A$ with $M''\otimes_{A''} - $ induces a surjection $M''\to M$. From the pullback diagram 
+	\[\begin{tikzcd}
+	{M^*} & {M'} \\
+	{M''} & M
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=2-1, to=2-2]
+\end{tikzcd}\]
+it follows that $M^*\to M$ is a surjection as well. Base change to $A'$ gives the desired surjection $M^*\otimes_{A^*} A'\to M'$. For injectivity, 
+suppose $\sum_i (m_i',m_i'')\otimes a'_i$ is mapped to $0$, which means $\sum_i a_im_i'=0\in M'$. By surjectivity of $A''\to A$, there are elements $(a_i',a''_i)\in A^*$ lifting $a'_i$. Then we may rewrite 
+
+\[\sum_i (m_i',m_i'') \otimes a'_i= \sum_i (a'_im_i',a''_im_i'')\otimes 1 = 0\]For $2$, we consider the diagram
+\[\begin{tikzcd}
+	0 & {J\otimes_AM} & {M^*} & {M'} & 0 \\
+	0 & {J\otimes_A M} & {M''} & M & 0
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=1-3, to=1-4]
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=1-4, to=1-5]
+	\arrow[from=1-4, to=2-4]
+	\arrow[from=2-1, to=2-2]
+	\arrow[from=2-2, to=2-3]
+	\arrow[from=2-3, to=2-4]
+	\arrow[from=2-4, to=2-5]
+\end{tikzcd}\]The exactness of the bottom row comes from the flatness of $M''$. The exactness of the top row comes from the right square being a pullback. Observe that 
+\[A^*\to A'\]
+is also a square zero extension with kernel isomorphic to $J$. The local criterion for flatness is satisfied, since 
+\[M^*\otimes_{A^*}A'\cong M'\] 
+is flat over $A'$ by assumption, and 
+\[J\otimes_{A^*} M^*\cong J\otimes_A M\to M^* \] is injective.
+\end{proof}
+
+In verifying Schlessingers criterion, we need 
+\[F(A'\times_A A'')\to F(A')\times_{F(A)}F(A'')\]
+to be surjective for small extensions $A''\to A$. In deformation of schemes, we form the fiber product of sheaf of rings $\mathcal{O}_X'\times_{\mathcal{O}_X}\mathcal{O}_{X''}$; in deformation of coherent sheaves, we form 
+\[\mathcal{F}'\times_{F}\mathcal{F}''\]
+and their flatness is checked by the above proposition. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Global Moduli Question}
+Suppose we have a class $\mathcal{M}$ of objects over $k$ that we wish to classify, for example the class of elliptic curves over $k$, or the class of vector bundles on a fixed variety $X$. Not only do we want to classify such objects up to isomorphism, but we also want to understand how they vary in families. 
+
+\begin{definition}
+	A \textbf{family} of objects in $\mathcal{M}$ parametrized by a $k$-scheme $S$ is a morphism $\pi: X\to S$ such that for every point $s\in S$, the fiber $X_s$ is an object in $\mathcal{M}$.
+\end{definition}
+Categorically, a global moduli problem for $\mathcal{M}$ is a functor
+\[\mathcal{F}: (\textrm{Sch}/k)^{op}\to \textbf{Sets}\]
+that sends a $k$-scheme $S$ to the set of isomorphism classes of families of objects parametrized by $S$. The functoriality is given by pullback: given a morphism $f: S'\to S$ and a family $X\to S$, the pullback family $X\times_S S'\to S'$ is a family parametrized by $S'$, and we get an induced map $\mathcal{F}(S)\to \mathcal{F}(S')$.
+
+\begin{definition}
+	A \textbf{coarse moduli scheme} for the moduli problem $\mathcal{F}$ is a $k$-scheme $M$ together with a natural transformation $\eta: \mathcal{F}\to \textrm{Hom}(-, M)$ such that
+	\begin{enumerate}
+		\item The induced map on $\mathcal{F}(k)\to \textrm{Hom}(k, M)$ is a bijection.
+		\item $\eta$ is universal in the sense that for any other natural transformation $\theta: \mathcal{F}\to \textrm{Hom}(-, N)$, there exists a unique morphism $M\to N$ making 
+		\[\begin{tikzcd}
+	{\mathcal{F}} & {\mathrm{Hom}(-,M)} \\
+	& {\mathrm{Hom}(-,N)}
+	\arrow["\eta", from=1-1, to=1-2]
+	\arrow["\theta"', from=1-1, to=2-2]
+	\arrow[dashed, from=1-2, to=2-2]
+\end{tikzcd}\]
+		commute.
+	\end{enumerate}
+\end{definition}
+In particular, $k$-points of the coarse moduli scheme $M$ parametrize isomorphism classes of objects in $\mathcal{M}$. Furthermore, a family over $S$ corresponds to a morphism $S\to M$. The universality condition implies that the coarse moduli scheme is unique up to unique isomorphism, so we can talk about \textit{the} coarse moduli scheme for $\mathcal{M}$ when it exists. 
+\begin{definition}
+	A \textbf{fine moduli scheme} for the moduli problem $\mathcal{F}$ is a $k$-scheme $M$ that represents the functor $\mathcal{F}$, i.e there is a natural isomorphism $\mathcal{F}\cong \textrm{Hom}(-, M)$. The family $X_u\to M$
+	corresponding to the identity morphism $\id_M\in \textrm{Hom}(M,M)$ is called the \textbf{universal family} over $M$.
+\end{definition}
+
+\begin{proposition}
+	Given a moduli problem $\mathcal{F}$, a fine moduli scheme $M$ exists if and only if there exists a family $X_u\to M$ such that for every family $X\to S$ parametrized by $S$, there is a unique morphism $f: S\to M$ such that $X\cong f^* X_u$ as families over $S$.
+\end{proposition}
+\begin{proof}
+	One direction is clear: the universal family suffices. Conversely, given such a family, the base scheme is a representing scheme. 
+\end{proof}
+Note that a fine moduli scheme is automatically a coarse moduli scheme: given a isomorphism $\mathcal{F}\to \textrm{Hom}(-, M)$, and a morphism $\theta: \mathcal{F}\to \textrm{Hom}(-, N)$, the universal family in $\mathcal{F}(M)$ maps to a morphism $M\to N$ that makes the diagram commute.
+
+
+\begin{lemma}
+	Let $\mathcal{F}$ be a moduli problem. If there is a reduced scheme $S$ and a family $X\to S$ in $\mathcal{F}(S)$ such that
+	\begin{enumerate}
+		\item for all closed points $s\in S$, the fiber $X_s$ are all isomorphic.
+		\item the family $X\to S$ is nontrivial, i.e it is not isomorphic to the pullback of a family over $\Spec(k)$ along the structure morphism $S\to \Spec(k)$.
+	\end{enumerate}
+
+
+	Then, $\mathcal{F}$ cannot admit a fine moduli scheme.
+\end{lemma}
+\begin{proof}
+	Suppose there is a fine moduli scheme $M$. Since the fibers are all isomorphic, the composition
+	\[ \Spec k(s)\xrightarrow{s} S\xrightarrow{f} M\]
+	is the same. The standing assumption is that $S$ is a $k$-scheme locally of finite type, which means its closed points form a dense subset. Continuity forces $f$ to be topologically a constant map. Since $k$ is algebraically closed, the image is a closed point in $Y$. We can then reduce the problem to affines: cover $S$ by $U_i= \Spec B_i$, suppose the image $f(S)$ is contained in $V= \Spec A$, represented by a maximal ideal $\mathfrak{m}_A$ For each ring map 
+	\[ f_i: A\to B_i\]
+	we see that the image $\mathfrak{m}_A$ is contained in the intersection of all maximal ideals of $B_i$, which is the trivial Jacobson radical using reducedness. Thus, $f_i$ factors as 
+	\[ A\to A/\mathfrak{m}_A\to B_i\]
+	Globally, $S\to M$ factors as 
+	\[S\to \Spec (k)\to M\]
+	which means the family determined by the morphism $S\to M$ must be a trivial family.
+
+
+\end{proof}
+
+
+\begin{proposition}
+	Suppose $\mathcal{F}$ is a moduli problem parameterizing objects in $\mathcal{M}$.  Then, $\mathcal{F}$ cannot admit a fine moduli scheme if there exists an object $X$ in $\mathcal{M}$ with nontrivial automorphisms.
+\end{proposition}
+\begin{proof}
+By the previous lemma, it suffices to construct a nontrivial family over a reduced base with isomorphic fibers. Let $\sigma\in \Aut(X_0)$ be a choice of a nontrivial automorphism. One may glue three copies of $U_{i}:= X_0\times \A^1$, which are trivial families over a line, together in a triangular configuration. The gluing data is $\varphi_{ij}\in \Aut(X_0)$, and we choose $\varphi_{01}=\varphi_{12}=\id$ and $\varphi_{20}=\sigma$. Since there is no triple intersection, the cocycle condition is automatically satisfied. The resulting family is nontrivial, since a global trivialization restricts to three compatible automorphisms $\alpha_i$ along each segment, satisfying
+\[\alpha_0=\alpha_1, \alpha_1=\alpha_2, \sigma\alpha_2=\alpha_3\]
+which is impossible.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -856,7 +1044,7 @@ Suppose $G$ commutes with filtered colimits. Then, there is a simplicial closed 
 if and only if the following hypothesis holds: every cofibration with the left lifting property with respect to fibrations is a weak equivalence.
 
 \end{theorem}
-The proof goes as follows: since $G$ commutes with filtered colimits, the adjoint $F$ preserves the small objects in $\textrm{sSet}$ with respect to the standard generating (trivial) cofibrations. Thus, we can apply the small object argument to get functorial factorizations in $s\mathcal{C}$. The rest of the axioms can then be checked directly. The details can be found in \cite{Goerss_Jardine}. In nice situations, the additional hypothesis in the theorem can be verified by the following lemma:
+The proof goes as follows: since $G$ commutes with filtered colimits, the adjoint $F$ preserves the small objects in $\textrm{sSet}$ with respect to the standard generating (trivial) cofibrations. Thus, we can apply the small object argument to get functorial factorizations in $s\mathcal{C}$. The rest of the axioms can then be checked directly. The details can be found in. In nice situations, the additional hypothesis in the theorem can be verified by the following lemma:
 \begin{lemma}
 	Under the same setup as above, suppose $s \mathcal{C}$ admits a fibrant replacement functor, i.e for every object $A$ in $s \mathcal{C}$, there is a weak equivalence $A\to RA$ where $RA$ is fibrant. Then, every cofibration with the left lifting property with respect to fibrations is a weak equivalence.
 \end{lemma}

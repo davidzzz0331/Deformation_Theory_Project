@@ -7,7 +7,9 @@
 \contentsline {subsection}{\numberline {3.1}The Cotangent Complex}{7}{subsection.3.1}%
 \contentsline {subsection}{\numberline {3.2}Properties of the Cotangent Complex}{9}{subsection.3.2}%
 \contentsline {subsection}{\numberline {3.3}Lichtenbaum-Schlessinger Functors}{12}{subsection.3.3}%
-\contentsline {section}{\numberline {A}Model Categories}{13}{appendix.A}%
-\contentsline {subsection}{\numberline {A.1}Basic Definitions}{13}{subsection.A.1}%
-\contentsline {subsection}{\numberline {A.2}Derived Functors}{15}{subsection.A.2}%
-\contentsline {subsection}{\numberline {A.3}Simplicial Modules and Rings}{15}{subsection.A.3}%
+\contentsline {section}{\numberline {4}Infinitesimal Deformation}{13}{section.4}%
+\contentsline {section}{\numberline {5}Global Moduli Question}{14}{section.5}%
+\contentsline {section}{\numberline {A}Model Categories}{16}{appendix.A}%
+\contentsline {subsection}{\numberline {A.1}Basic Definitions}{16}{subsection.A.1}%
+\contentsline {subsection}{\numberline {A.2}Derived Functors}{18}{subsection.A.2}%
+\contentsline {subsection}{\numberline {A.3}Simplicial Modules and Rings}{18}{subsection.A.3}%
