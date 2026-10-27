@@ -1,0 +1,6 @@
+\contentsline {section}{\numberline {1}Introduction}{2}{section.1}%
+\contentsline {section}{\numberline {2}Outline}{2}{section.2}%
+\contentsline {section}{\numberline {3}Homotopy Operations on Simplicia $\mathbb {F}_p$-Algebras }{3}{section.3}%
+\contentsline {section}{\numberline {4}Detection in Quillen Spectral Sequence}{5}{section.4}%
+\contentsline {section}{\numberline {5}Nilpotence of Operations on Local Derived Fiber }{5}{section.5}%
+\contentsline {section}{\numberline {A}Quillen Spectral sequence}{5}{appendix.A}%
