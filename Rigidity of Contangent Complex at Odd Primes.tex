@@ -1,0 +1,320 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{fullpage}
+\usepackage{tikz-cd}
+\usepackage{spectralsequences}
+\usepackage{adjustbox}
+\usepackage{xfrac}
+\usepackage{parskip}
+\usepackage{tcolorbox}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\graphicspath{ {D:/Chrome Downloads./} }
+\usepackage{amsthm}
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\Spec}{\textrm{Spec}}
+\newcommand{\Proj}{\textrm{Proj }}
+\newcommand{\Hom}{\textrm{Hom}}
+\newcommand{\Aut}{\textrm{Aut}}
+\newcommand{\Ext}{\textrm{Ext}}
+\newcommand{\Tor}{\textrm{Tor}}
+\newcommand{\Sym}{\textrm{Sym}}
+\newcommand{\Der}{\textrm{Der}}
+\newcommand{\End}{\textrm{End}}
+\newcommand{\id}{\textrm{id}}
+\usetikzlibrary{calc}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[section]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[theorem]
+\theoremstyle{definition}
+\newtheorem{remark}{Remark}[theorem]
+\theoremstyle{definition}
+\newtheorem{proposition}{Proposition}[theorem]
+\theoremstyle{definition}
+\newtheorem{conjecture}{Conjecture}[theorem]
+\theoremstyle{definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{corollary}{Corollary}[theorem]
+\theoremstyle{definition}
+\newtheorem{example}{Example}[theorem]
+\tikzset{curve/.style={settings={#1},to path={(\tikztostart)
+    .. controls ($(\tikztostart)!\pv{pos}!(\tikztotarget)!\pv{height}!270:(\tikztotarget)$)
+    and ($(\tikztostart)!1-\pv{pos}!(\tikztotarget)!\pv{height}!270:(\tikztotarget)$)
+    .. (\tikztotarget)\tikztonodes}},
+    settings/.code={\tikzset{quiver/.cd,#1}
+        \def\pv##1{\pgfkeysvalueof{/tikz/quiver/##1}}},
+    quiver/.cd,pos/.initial=0.35,height/.initial=0}
+\title{Rigidity of Cotangent Complex at Odd Primes}
+\author{David Zhu}
+
+\begin{document}
+\maketitle
+
+
+\tableofcontents
+
+\newpage
+
+
+\section{Introduction}
+In his seminal work, Quillen proposed the following homology theory for augmented simplicial $R$-algebras, which is now dubbed Quillen homology: there is a Quillen adjunction 
+\[
+\operatorname{Ab} :
+\mathrm{sCAlg}_R^{\mathrm{aug}}
+\rightleftarrows
+\mathrm{sMod}_R :
+R \oplus (-)
+\]
+For an object $X\in \mathrm{sCAlg}_R^{\mathrm{aug}}$, the Quillen homology of $X$ is defined to be the module homology of $\mathbb{L}\textrm{Ab}(X)$. With this construction, Quillen gave the definition of the cotangent complex $\mathbb{L}_{A/R}$ associated to morphism of commutative rings $R\to A$. let $P\to A$ be a cofibrant replacement of $A$ in $s \textbf{CAlg}_R$. The cotangent complex $\mathbb{L}_{A/R}$ is modelled by the simplicial $A$-module
+\[\mathbb{L}_{A/R}:= \Omega_{P/R}\otimes_{P}A\]
+By the Dold-Kan correspondence, we will use $\mathbb{L}_{A/R}$ to denote both the simplicial $A$-module and its normalization in $\textrm{Ch}^+(A)$.The Quillen homology is defined to be
+\[H_i^Q(A/R;k):= \pi_i(\mathbb{L}_{A/R}\otimes_{A}k)\cong \Tor^A_i(\mathbb{L}_{A/R};k)\]
+In his seminal work, Quillen also proposed the following rigidity conjecture,
+
+\begin{conjecture}
+If $\textrm{pd}(\mathbb{L}_{A/R})<\infty$, then $\textrm{pd}(\mathbb{L}_{A/R})\leq 2$.
+\end{conjecture}
+
+
+
+
+
+\section{Outline}
+Fix a morphism of Noetherian local $k$-algebras $R\to A$. Standard localization techniques reduces the conjecture to the case where we consider a surjection of Noetherian local $k$-algebras $(R,\mathfrak{m})\to (A, \mathfrak{n})$. In this case, the flat dimension of the cotangent complex can be detected by tensoring with the residue field
+\begin{proposition}[Stack 15.79.2]
+    Let $R$ be a ring. Let $a,b\in \Z$. Let $K^{\bullet}$ be a pseudo-coherent complex of $R$-modules. The following are equivalent: 
+    \begin{enumerate}
+        \item $K^{\bullet}$ is perfect with Tor amplitude in $[a,b]$.
+        \item For every maximal ideal $\mathfrak{m}$, we have $\Tor^R_i(K^{\bullet};k(\mathfrak{m}))=0$ for $i\not \in [a,b]$
+    \end{enumerate}
+\end{proposition}
+Thus, under perfectness assumption, it suffices to show $H_i^Q(A/R;k)=0$ for $i>2$. We will therefore suppress the coefficient $k$ in Quillen homology from now on, unless other coefficients are used.
+
+
+To prove the conjecture, Turner's program utilizes many tools from the homotopy theory of simplicial commutative algebras. For a $k$-vector space $V$, let $K(V,n)$ be the simplicial $k$-vector space characterized by having homotopy group concentrated in degree $n$, with value $V$. 
+
+\begin{theorem}
+    Given $A\in s \textbf{CAlg}_k$, which is connected, there exists a sequence of cofibrations 
+    \[A=A(0)\xrightarrow{j_0} A(1)\xrightarrow{j_1} A(2)\xrightarrow{j_2}...\]
+    with the following properties
+    \begin{enumerate}
+        \item For each $n\geq 1$, $A(n)$ is $(n-1)$-connected.
+        \item For $s\geq n$, 
+         \[H_s^Q(A)\cong H_s^Q(A(n))\]
+        \item There is a cofiber sequence 
+        \[ \textrm{Sym}_k(K(H_n^Q(A),n))\to A(n)\to A(n+1) \]
+    \end{enumerate}
+\end{theorem}
+In particular, for $A$ such that $H_i^Q(A)$ vanishes for $i>n$, we may identify 
+\[A(n)\cong \textrm{Sym}_k(K(H_n^Q(A),n))\]
+and obtain a comparison map 
+\[\phi_n: A\to \textrm{Sym}_k(K(H_n^Q(A),n))\]
+inducing isomorphism on $H_n^Q$. The work of Bousfield, Goerss and Lada identifies the homotopy groups of the right hand side, which is generated by compositions of homotopy operations.
+
+\begin{theorem}[Bousfield, 8.11]
+    Let $\{a\}_{a\in A}$ be $\mathbb{F}_p$-basis for $\pi_*X$. Then $\oplus_{s=0}^{\infty} \pi_t(\Sym^s X)$ is the non-unital associative graded-commutative $\mathbb{F}_p$-algebra with generators 
+    \[\{\alpha_{I}(a) | a\in A, I \textrm{ admissible}, \textrm{ excess}(I)\leq |a| \}\]
+\end{theorem}
+In particular, one could find a composition of homotopy operations, of arbitrary length, acting non-trivially on the degree $n$-element in $\pi_*(\textrm{Sym}_k(K(H_n^Q(A),n)))$. Now the proof reduces to two parts:
+
+\begin{theorem}
+    Suppose $n>2$. There is non-zero element in $y\in \pi_* A$ such that $(\phi_n)_*(y)=a$, and one could find a composition of homotopy operations, of arbitrary length, acting non-trivially on $y$.
+\end{theorem}
+The proof of the theorem is comparing the Quillen spectral sequences using $\phi_n$.
+\begin{theorem}
+    There is a convergent spectral sequence
+    \[E^1_{s,t}:= \pi_t(\Sym^s ( H^Q_*(A/R;k)) )\Rightarrow \pi_{s+t} X\]
+\end{theorem}
+
+
+This is the step where Turner had to restrict to characteristic $2$: he needed explicit Adem relations, which is still absent to this day, among operations to control the differentials. 
+
+
+On the other hand, for $A= P\otimes_R k$, operations on $\pi_* A$ has the following nilpotence property
+\begin{theorem}
+  There exists some integer $N$ such that any composition of strictly suspended operation of length $>N$ on $\pi_* A$ is zero. 
+\end{theorem}
+This is where Turner needed the assumption that $A$ is Cohen-Macauley, so he could reduce to the Artinian case where the maximal ideal is nilpotent.
+
+
+
+
+\section{\texorpdfstring{Homotopy Operations on Simplicia $\mathbb{F}_p$-Algebras }{} }
+
+\begin{theorem}[Bousfield, 8.11]
+    For an odd prime $p$, and a simplicial $\mathbb{F}_p$-algebra $B$, there exists two families of operations 
+    \[v_t: \pi_n B\to \pi_{n+2t(p-1)}B \quad \quad 2\leq 2t\leq n \]
+    \[\eta_t: \pi_n B\to \pi_{n+2t(p-1)+1}B \quad \quad 3\leq 2t+1\leq n \]
+The operation $v_t$ are additive for $t< n$, and the top operation $v_n$ is the divided power.
+
+
+
+\end{theorem}
+
+\begin{definition}
+    For $k\geq 0$, let $I=(\delta_1,s_1,...,\delta_k,s_k)$ be a $(2k)$-tuple of integers, where $\delta_i =0,1$ and $s_i\geq 1$. The index $I$ is called \textbf{admissible} if $s_{i}\geq ps_{i+1}+ \delta_i$ for $1\leq i\leq k-1$.  Its \textbf{excess} is defined to be 
+    \[\textrm{excess}(I):=\begin{cases}
+        0 & k=0 \\
+        2s_1+\delta_1 & k=1 \\
+        2s_1+\delta_1 - \sum^k_{i=2}(2(p-1)s_i+\delta_i) & k\geq 2
+    \end{cases}
+    \]
+    
+    
+    
+    
+    Define 
+    \[\alpha_{\delta_i,s_i}:=\begin{cases}
+        v_{s_i} & \delta_i =0\\
+        \eta_{s_i} & \delta_i=1
+    \end{cases}\]
+    and 
+    \[\alpha_I:= \alpha_{\delta_1,s_i}\circ ...\circ \alpha_{\delta_k,s_k} \]
+
+    \textcolor{red}{If out of range just zero}
+
+\end{definition}
+
+
+\begin{theorem}[Bousfield, 8.11]
+    \label{generator}
+    Let $\{a\}_{a\in A}$ be $\mathbb{F}_p$-basis for $\pi_*X$. Then $\oplus_{s=0}^{\infty} \pi_t(\Sym^s X)$ is the non-unital associative graded-commutative $\mathbb{F}_p$-algebra with generators 
+    \[\{\alpha_{I}(a) | a\in A, I \textrm{ admissible}, \textrm{ excess}(I)\leq |a| \}\]
+\end{theorem}
+
+In particular, the generators provide an infinite tower of non-zero operations.
+\begin{corollary}
+    \label{tower}
+    Let $V$ be a $k$-vector space, and let $u$ be the generating class in $\pi_n(\Sym_k K(V,n))$. For any $j>1$, the index $I_j:=(0,p^{j},0,p^{j-1},....,0,p,0,1)$ is admissible, and thus the operation $\theta_j:=\alpha_{I_j}$ is non-zero on $u$ for all $j$.
+\end{corollary}
+
+\begin{lemma}[Degree-Weight Bound]
+    \label{degree_weight}
+   Let $X$ be a simplicial $k$-module. 
+   \begin{enumerate}
+    \item Suppose $d=\textrm{dim } \pi_1(X)<\infty$. Then $\pi_t(\Sym^s X)$ is zero if $t<2s-d$.
+    \item Suppose $X= K(V,n)$. Then $\pi_t(\Sym^s X)$ is zero if $t<2s+n-2$.
+   \end{enumerate}
+   
+   
+   
+\end{lemma}
+\begin{proof}
+    Let $y$ be a non-zero monomial in $\pi_*(\Sym_k X)$. By Theorem \ref{generator}, we can express $y$ as product of $k$ admissible monomial generators
+    \[y=\alpha_{I_1}(x_1)...\alpha_{I_k}(x_k)\]
+    where each $I_j$ is admissible. Let $I_j:=(\delta_1,s_1,...,\delta_n,s_n)$. Admissiblity provides a lower bound on degree in terms of the weight 
+      \begin{equation*}
+    \begin{aligned}
+        \textrm{deg}(\alpha_{I_i}(x_i)) & = \textrm{deg}(x_i)+2(p-1)\sum_{i=0}^{n-1}s_i \\
+        &\geq \textrm{deg}(x_i)+2(p-1)\sum_{i=1}^{n-1}p^i \\
+        &=\textrm{deg}(x_i) + 2(p^{n}-1) \\
+        &=\textrm{deg}(x_i)+ 2 \textrm{wt}(\alpha_I) -2 
+    \end{aligned}
+\end{equation*}
+
+Since degree and weight both add in the product, we get 
+\[\textrm{deg}(y)\geq 2 \textrm{wt}(y) + \sum^k_{i=1} \textrm{deg}(x_i)-2 \]
+If $X=K(V,n)$, then $|x_i|=n$ for all $i$, and part $(2)$ follows easily.
+
+
+If $d=\textrm{dim}(H^Q_1(Q))<\infty$. We see only $|x_i|=1$ will contribute to a negative summand, and each basis vector can only appear once in the product for it to be non-zero by graded commutativity. Therefore
+\[\textrm{deg}(y)>2 \textrm{wt}(y)-d\]
+so part $(1)$ follows.
+
+
+
+
+  
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+\section{Detection in Quillen Spectral Sequence}
+Let $A$ be an augmented simplicial $\mathbb{F}_p$-algebra. The Quillen spectral sequence reads 
+\[E^1_{s,t}:= \pi_t(\Sym^s ( H^Q_*(A)) )\Rightarrow \pi_{s+t} X\]
+Suppose $n$ is the top non-vanishing degree of $H^Q(A)$, and let $u\in H_n^Q(A)$ be the generating class. Then, the element $\theta_j$ defined in Corollary \ref{tower} is an element in bidegree $(s,t):=(p^j,n+2(p^j-1))$. We can analyze the permanence property of this cycle: 
+
+\begin{proposition}
+    The element $\theta_j$ can be represented by a cycle $a\in F^{s}N(P)_t$, and $da\in F^{2s}N(P)_{t-1}$.
+\end{proposition}
+In particular, the spectral sequence differential $d_r$ is trivial on the representing class $a$ for $r<s$, as the target $F^{2s}N(P)_{t-1}\subseteq F^{s+r+1}N(P)_{t-1}$ is trivial in the subquotient $\frac{F^{s+r}N(P)_{t-1}}{F^{s+r+1}N(P)_{t-1}}$. 
+
+\begin{proposition}
+    The Quillen spectral sequence of $\Sym K(H^Q_{n}(A),n)$ degenerates on $E^1$. 
+\end{proposition}
+
+For $r\geq s$, the target groups will be a subquotient of 
+\[E^1_{s+r,2s+n-3}\]
+By Lemma \ref{degree_weight}, we see the target groups automatically vanish once we choose $j$ large enough. 
+
+On the other hand, the there are no incoming differentials before page $s$, by comparing the spectral sequence with that of $\Sym K(H^Q_{n}(A),n)$. There are no incoming differentials on or after page $s$ simply by degree reasons. 
+
+\textbf{extension}: by comparing the spectral sequences, we see that there is no extension problems: the difference lands in $\pi_{n+2s-2} \Sym^{s+1}(K(H_n))$. This group is zero by part $(2)$ of Lemma \ref{degree_weight}. 
+
+
+\section{Nilpotence of Operations on Local Derived Fiber }
+Let $(R,\mathfrak{m})$ be Noetherian local ring, $M$ a finitely generated R-module. Choose a resolution of $M$ be finite free $R$-modules 
+\[...\xrightarrow{d_2}F_1\xrightarrow{d_1}F_0\xrightarrow{d_0}M\to 0\]
+
+
+
+
+\begin{theorem}[Uniform Artin–Rees for Syzygies]
+For a fixed ideal $J\subseteq R$, there is a uniform integer $h\geq 0$ such that for every $n\geq h$, and $i\geq 0$, one has 
+    \[J^nF_i\cap \textrm{im}(d_{i+1})\subseteq J^{n-h}\textrm{im}(d_{i+1})\]
+\end{theorem}
+
+\begin{corollary}
+    There is a uniform integer $h\geq 0$, such that for every $q\geq h$ and $i\geq 0$, the reduction
+    \[\Tor_i^R(M;R/\mathfrak{m}^q)\to \Tor_i^R(M;k) \]
+    is zero.
+\end{corollary}
+
+
+
+
+
+
+
+
+\appendix
+
+\section{Quillen Spectral sequence}
+By the standard model structure on $s \textbf{CAlg}_R$, one may choose a cofibrant replacement $P\to A$ such that $P$ is semi-free, i.e every $P_n$ is a free $R$-algebra.  Let $X:= P\otimes_R k$. Denote by $I$ the augmentation ideal and $QX:=I/I^2$ the indecomposables. Standard computation gives
+\[QX\cong \Omega_{P/R}\otimes_P k\]
+And therefore we have $H_i^Q(A/R)\cong \pi_i(QX)$. This provides the interpretation that Quillen homology of an augmented simplicial $k$-algebra $X$ is the homotopy group of its indecomposables $QX$. we have a descending filtration of $X$ by 
+\[X\supseteq I\supseteq I^2\supseteq I^3\supseteq ...\]
+which leads to a spectral sequence 
+\[E^1_{s,t}:= \pi_t(I^s/I^{s+1})\Rightarrow \pi_{s+t} X\]
+A standard fact on the model structure on $s \textbf{CAlg}_R$ says one may choose $P$ to be semi-free, meaning each simplicial degree $P_n$ is a free $R$-algebra. It follows that 
+\[I^s/I^{s+1}\cong \Sym_k^s(I/I^2) \]
+Since a chain complex of vector spaces splits as direct sums of its homology, $I/I^2$ also splits as the direct sum of its homotopy groups under the Dold-Kan correspondence.
+
+
+
+
+\end{document}
