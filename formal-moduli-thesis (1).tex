@@ -1,0 +1,1688 @@
+% Compile with: latexmk -pdf formal-moduli-thesis.tex
+% Standalone source: no external bibliography, figures, or class files required.
+% Formatting source: Penn Research Master's Formatting Guide, revised 2026-06-22.
+% Edit the metadata below. Yellow backgrounds mark every personal/degree field.
+% Set \highlightplaceholderstrue to \highlightplaceholdersfalse when finalized.
+% The title page contains only the title and author placeholder, as requested.
+% A contents page is enabled automatically
+% when title + main text + appendices + bibliography reaches 50 pages.
+% Recompile until references, the contents, and the page count stabilize.
+% Every theorem, lemma, proposition, and corollary has an EMPTY proof environment.
+% The proof environment intentionally prints no end-of-proof square in this draft.
+% Set \statementdraftfalse below when adding proofs: this restores amsthm proofs
+% and removes the one-page grouping of statements with their empty proofs.
+\documentclass[12pt,letterpaper,oneside]{report}
+\usepackage[T1]{fontenc}
+\usepackage{mathptmx}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1in,includefoot,footskip=0.35in]{geometry}
+\usepackage{setspace}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{tikz-cd}
+\usepackage[protrusion=false]{microtype}
+\usepackage{titlesec}
+\usepackage{etoolbox}
+\usepackage{refcount,lastpage}
+\usepackage[hidelinks,pdfusetitle]{hyperref}
+\usepackage{bookmark}
+\newif\ifhighlightplaceholders
+\highlightplaceholderstrue
+\newif\ifstatementdraft
+\statementdrafttrue
+\newcommand{\placeholder}[1]{\ifhighlightplaceholders\begingroup\setlength{\fboxsep}{2pt}\colorbox{yellow!45}{\strut\textnormal{[#1]}}\endgroup\else\textnormal{#1}\fi}
+\newcommand{\ThesisTitle}{FORMAL MODULI PROBLEMS AND\\DIFFERENTIAL GRADED LIE ALGEBRAS}
+\newcommand{\AuthorName}{Zhaoqi Zhu}
+\newcommand{\GraduateGroup}{\placeholder{OFFICIAL GRADUATE GROUP}}
+\newcommand{\DegreeName}{\placeholder{MASTER OF ARTS OR SCIENCE}}
+\newcommand{\DegreeYear}{\placeholder{YEAR OF DEGREE}}
+\newcommand{\SupervisorName}{\placeholder{THESIS SUPERVISOR NAME}}
+\newcommand{\SupervisorTitle}{\placeholder{FULL FACULTY TITLE}}
+\newcommand{\ChairName}{\placeholder{GRADUATE GROUP CHAIR NAME}}
+\newcommand{\ChairTitle}{\placeholder{FULL FACULTY TITLE}}
+\title{Formal Moduli Problems and Differential Graded Lie Algebras}
+\author{[FULL LEGAL NAME]}
+\date{[YEAR OF DEGREE]}
+\hypersetup{pdftitle={Formal Moduli Problems and Differential Graded Lie Algebras},pdfauthor={[FULL LEGAL NAME]},pdfsubject={Expository master's thesis draft on DAG-X, chapters 1 and 2}}
+\setcounter{secnumdepth}{2}
+\setcounter{tocdepth}{2}
+\titleformat{\chapter}[display]{\normalfont\Large\bfseries}{\chaptertitlename\ \thechapter}{8pt}{\LARGE}
+\titlespacing*{\chapter}{0pt}{0pt}{24pt}
+\titleformat{\section}{\normalfont\large\bfseries}{\thesection}{0.65em}{}
+\titleformat{\subsection}{\normalfont\normalsize\bfseries}{\thesubsection}{0.65em}{}
+\pagestyle{plain}
+% Keep page-number glyph bounds inside the one-inch blank bottom margin.
+\makeatletter
+\def\ps@plain{\let\@mkboth\@gobbletwo\let\@oddhead\@empty\let\@evenhead\@empty
+  \def\@oddfoot{\hfil\raisebox{4pt}{\normalfont\thepage}\hfil}\let\@evenfoot\@oddfoot}
+\makeatother
+\pagestyle{plain}
+\doublespacing
+\setlength{\parindent}{0.25in}
+\setlength{\parskip}{0pt}
+% Protect the one-inch blank margins from italic and mathematical glyph overhang.
+% This is a 3pt inset of the content block, within the page's margin boundary.
+\addtolength{\oddsidemargin}{3pt}
+\addtolength{\evensidemargin}{3pt}
+\addtolength{\textwidth}{-6pt}
+\setlist[enumerate]{leftmargin=*,itemsep=0pt,topsep=4pt}
+\setlist[itemize]{leftmargin=*,itemsep=0pt,topsep=4pt}
+\counterwithout{footnote}{chapter}
+\AtBeginEnvironment{thebibliography}{\singlespacing}
+\renewcommand{\bibname}{Bibliography}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\ifstatementdraft
+\renewenvironment{proof}[1][Proof]{\par\nopagebreak[4]\addvspace{4pt}\noindent\textit{#1.}\par\nobreak\vspace{0.5\baselineskip}}{\par\addvspace{4pt}}
+% Each formal statement and its empty proof stay together in this draft.
+% Remove these five hooks when proofs grow beyond a single page.
+\BeforeBeginEnvironment{theorem}{\begin{samepage}}
+\BeforeBeginEnvironment{proposition}{\begin{samepage}}
+\BeforeBeginEnvironment{lemma}{\begin{samepage}}
+\BeforeBeginEnvironment{corollary}{\begin{samepage}}
+\AfterEndEnvironment{proof}{\end{samepage}}
+\fi
+\newenvironment{intuition}{\par\noindent\textbf{Intuition.}\ }{\par}
+\newcommand{\DAG}[1]{\cite[\S#1]{DAGX}}
+\newcommand{\DAGresult}[1]{\cite[#1]{DAGX}}
+\newcommand{\HA}[1]{\cite[#1]{HA}}
+\newcommand{\HTT}[1]{\cite[#1]{HTT}}
+\newcommand{\Sp}{\mathrm{Sp}}
+\newcommand{\cS}{\mathcal S}
+\newcommand{\cC}{\mathcal C}
+\newcommand{\cD}{\mathcal D}
+\newcommand{\cE}{\mathcal E}
+\newcommand{\CAlg}{\mathrm{CAlg}}
+\newcommand{\Alg}{\mathrm{Alg}}
+\newcommand{\Mod}{\mathrm{Mod}}
+\newcommand{\LMod}{\mathrm{LMod}}
+\newcommand{\Lie}{\mathrm{Lie}}
+\newcommand{\Rep}{\mathrm{Rep}}
+\newcommand{\FMP}{\mathrm{Moduli}}
+\newcommand{\Art}{\mathrm{Art}_k}
+\newcommand{\QCoh}{\mathrm{QCoh}}
+\newcommand{\Perf}{\mathrm{Perf}}
+\newcommand{\Fun}{\mathrm{Fun}}
+\newcommand{\Map}{\operatorname{Map}}
+\newcommand{\RHom}{\operatorname{RHom}}
+\newcommand{\fib}{\operatorname{fib}}
+\newcommand{\cofib}{\operatorname{cofib}}
+\newcommand{\Sym}{\operatorname{Sym}}
+\newcommand{\Free}{\operatorname{Free}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\colim}{\operatorname*{colim}}
+\newcommand{\limi}{\operatorname*{lim}}
+\newcommand{\gr}{\operatorname{gr}}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\aug}{\mathrm{aug}}
+\newcommand{\sm}{\mathrm{sm}}
+\newcommand{\cn}{\mathrm{cn}}
+\newcommand{\dg}{\mathrm{dg}}
+\newcommand{\g}{\mathfrak g}
+\newcommand{\h}{\mathfrak h}
+\newcommand{\m}{\mathfrak m}
+\newcommand{\CE}{C^*}
+\newcommand{\CEchains}{C_*}
+\newcommand{\T}{T}
+\newcommand{\U}{\mathrm U}
+\newcommand{\Ind}{\operatorname{Ind}}
+\newcommand{\Pro}{\operatorname{Pro}}
+\newcommand{\Stab}{\operatorname{Sp}}
+\newcommand{\unit}{\mathbf 1}
+\newcommand{\term}{*}
+\newcommand{\source}[1]{\par\noindent\textit{Source and role.} #1\par}
+\emergencystretch=1.5em
+\begin{document}
+\pagenumbering{roman}
+\thispagestyle{empty}
+\begin{center}
+\vspace*{1.5in}
+{\Large\ThesisTitle\par}
+\vspace{0.4in}
+\AuthorName\par
+\end{center}
+\clearpage
+% LastPage records Arabic pages; add one for the title before deciding the threshold.
+\ifnum\numexpr\getpagerefnumber{LastPage}+1\relax>49
+  \tableofcontents
+  \clearpage
+\fi
+\pagenumbering{arabic}
+\chapter*{Introduction}
+\addcontentsline{toc}{chapter}{Introduction}
+\label{ch:introduction}
+
+Deformation theory studies the behavior of a mathematical object under changes of its parameters near a fixed value. A tangent vector describes a first-order change, but it does not by itself determine whether that change extends to second or higher order. Automorphisms introduce a second difficulty: the collection of deformations is generally a groupoid rather than a set. Derived deformation theory incorporates both phenomena by allowing derived test algebras and by recording spaces of deformations, including their higher automorphisms.
+
+This thesis is an exposition of the first two chapters of Jacob Lurie's \emph{Derived Algebraic Geometry X: Formal Moduli Problems} \cite{DAGX}. Its central objective is the characteristic-zero equivalence
+\[
+  \Lie_k \simeq \FMP_k
+\]
+between differential graded Lie algebras and formal moduli problems over a field $k$. The correspondence identifies the underlying complex of the Lie algebra controlling $X$ with $T_X[-1]$. The shift is part of the statement: the tangent complex and the controlling Lie algebra have different degree conventions even before the bracket is considered.
+
+The exposition follows Lurie's route through abstract deformation contexts, rather than taking a Maurer--Cartan construction as the definition of the correspondence. Chapter~1 develops the axioms for formal moduli problems and explains the general reconstruction theorem. Chapter~2 constructs the Chevalley--Eilenberg functors, verifies that commutative algebras and differential graded Lie algebras satisfy the reconstruction hypotheses, and states the resulting equivalence. Its final section treats quasi-coherent sheaves and representations, thereby including the material of DAG-X \S2.4. 
+
+
+\paragraph{Standing conventions.}
+Unless stated otherwise, $k$ is a field. The arguments involving differential graded Lie algebras assume $\operatorname{char}(k)=0$. We identify $k$ with the Eilenberg--Mac Lane $E_\infty$-ring $Hk$ when using spectra. The symbol $\cS$ denotes the $\infty$-category of spaces. Categories of algebras, modules, and Lie algebras are $\infty$-categories unless a superscript $\dg$ explicitly indicates an ordinary category of chain-level objects. A mapping space is always a derived mapping space; a pullback, pushout, limit, or colimit is taken in the indicated $\infty$-category.
+
+We use homological grading, as in DAG-X. A complex has differential $d:V_i\to V_{i-1}$, and
+\[
+ (V[n])_i=V_{i-n},\qquad d_{V[n]}=(-1)^n d_V,
+ \qquad \pi_i V=H_i(V).
+\]
+The dual complex is $V^\vee=\RHom_k(V,k)$. An object is connective if its homotopy groups vanish in negative degrees. For comparison with the cohomological convention, write $V^j=V_{-j}$; then $H^j(V)=H_{-j}(V)$. The superscript in $C^*(\g)$ records a cochain construction, not a change in the ambient homological convention. In particular, a classical Lie algebra concentrated in degree zero has Chevalley--Eilenberg cochains in nonpositive homological degrees.
+
+The equivalence with differential graded Lie algebras involves all such Lie algebras after inverting quasi-isomorphisms. There is no boundedness, finite-dimensionality, or nilpotence hypothesis on the Lie algebra in the main theorem. Finiteness conditions occur on the test algebras and on the intermediate subcategory used to prove biduality. Distinguishing these different uses of finiteness is essential.
+
+\chapter{Formal Moduli Problems and Abstract Deformation Theory}
+\label{ch:abstract}
+\section{Infinitesimal test objects}
+\label{sec:small}
+
+The phrase ``near a point'' needs an algebraic meaning before a formal neighborhood can be studied. For ordinary affine geometry, one probes the point with local Artinian rings whose residue field is $k$. In derived geometry, a test algebra can also have positive homotopy groups. Lurie's definition organizes these test objects by the elementary extensions needed to build them from the residue field.
+
+\begin{definition}[Augmented algebras and square-zero objects]
+An augmented commutative $k$-algebra is an object of
+\[
+ \CAlg_k^{\aug}=(\CAlg_k)_{/k}.
+\]
+For a $k$-module $M$, the split square-zero algebra $k\oplus M$ has augmentation to $k$, and the product of two elements in its summand $M$ is zero. The unit and augmentation make $k$ a zero object of $\CAlg_k^{\aug}$.
+\end{definition}
+
+% The derived structure on $k\oplus M$ contains coherent multiplication data, not only a statement about the ring $\pi_0$. The construction is the infinite-loop-object functor for the stabilization of augmented algebras. Appendix~\ref{app:ha} makes this assertion precise.
+
+\begin{definition}[Deformation context; DAG-X, Definition 1.1.3]
+A deformation context consists of a presentable $\infty$-category $\cC$ and a set of spectrum objects $\{E_\alpha\}_{\alpha\in I}$ in $\Stab(\cC)$. Write $\term$ for the terminal object of $\cC$ and $\Omega^{\infty-n}E_\alpha$ for the $n$th space of $E_\alpha$, regarded as an object of $\cC$ with its specified point.
+\end{definition}
+
+\begin{example}[The commutative deformation context]
+Take $\cC=\CAlg_k^{\aug}$. There is a canonical equivalence
+\[
+ \Stab(\CAlg_k^{\aug})\simeq\Mod_k.
+\]
+Let $E$ correspond to $k$. The test objects supplied by $E$ are
+\[
+ \Omega^{\infty-n}E\simeq k\oplus k[n].
+\]
+Here $n$ can be any integer as a statement about the spectrum object. Only $n\geq0$ is used for the small test objects. See \DAGresult{Example 1.1.4} 
+\end{example}
+
+\begin{definition}[Elementary and small morphisms]
+In a deformation context, a morphism $A'\to A$ is elementary if it appears in a pullback square
+\[
+\begin{tikzcd}
+ A'\ar[r]\ar[d] & \term\ar[d] \\
+ A\ar[r] & \Omega^{\infty-n}E_\alpha
+\end{tikzcd}
+\qquad(n>0).
+\]
+The right vertical morphism is the specified base point. A small morphism is a finite composite of elementary morphisms, including the empty composite. An object $A$ is small if $A\to\term$ is small. Let $\cC^{\sm}$ be the full subcategory of small objects. These are \DAGresult{Definitions 1.1.5 and 1.1.8}.
+\end{definition}
+
+\begin{intuition}
+An elementary extension adds one infinitesimal direction. The map $A\to\Omega^{\infty-n}E_\alpha$ specifies the obstruction to separating that direction from $A$. The pullback makes the obstruction nullhomotopic. In the commutative context the added fiber is $k[n-1]$, so the positive index in the definition produces a connective fiber.
+\end{intuition}
+
+\begin{proposition}[Elementary extensions of connective algebras]
+\label{prop:elementary}
+Let $A'\to A$ be a map of connective augmented commutative $k$-algebras. It is elementary if and only if its fiber, as an $A'$-module, is equivalent to $k[r]$ for some $r\geq0$, with $A'$ acting through the augmentation, and, when $r=0$, the multiplication on $\pi_0\fib(A'\to A)$ is zero.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+
+\begin{lemma}[Closure and size of the test category]
+Small morphisms are stable under composition and base change. If $A\to B$ is small and $B$ is small, then $A$ is small. The category $\cC^{\sm}$ is essentially small, and $\Omega^{\infty-n}E_\alpha$ is small for every $n\geq0$.
+\end{lemma}
+\begin{proof}
+\end{proof}
+
+
+\begin{proposition}[Recognition of small algebras]
+\label{prop:artinian}
+An augmented commutative $k$-algebra $A$ is small if and only if all of the following hold:
+\begin{enumerate}
+\item $\pi_i A=0$ for $i<0$ and for $i$ sufficiently large;
+\item every $\pi_i A$ is finite-dimensional over $k$;
+\item $\pi_0 A$ is a local ring whose residue field is identified with $k$ by the augmentation.
+\end{enumerate}
+In particular, $\pi_0 A$ is Artinian. We write $\Art=(\CAlg_k^{\aug})^{\sm}$.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+
+\begin{intuition}
+There are two finite filtrations in this criterion. Nilpotence of the maximal ideal controls the ordinary local ring. The finite Postnikov tower controls the higher homotopy groups. A finite-dimensional module over an Artinian local ring with residue field $k$ has a finite composition series with factors $k$. Thus the elementary directions are exactly the pieces needed by the derived Artinian test category. A Postnikov layer need not have trivial maximal-ideal action before it is refined into those pieces.
+\end{intuition}
+
+\begin{remark}[The module action in a Postnikov layer]
+For $B=\tau_{\leq r-1}A$ and $M=\pi_rA$, the square-zero presentation has the form
+\[
+\begin{tikzcd}
+ \tau_{\leq r}A\ar[r]\ar[d] & B\ar[d,"0"] \\
+ B\ar[r,"d_r"'] & B\oplus M[r+1].
+\end{tikzcd}
+\]
+The module $M$ is a $\pi_0B$-module. Replacing this diagram immediately by a square over $k\oplus M[r+1]$ would lose its possibly nontrivial action. The residue-field form used in an elementary extension becomes available after isolating a composition factor with augmentation action. This distinction is useful when writing the proof of Proposition~\ref{prop:artinian}.
+\end{remark}
+
+\begin{lemma}[Small maps are the surjections on components]
+\label{lem:small-surjection}
+A map $A\to B$ in $\Art$ is small if and only if $\pi_0A\to\pi_0B$ is surjective.
+\end{lemma}
+\begin{proof}
+\end{proof}
+
+\begin{example}[Three test algebras]
+The dual numbers $k[\epsilon]/(\epsilon^2)$ are $k\oplus k[0]$. The derived dual numbers $k\oplus k[r]$ with $r>0$ have a direction in homological degree $r$. The ring $k[t]/(t^3)$ is a two-step infinitesimal thickening of $k$; its quotient to $k[t]/(t^2)$ has one-dimensional square-zero kernel. Each is an object of $\Art$, although only the first two have split square-zero augmentation ideals.
+\end{example}
+
+\section{The formal moduli axioms}
+\label{sec:fmp}
+
+A formal moduli problem assigns a space to each small algebra. Requiring a contractible value at the residue field chooses the object being deformed, together with an identification of its special fiber. The remaining axiom expresses the compatibility of deformations over infinitesimal gluing diagrams.
+
+\begin{definition}[Formal moduli problem; DAG-X, Definition 1.1.14]
+For a deformation context $(\cC,\{E_\alpha\})$, a formal moduli problem is a functor $X:\cC^{\sm}\to\cS$ such that $X(\term)\simeq\term$ and, for every pullback diagram of small objects
+\[
+\begin{tikzcd}
+ A'\ar[r]\ar[d] & B'\ar[d,"f"] \\
+ A\ar[r] & B
+\end{tikzcd}
+\]
+with $f$ small, the induced map
+\[
+ X(A')\longrightarrow X(A)\mathbin{\times}_{X(B)}X(B')
+\]
+is an equivalence. Write $\FMP_{\cC}$ for the full subcategory of $\Fun(\cC^{\sm},\cS)$ consisting of these functors, and write $\FMP_k$ in the commutative context.
+\end{definition}
+
+\begin{proposition}[Elementary tests suffice]
+\label{prop:elementary-test}
+The pullback condition in the definition of a formal moduli problem can equivalently be tested only when $f$ is elementary, or only when $f$ is a base point map $\term\to\Omega^{\infty-n}E_\alpha$ for $n>0$.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+
+\begin{proposition}[The derived Schlessinger condition]
+\label{prop:schlessinger}
+A functor $X:\Art\to\cS$ is a formal moduli problem if and only if $X(k)$ is contractible and $X$ preserves pullback squares in $\Art$ whenever at least one of the two maps to the lower-right corner is surjective on $\pi_0$. Equivalently, it suffices to require this when both maps are surjective on $\pi_0$.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+
+\begin{intuition}
+The axiom says that a deformation over the glued algebra is a pair of deformations together with an identification of their restrictions. The identification is part of a homotopy pullback. Passing prematurely to sets of isomorphism classes would discard the automorphisms of this identification, and can destroy the gluing property. Nor does the axiom require preservation of every pullback: the smallness hypothesis is what makes the gluing infinitesimal.
+\end{intuition}
+
+\begin{proposition}[Corepresentable problems and completion]
+\label{prop:corepresentable}
+For every object $R\in\cC$, the functor
+\[
+ \Spec(R)(A)=\Map_{\cC}(R,A),\qquad A\in\cC^{\sm},
+\]
+is a formal moduli problem. More generally, if $Y:\cC^{\sm}\to\cS$ satisfies the pullback axiom and $y\in Y(\term)$, then
+\[
+ Y_y(A)=Y(A)\mathbin{\times}_{Y(\term)}\{y\}
+\]
+is a formal moduli problem.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+
+\begin{proposition}[Presentability and formalization]
+\label{prop:presentable-moduli}
+The inclusion
+\[
+ \FMP_{\cC}\hookrightarrow\Fun(\cC^{\sm},\cS)
+\]
+is an accessible reflective localization. In particular, $\FMP_{\cC}$ is presentable. Limits and filtered colimits of formal moduli problems are computed pointwise. General colimits are obtained by forming the functor-category colimit and then applying the reflector.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+The last distinction is important in the reconstruction argument. It is easy to evaluate a limit or a filtered colimit at an algebra. A geometric realization in the category of formal moduli problems need not be the pointwise geometric realization without an additional argument. Smooth hypercoverings supply exactly such an argument in Section~\ref{sec:hypercovers}.
+
+\section{Tangent complexes and obstruction spaces}
+\label{sec:tangent}
+
+Evaluating a formal moduli problem on the dual numbers produces a pointed space. The same axiom that controls infinitesimal gluing provides compatible deloopings of that space. The tangent object is therefore naturally a spectrum; in the commutative setting it carries a $k$-linear structure.
+
+\begin{proposition}[The spectrum of infinitesimal directions]
+\label{prop:tangent-spectrum}
+Let $X\in\FMP_{\cC}$. For each $\alpha$ and $n\geq0$, set
+\[
+ T_{X,\alpha,n}=X(\Omega^{\infty-n}E_\alpha).
+\]
+There are natural equivalences $T_{X,\alpha,n}\simeq\Omega T_{X,\alpha,n+1}$, and these spaces define a spectrum $T_{X,\alpha}$. Equivalently, if $E_\alpha$ is regarded as a reduced excisive functor on finite pointed spaces, the composite $X\circ E_\alpha$ is reduced and excisive.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+
+\begin{definition}[Tangent complex]
+The spectrum $T_{X,\alpha}$ is the tangent spectrum of $X$ in the direction $E_\alpha$. In the commutative context write $T_X$. Its zeroth space is the tangent space $X(k\oplus k)$, and
+\[
+ X(k\oplus k[n])\simeq\Omega^\infty(T_X[n])\qquad(n\geq0).
+\]
+The designation ``complex'' refers to the $k$-module structure on $T_X$, not merely to an arbitrary spectrum.
+\end{definition}
+
+\begin{proposition}[Linear behavior on split extensions]
+\label{prop:linear}
+For $X\in\FMP_k$, the spectrum $T_X$ has a natural $k$-module structure. If $M$ is a connective $k$-module with finite-dimensional total homology, then
+\[
+ X(k\oplus M)\simeq\Omega^\infty(T_X\otimes_k M).
+\]
+Consequently, for $i,n\geq0$,
+\[
+ \pi_i X(k\oplus k[n])\cong\pi_{i-n}T_X.
+\]
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+
+\begin{intuition}
+The ordinary tangent space is only the first visible level of a single linear object. A direction in degree $n$ shifts which homotopy group of this object is visible as a connected component. This makes it possible for an obstruction group, which is not a space of ordinary first-order deformations, to become a space of first-order deformations over a derived test algebra.
+\end{intuition}
+
+\begin{proposition}[Tangent complex of a corepresentable problem]
+\label{prop:cotangent-tangent}
+Let $R$ be an augmented commutative $k$-algebra, and let $X=\Spec(R)|_{\Art}$. There is a natural equivalence
+\[
+ T_X\simeq\RHom_R(L_{R/k},k)
+       \simeq(k\otimes_R L_{R/k})^\vee.
+\]
+If $R$ is an ordinary augmented $k$-algebra with augmentation ideal $\m$, then $\pi_0T_X\cong(\m/\m^2)^\vee$ and $\pi_iT_X=0$ for $i>0$.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+
+\begin{proposition}[The obstruction fiber sequence]
+\label{prop:obstruction}
+Suppose $A'\to A$ is an elementary map in $\Art$ with defining square
+\[
+ A'\simeq A\mathbin{\times}_{k\oplus k[n+1]}k,\qquad n\geq0.
+\]
+For every formal moduli problem $X$ there is a fiber sequence of pointed spaces
+\[
+ X(A')\longrightarrow X(A)\longrightarrow X(k\oplus k[n+1]).
+\]
+A point $x\in X(A)$ lifts to $X(A')$ precisely when its image lies in the base point component. When a lift and hence a nullhomotopy is chosen, the space of lifts over $x$ is equivalent to $\Omega X(k\oplus k[n+1])$.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+
+The obstruction in this statement lies in $\pi_{-n-1}T_X$. In the cohomological convention for a controlling Lie algebra, the case $n=0$ becomes an obstruction in $H^2(\g)$. The appearance of this group is dictated by the square-zero square and the tangent shift, rather than by an arbitrary choice of obstruction theory.
+
+\begin{proposition}[Tangent detection of equivalences]
+\label{prop:tangent-detection}
+Let $u:X\to Y$ be a morphism of formal moduli problems in a deformation context. If $T_{X,\alpha}\to T_{Y,\alpha}$ is an equivalence for every $\alpha$, then $u$ is an equivalence.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+
+\begin{remark}[Conservative does not mean fully faithful]
+Proposition~\ref{prop:tangent-detection} concerns an already specified map $X\to Y$. It does not say that two formal moduli problems with isomorphic underlying tangent complexes are equivalent. The extra structure governing how tangent directions interact is precisely what the Lie bracket and its derived coherence retain. The forgetful functor from Lie algebras to complexes has the same distinction: it detects equivalences of maps, but does not reconstruct every Lie algebra from its underlying complex.
+\end{remark}
+
+\section{Deformation theories and reconstruction}
+\label{sec:deformation-theory}
+
+The preceding sections describe what a formal moduli problem must do. A deformation theory is additional structure that provides algebraic objects encoding these functors. Its axioms separate the finite duality calculation from the categorical argument that extends it to all formal moduli problems.
+
+\begin{definition}[Weak deformation theory; DAG-X, Definition 1.3.1]
+\label{def:weak-theory}
+For a deformation context $(\cC,\{E_\alpha\})$, a weak deformation theory is a functor $D:\cC^{\op}\to\cD$ with the following properties.
+\begin{enumerate}[label=\textup{(D\arabic*)}]
+\item $\cD$ is presentable.
+\item $D$ has a left adjoint $D':\cD\to\cC^{\op}$.
+\item There is a full subcategory $\cD_0\subseteq\cD$ such that:
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item $K\to DD'K$ is an equivalence for every $K\in\cD_0$;
+\item the initial object $0$ belongs to $\cD_0$;
+\item for each $n>0$ and $\alpha$ there is $K_{\alpha,n}\in\cD_0$ with $D'K_{\alpha,n}\simeq\Omega^{\infty-n}E_\alpha$;
+\item $\cD_0$ is closed under pushouts $K\mathbin{\sqcup}_{K_{\alpha,n}}0$, where $K\in\cD_0$ and the map $K_{\alpha,n}\to0$ is induced by the specified base point.
+\end{enumerate}
+\end{enumerate}
+\end{definition}
+
+The adjunction has a variance that will be used repeatedly:
+\[
+ \Map_{\cD}(K,D(A))\simeq\Map_{\cC}(A,D'K).
+\]
+The counit in $\cC^{\op}$ becomes a map $A\to D'D(A)$ in $\cC$. By contrast, the formal moduli problem associated to $K$ will use maps $D(A)\to K$. These two mapping-space formulas must not be interchanged.
+
+\begin{intuition}
+The subcategory $\cD_0$ is a region where duality is controlled. The elementary spheres must have duals there, and attaching the dual of an elementary extension must stay there. This is enough to recover every small test algebra. The theorem does not ask for duality to be an equivalence between the entire categories $\cC^{\op}$ and $\cD$.
+\end{intuition}
+
+\begin{proposition}[Consequences of weak duality]
+\label{prop:weak-duality}
+For a weak deformation theory, $D(\term)$ is initial. If $A$ is small, then $D(A)\in\cD_0$ and the canonical map
+\[
+ A\longrightarrow D'D(A)
+\]
+is an equivalence. Moreover, $D$ takes a pullback square with small lower objects and a small right vertical map to a pushout square in $\cD$.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+
+\begin{corollary}[The comparison functor]
+\label{cor:comparison}
+Every weak deformation theory determines a functor
+\[
+ \Psi:\cD\longrightarrow\FMP_{\cC},\qquad
+ \Psi(K)(A)=\Map_{\cD}(D(A),K).
+\]
+\end{corollary}
+\begin{proof}
+\end{proof}
+
+
+\begin{definition}[Deformation theory; DAG-X, Definition 1.3.9]
+For a weak deformation theory, put $e_\alpha(K)=T_{\Psi(K),\alpha}$. It is a deformation theory if it also satisfies:
+\begin{enumerate}[label=\textup{(D4)}]
+\item Each $e_\alpha:\cD\to\Sp$ preserves small sifted colimits, and the family $\{e_\alpha\}$ is jointly conservative.
+\end{enumerate}
+\end{definition}
+
+Sifted colimits include filtered colimits and geometric realizations of simplicial objects. Preserving filtered colimits is enough to control passage from finite tests to prorepresentable functors. Preserving geometric realizations is needed to assemble a smooth resolution. The second requirement in (D4) says that the resulting algebraic objects have no invisible component beyond what their tangent spectra can detect.
+
+\begin{theorem}[Abstract reconstruction; DAG-X, Theorem 1.3.12]
+\label{thm:abstract}
+If $D:\cC^{\op}\to\cD$ is a deformation theory, then
+\[
+ \Psi:\cD\xrightarrow{\ \simeq\ }\FMP_{\cC},\qquad
+ K\longmapsto\bigl(A\longmapsto\Map_{\cD}(D(A),K)\bigr)
+\]
+is an equivalence of $\infty$-categories.
+\end{theorem}
+\begin{proof}
+\end{proof}
+
+\begin{intuition}
+Small algebras form the finite pieces of the theory. Prorepresentable objects allow coherent limits of such pieces, and smooth resolutions allow higher gluing. The axioms of a deformation theory ensure that the algebraic category handles both operations and that tangent spectra recognize the resulting comparison. The theorem is a reconstruction statement about full spaces of morphisms, not merely a bijection between isomorphism classes.
+\end{intuition}
+
+\begin{corollary}[Corepresentables under the equivalence]
+For every $A\in\cC$, there is a natural equivalence $\Psi(D(A))\simeq\Spec(A)$ on $\cC^{\sm}$. In particular, a deformation theory, when it exists, identifies the functor $D$ with the restriction-of-corepresentables construction under the equivalence of Theorem~\ref{thm:abstract}.
+\end{corollary}
+\begin{proof}
+\end{proof}
+
+
+\section{The small object argument}
+\label{sec:small-object}
+
+The proof of abstract reconstruction needs resolutions with prescribed lifting properties. Lurie's small object argument is carried out directly in a presentable $\infty$-category. Its lifting condition asks for the existence of coherent fillers; it does not require the space of fillers to be contractible.
+
+\begin{definition}[Lifting and cellular maps]
+For morphisms $f:C\to D$ and $g:X\to Y$ in an $\infty$-category, say that $g$ has the right lifting property against $f$ if the map
+\[
+ \Map(D,X)\longrightarrow
+ \Map(C,X)\mathbin{\times}_{\Map(C,Y)}\Map(D,Y)
+\]
+is surjective on connected components. A transfinite cellular composite generated by a set $S$ is an ordinal-indexed composite of pushouts of maps in $S$, with colimits taken at limit ordinals. A class of maps is weakly saturated if it is closed under these composites and retracts.
+\end{definition}
+
+\begin{proposition}[Small object factorization]
+\label{prop:small-object}
+Let $\cE$ be presentable and let $S$ be a small set of morphisms in $\cE$. Every map $f:X\to Z$ has a factorization $X\to Y\to Z$ whose first map is a transfinite cellular composite generated by $S$ and whose second map has the right lifting property against $S$.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+
+\begin{lemma}[Weak saturation of a lifting class]
+The maps having the left lifting property against a fixed collection of morphisms form a weakly saturated class. If $S$ is a small set in a presentable category, its weakly saturated closure is the class of maps having the left lifting property against every map with the right lifting property against $S$.
+\end{lemma}
+\begin{proof}
+\end{proof}
+
+
+\begin{definition}[Relative latching and matching objects]
+For a simplicial object $U_\bullet$ of $\cE_{/X}$, the latching object $L_nU$ is the colimit of its degeneracy data into degree $n$. The matching object $M_nU$ is the limit of the already specified faces out of degree $n$, computed in $\cE_{/X}$. There is a canonical map $L_nU\to M_nU$. In particular, $M_0U$ is the terminal object of $\cE_{/X}$, namely $X\xrightarrow{\id}X$.
+\end{definition}
+
+\begin{proposition}[Simplicial resolution with lifting maps]
+\label{prop:simplicial-resolution}
+For presentable $\cE$, a small set $S$ of maps, and $X\in\cE$, there is a simplicial object $U_\bullet$ in $\cE_{/X}$ such that each underlying map $L_nU\to U_n$ is cellular with respect to $S$, and each underlying map $U_n\to M_nU$ has the right lifting property against $S$.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+
+\begin{intuition}
+The latching object records identifications already forced by degeneracies. The matching object records compatible boundary data that a new simplex must fill. Factoring the map between them supplies a new level without discarding the choices made in lower degrees. In the application to moduli problems, the matching maps become smooth, and the cellular maps keep the levels prorepresentable.
+\end{intuition}
+
+\section{Prorepresentability and smooth hypercoverings}
+\label{sec:hypercovers}
+
+The passage from finite algebras to complete local behavior is expressed by pro-objects. It is helpful to distinguish the inverse system of algebras from the direct system of functors it represents.
+
+\begin{definition}[Prorepresentable functors]
+A functor $X:\cC^{\sm}\to\cS$ is prorepresentable if it is a filtered colimit of corepresentables $\Spec(A_i)$ with $A_i\in\cC^{\sm}$. Equivalently, it comes from a pro-object of $\cC^{\sm}$, viewed contravariantly as a functor of points. For a cofiltered inverse system $\{A_i\}_{i\in I}$ the formula is
+\[
+ X(B)\simeq\colim_{i\in I^{\op}}\Map_{\cC}(A_i,B).
+\]
+\end{definition}
+
+\begin{proposition}[Prorepresentability is compatible with small cells]
+\label{prop:pro-cells}
+Every prorepresentable functor is a formal moduli problem. If a map $X\to Y$ in $\FMP_{\cC}$ is a transfinite cellular composite of maps $\Spec(B)\to\Spec(A)$ induced by small maps $A\to B$ of small objects, and $X$ is prorepresentable, then $Y$ is prorepresentable.
+\end{proposition}
+\begin{proof}
+\end{proof}
+
+
+% \begin{definition}[Smooth maps of formal moduli problems]
+% A map $u:X\to Y$ is smooth if, for every small map $A\to B$ of small objects, the comparison
+% \[
+%  X(A)\longrightarrow X(B)\mathbin{\times}_{Y(B)}Y(A)
+% \]
+% is surjective on connected components. A problem is smooth if its map to the terminal problem is smooth.
+% \end{definition}
+
+% \begin{proposition}[Tangent criterion for smoothness]
+% \label{prop:smoothness}
+% A map $X\to Y$ is smooth if and only if, for every $\alpha$, the fiber of $T_{X,\alpha}\to T_{Y,\alpha}$ is connective. The lifting condition can be tested on elementary maps alone.
+% \end{proposition}
+% \begin{proof}
+% \end{proof}
+
+% \begin{intuition}
+% Smoothness is the possibility of lifting an infinitesimal deformation after allowing a choice. It does not require uniqueness of lifts. The fiber of the tangent map records the relative choices and relative obstructions. Its negative homotopy groups are the obstruction directions; connectivity excludes them. This formal notion does not impose a finite-presentation condition.
+% \end{intuition}
+
+% \begin{theorem}[Smooth prorepresentable hypercoverings]
+% \label{thm:hypercover}
+% For every $X\in\FMP_{\cC}$ there is a simplicial object $U_\bullet$ in $(\FMP_{\cC})_{/X}$ whose terms are prorepresentable and whose matching maps $U_n\to M_nU$ are smooth. The augmentation induces an equivalence
+% \[
+%  |U_\bullet|\simeq X
+% \]
+% in the pointwise functor category $\Fun(\cC^{\sm},\cS)$.
+% \end{theorem}
+% \begin{proof}
+% \end{proof}
+
+
+% \begin{lemma}[Compactness of small duals]
+% \label{lem:compact-duals}
+% If $D$ is a deformation theory and $A\in\cC^{\sm}$, then $D(A)$ is compact in $\cD$.
+% \end{lemma}
+% \begin{proof}
+% \end{proof}
+% \source{\DAGresult{Lemma 1.5.10}. This turns the mapping-space construction of $\Psi$ into an accessible functor and controls filtered colimits.}
+
+% \paragraph{The assembly of reconstruction.}
+% Theorem~\ref{thm:abstract} rests on three separate ingredients now visible in the statements. Weak duality identifies the comparison on small corepresentables. Compactness extends the control to filtered presentations. Smooth hypercoverings present an arbitrary problem by prorepresentable levels, and the sifted-colimit hypothesis in (D4), together with tangent detection, allows the comparison to pass through this presentation. Each ingredient has a different task: finite biduality alone does not establish the equivalence for arbitrary space-valued functors.
+
+% \chapter{Commutative Deformation Theory and Differential Graded Lie Algebras}
+% \label{ch:lie}
+% \section{Differential graded Lie algebras}
+% \label{sec:dglie}
+
+% Throughout this chapter $k$ has characteristic zero. The category of test objects remains $\Art$. Characteristic zero is needed on the algebraic side: symmetric powers behave well under quasi-isomorphisms, differential graded commutative algebras model commutative algebra objects in $\Mod_k$, and ordinary differential graded Lie algebras encode the required deformation theory.
+
+% \begin{definition}[Differential graded Lie algebra]
+% A differential graded Lie algebra is a chain complex $(\g,d)$ with a degree-zero bilinear operation $[-,-]$ satisfying, for homogeneous $x,y,z$,
+% \begin{align*}
+%  [x,y]&=-(-1)^{|x||y|}[y,x],\\
+%  (-1)^{|x||z|}[x,[y,z]]&+(-1)^{|y||x|}[y,[z,x]]
+%        +(-1)^{|z||y|}[z,[x,y]]=0,\\
+%  d[x,y]&=[dx,y]+(-1)^{|x|}[x,dy].
+% \end{align*}
+% A morphism is a chain map preserving the bracket. Denote the ordinary category by $\Lie_k^{\dg}$ and its localization at quasi-isomorphisms by $\Lie_k$.
+% \end{definition}
+
+% The bracket carries nonlinear information while the differential carries linear information. These are compatible through the derivation identity. Their combination becomes especially transparent in Chevalley--Eilenberg cochains: the differential there has one part arising from $d$ and another arising from the bracket. The bracket is therefore visible as a nonlinear term in a commutative differential graded algebra.
+
+% \begin{example}[Commutators and endomorphisms]
+% For an associative differential graded algebra $B$, the formula
+% \[
+%  [x,y]=xy-(-1)^{|x||y|}yx
+% \]
+% defines a differential graded Lie algebra $B^{\mathrm{Lie}}$. In particular, an endomorphism complex of a chain complex carries such a bracket. A chain complex with the zero bracket is called an abelian differential graded Lie algebra.
+% \end{example}
+
+% \begin{definition}[Free Lie algebra and universal enveloping algebra]
+% The free Lie algebra functor $\Free$ is left adjoint to the forgetful functor $\theta:\Lie_k\to\Mod_k$. At the level of differential graded objects, the universal enveloping algebra is
+% \[
+%  \U(\g)=T(\g)\big/
+%  \bigl(xy-(-1)^{|x||y|}yx-[x,y]\bigr),
+% \]
+% where $T(\g)=\bigoplus_{r\geq0}\g^{\otimes r}$ and the relations range over homogeneous elements. It is left adjoint to the commutator Lie algebra functor. There is a natural augmentation $\U(\g)\to k$.
+% \end{definition}
+
+% \begin{theorem}[Differential graded Poincare--Birkhoff--Witt]
+% \label{thm:pbw}
+% The tensor-length filtration on $\U(\g)$ has associated graded algebra naturally isomorphic to $\Sym(\g)$. Over $k$, symmetrization gives a natural isomorphism of chain complexes
+% \[
+%  \Sym(\g)\xrightarrow{\ \cong\ }\U(\g).
+% \]
+% The latter is generally not an isomorphism of algebras.
+% \end{theorem}
+% \begin{proof}
+% \end{proof}
+% \source{\DAGresult{Remarks 2.1.7--2.1.8}. Symmetrization averages signed permutations with the coefficient $1/r!$ in length $r$.}
+
+% \begin{lemma}[Enveloping algebras detect quasi-isomorphisms]
+% \label{lem:enveloping-detect}
+% A morphism $f:\g\to\h$ of differential graded Lie algebras is a quasi-isomorphism if and only if $\U(f)$ is a quasi-isomorphism.
+% \end{lemma}
+% \begin{proof}
+% \end{proof}
+% \source{\DAGresult{Lemma 2.1.11}. The length-one summand in the PBW description is relevant to the detection assertion.}
+
+% \begin{proposition}[The Lie model structure]
+% \label{prop:lie-model}
+% The category $\Lie_k^{\dg}$ admits a left proper combinatorial model structure whose weak equivalences are quasi-isomorphisms and whose fibrations are degreewise surjections. Cofibrations are the maps with the left lifting property against trivial fibrations.
+% \end{proposition}
+% \begin{proof}
+% \end{proof}
+% \source{\DAGresult{Proposition 2.1.10}. This gives a concrete presentation of the $\infty$-category $\Lie_k$; a cofibration of Lie algebras is not defined merely as an injection of underlying complexes.}
+
+% \begin{proposition}[Presentability and sifted colimits]
+% \label{prop:lie-sifted}
+% The category $\Lie_k$ is presentable. Its forgetful functor
+% \[
+%  \theta:\Lie_k\longrightarrow\Mod_k
+% \]
+% is conservative and preserves small limits and small sifted colimits. The free--forgetful adjunction is monadic.
+% \end{proposition}
+% \begin{proof}
+% \end{proof}
+% \source{\DAGresult{Propositions 2.1.13 and 2.1.16, and Remark 2.1.17}. Monadicity uses \HA{Theorem 4.7.3.5}.}
+
+% \begin{intuition}
+% The forgetful functor retains enough information to recognize equivalences, but the free--forgetful monad remembers how to form brackets and iterated brackets. Sifted colimits are compatible with these algebraic operations. This is stronger than knowing that an individual chain-level construction preserves filtered unions: the later reconstruction theorem also requires geometric realizations.
+% \end{intuition}
+
+% \begin{corollary}[Resolution by free Lie algebras]
+% \label{cor:free-resolution}
+% Every $\g\in\Lie_k$ is the geometric realization of the augmented simplicial free resolution associated to the adjunction $\Free\dashv\theta$. Its degree-$n$ term is $(\Free\theta)^{n+1}\g$.
+% \end{corollary}
+% \begin{proof}
+% \end{proof}
+% \source{The monadic resolution used in the proof of \DAGresult{Proposition 2.2.12}; see also Proposition~\ref{prop:barr-beck}.}
+
+% \section{Chevalley--Eilenberg chains and cochains}
+% \label{sec:ce}
+
+% The Chevalley--Eilenberg construction converts the bracket into a differential. Lurie's cone construction is particularly useful because it supplies a resolution of the trivial representation and fixes the signs without treating the chain complex as an unexplained formula.
+
+% \begin{definition}[The cone Lie algebra]
+% Let $\operatorname{Cn}(\g)$ have degree-$i$ vector space $\g_i\oplus\epsilon\g_{i-1}$, where $\epsilon$ is a symbol of degree $1$. For homogeneous elements of total degrees $p$ and $q$, set
+% \begin{align*}
+%  d(x+\epsilon y)&=dx+y-\epsilon dy,\\
+%  [x+\epsilon y,x'+\epsilon y']
+%    &=[x,x']+\epsilon\bigl([y,x']+(-1)^p[x,y']\bigr).
+% \end{align*}
+% The inclusion $\g\to\operatorname{Cn}(\g)$ sends $x$ to $x+0$.
+% \end{definition}
+
+% \begin{lemma}[A resolution of the trivial module]
+% \label{lem:cone-resolution}
+% The cone is an acyclic differential graded Lie algebra. The augmentation
+% \[
+%  \U(\operatorname{Cn}(\g))\longrightarrow k
+% \]
+% is a quasi-isomorphism and is a cofibrant resolution of the trivial right $\U(\g)$-module; the analogous assertion holds for left modules.
+% \end{lemma}
+% \begin{proof}
+% \end{proof}
+% \source{\DAGresult{Construction 2.2.1, Remark 2.2.2 and Remark 2.2.11}. The PBW filtration is used to justify the module-resolution assertion, not merely acyclicity of the underlying cone.}
+
+% \begin{definition}[Chevalley--Eilenberg chains]
+% Set
+% \[
+%  \CEchains(\g)=\U(\operatorname{Cn}(\g))\otimes_{\U(\g)}k.
+% \]
+% As a graded vector space it is $\Sym(\g[1])$. Its differential is the sum of the differential induced by $\g[1]$ and a term determined by the Lie bracket that lowers symmetric length by one. The enveloping-algebra construction specifies the signs. The diagonal on the cone induces a cocommutative coalgebra structure on $\CEchains(\g)$, with a coaugmentation $k\to\CEchains(\g)$.
+% \end{definition}
+
+% \begin{proposition}[Filtration and derived interpretation]
+% \label{prop:ce-filtration}
+% There is an exhaustive increasing filtration $F_r\CEchains(\g)$ by symmetric length, with
+% \[
+%  F_0\CEchains(\g)=k,\qquad
+%  \gr_r\CEchains(\g)\cong\Sym^r(\g[1]).
+% \]
+% In $\Mod_k$ there is a natural equivalence
+% \[
+%  \CEchains(\g)\simeq k\otimes^{\mathbf L}_{\U(\g)}k.
+% \]
+% \end{proposition}
+% \begin{proof}
+% \end{proof}
+% \source{\DAGresult{Remarks 2.2.4--2.2.5 and 2.2.11}. The shift $[1]$ belongs in the associated graded formula.}
+
+% \begin{proposition}[Homotopy invariance of chains]
+% \label{prop:ce-invariance}
+% A quasi-isomorphism $\g\to\h$ induces a quasi-isomorphism $\CEchains(\g)\to\CEchains(\h)$.
+% \end{proposition}
+% \begin{proof}
+% \end{proof}
+% \source{\DAGresult{Proposition 2.2.6}. Characteristic zero makes each symmetric power a summand of a tensor power, which is the key homological input.}
+
+% \begin{proposition}[Chains on a free Lie algebra]
+% \label{prop:free-chains}
+% For every $V\in\Mod_k$, inclusion of symmetric lengths zero and one gives a natural equivalence
+% \[
+%  k\oplus V[1]\xrightarrow{\ \simeq\ }\CEchains(\Free(V)).
+% \]
+% The left-hand side has its primitive coalgebra structure.
+% \end{proposition}
+% \begin{proof}
+% \end{proof}
+% \source{\DAGresult{Proposition 2.2.7}. A useful companion computation is $\U(\Free(V))\cong T(V)$.}
+
+% \begin{intuition}
+% A free Lie algebra contains many iterated brackets, but its Lie homology relative to the trivial representation has only the original generators, shifted once, in its reduced part. This is the calculation that turns square-zero commutative algebras into free Lie algebras on the dual side. The shift in the classification theorem is already visible here.
+% \end{intuition}
+
+% \begin{definition}[Chevalley--Eilenberg cochains]
+% Define
+% \[
+%  \CE(\g)=\RHom_k(\CEchains(\g),k).
+% \]
+% Dualizing the coalgebra structure equips this with an augmented commutative differential graded algebra structure. It is a model for $\RHom_{\U(\g)}(k,k)$. In terms of graded vector spaces, its underlying object is
+% \[
+%  \prod_{r\geq0}\bigl(\Sym^r(\g[1])\bigr)^\vee.
+% \]
+% The dual and the product are taken degreewise in complexes.
+% \end{definition}
+
+% \begin{remark}[Completion and finite-dimensionality]
+% The displayed product must not be replaced in general by $\Sym(\g^\vee[-1])$. Dualizing a direct sum gives a product, and dualizing a tensor power requires finiteness hypotheses before it can be identified with the tensor power of the dual. For a degreewise finite Lie algebra concentrated in strictly negative homological degrees, the cochains can be described as a completed symmetric algebra; the degree-zero generators arising from $\g_{-1}$ account for the ordinary power-series completion. These issues enter the biduality lemma in Section~\ref{sec:koszul}.
+% \end{remark}
+
+% \begin{corollary}[Cochains on a free Lie algebra]
+% \label{prop:free-cochains}
+% There is a natural equivalence of augmented commutative $k$-algebras
+% \[
+%  \CE(\Free(V))\simeq k\oplus V^\vee[-1],
+% \]
+% where the right-hand side is a split square-zero algebra.
+% \end{corollary}
+% \begin{proof}
+% \end{proof}
+% \source{\DAGresult{Remark 2.2.15}, obtained by dualizing Proposition~\ref{prop:free-chains}.}
+
+% \begin{proposition}[Colimit behavior of chains and cochains]
+% \label{prop:ce-colimits}
+% The functors
+% \[
+%  \CEchains:\Lie_k\to(\Mod_k)_{k/},\qquad
+%  \CE:\Lie_k\to(\CAlg_k^{\aug})^{\op}
+% \]
+% preserve small colimits. In particular, $\CE$ takes colimits of Lie algebras to limits of augmented commutative algebras.
+% \end{proposition}
+% \begin{proof}
+% \end{proof}
+% \source{\DAGresult{Propositions 2.2.12 and 2.2.17}. The target $(\Mod_k)_{k/}$ in the chain statement is important: the distinguished copy of $k$ is retained.}
+
+% \begin{intuition}
+% There are two types of colimit to control. The length filtration handles sifted colimits, while the free resolution reduces coproduct calculations to free Lie algebras. On free objects the calculation is linear by Proposition~\ref{prop:free-chains}. Dualization then reverses the colimits, providing the adjoint needed for Koszul duality.
+% \end{intuition}
+
+% \section{Koszul duality and the finite biduality calculation}
+% \label{sec:koszul}
+
+% The functor $D$ used to classify formal moduli problems is defined by a derived adjunction. This avoids imposing finiteness assumptions on the Lie algebra in the eventual classification theorem.
+
+% \begin{proposition}[Existence of the Koszul duality adjunction]
+% \label{prop:koszul-adjunction}
+% The Chevalley--Eilenberg functor has a right adjoint
+% \[
+%  \CE:\Lie_k\rightleftarrows(\CAlg_k^{\aug})^{\op}:D.
+% \]
+% Thus, naturally in $A$ and $\g$,
+% \[
+%  \Map_{\Lie_k}(\g,D(A))
+%     \simeq\Map_{\CAlg_k^{\aug}}(A,\CE(\g)).
+% \]
+% \end{proposition}
+% \begin{proof}
+% \end{proof}
+% \source{The opening of \DAG{2.3}, using Proposition~\ref{prop:ce-colimits} and \HTT{Corollary 5.5.2.9, Remark 5.5.2.10}. Only local smallness of the target opposite category is needed for this application; it is not being asserted to be presentable.}
+
+
+
+% \begin{remark}[A derived adjunction]
+% This adjunction is formed after passing to the $\infty$-categories. The point-set functor assigning ordinary Chevalley--Eilenberg cochains does not itself have the corresponding right adjoint in the naive category of differential graded objects. In particular, the adjunction above must not be called a Quillen adjunction for that point-set functor. See \DAGresult{Remark 2.3.2}.
+% \end{remark}
+
+% \begin{definition}[Good Lie algebras]
+% A differential graded Lie algebra is good if it is cofibrant and its underlying graded Lie algebra is freely generated by a graded vector space $V$ such that each $V_i$ is finite-dimensional and $V_i=0$ for $i\geq0$. Denote by $\Lie_k^{\mathrm{good}}$ the full subcategory of $\Lie_k$ represented by good objects. The differential need not preserve the chosen generating subspace $V$.
+% \end{definition}
+
+% \begin{proposition}[Derived indecomposables]
+% \label{prop:indecomposables}
+% If $A$ is a cofibrant augmented commutative differential graded algebra with augmentation ideal $\m_A$, then
+% \[
+%  k\otimes_A L_{A/k}\simeq\m_A/\m_A^2.
+% \]
+% For an arbitrary $A$, the right-hand side must be formed after cofibrant replacement. Equivalently, its derived version is the left adjoint of $M\mapsto k\oplus M$.
+% \end{proposition}
+% \begin{proof}
+% \end{proof}
+% \source{\DAGresult{Definition 2.3.10 and Remark 2.3.11}. This result distinguishes ordinary indecomposables from derived indecomposables.}
+
+% \begin{proposition}[The underlying complex of a Koszul dual]
+% \label{prop:dual-cotangent}
+% For every augmented commutative $k$-algebra $A$, there is a natural equivalence
+% \[
+%  \theta D(A)\simeq L_{k/A}^\vee
+%        \simeq(k\otimes_A L_{A/k})^\vee[-1].
+% \]
+% \end{proposition}
+% \begin{proof}
+% \end{proof}
+% \source{\DAGresult{Proposition 2.3.9}. The second equivalence uses the transitivity sequence for $k\to A\to k$, giving $L_{k/A}\simeq(k\otimes_A L_{A/k})[1]$.}
+
+% \begin{intuition}
+% The underlying complex of $D(A)$ is a shifted dual of the linearized augmentation ideal. This is exactly the expected tangent complex shifted by $-1$. The proposition identifies the underlying complex, but the adjunction also supplies its Lie structure. Keeping that structure is necessary if one wants to recover the full formal neighborhood.
+% \end{intuition}
+
+% \begin{lemma}[Biduality in the negative finite-type range]
+% \label{lem:finite-biduality}
+% Suppose a differential graded Lie algebra $\g$ satisfies $\g_i=0$ for $i\geq0$ and each $\g_i$ is finite-dimensional. Then the adjunction unit
+% \[
+%  \g\longrightarrow D\CE(\g)
+% \]
+% is an equivalence in $\Lie_k$.
+% \end{lemma}
+% \begin{proof}
+% \end{proof}
+% \source{\DAGresult{Lemma 2.3.5}. This is a special-range biduality statement; these hypotheses are not conditions on $\g$ in the final classification theorem.}
+
+% \paragraph{Why the hypotheses matter.}
+% Finite-dimensionality permits the comparison with a double linear dual. Strictly negative homological degrees allow cochains to be described using a polynomial differential graded algebra with a power-series completion in finitely many degree-zero variables. The proof must compare the cotangent fibers of that polynomial model and its completion. A formal identity such as $\m/\m^2=\g^\vee[-1]$ is insufficient unless the relevant derived indecomposables have also been controlled.
+
+% \begin{proposition}[Good objects provide weak deformation theory]
+% \label{prop:good-theory}
+% The full subcategory $\Lie_k^{\mathrm{good}}$ satisfies axiom \textup{(D3)} of Definition~\ref{def:weak-theory} for $D'=\CE$. In particular, it contains zero, the unit $\g\to D\CE(\g)$ is an equivalence on good objects, and it is closed under pushouts
+% \[
+%  \g\mathbin{\sqcup}_{\Free(k[-n-1])}0\qquad(n>0).
+% \]
+% The corresponding distinguished test algebra is $k\oplus k[n]$.
+% \end{proposition}
+% \begin{proof}
+% \end{proof}
+% \source{\DAGresult{Proposition 2.3.4}. A cell killing a cycle in degree $-n-1$ has a new generator in degree $-n$, which remains strictly negative.}
+
+% \begin{proposition}[Duals of square-zero algebras]
+% \label{prop:free-dual}
+% For every $n\geq0$ there is a natural equivalence
+% \[
+%  D(k\oplus k[n])\simeq\Free(k[-n-1]).
+% \]
+% More generally, for a perfect connective $k$-module $M$,
+% \[
+%  D(k\oplus M)\simeq\Free(M^\vee[-1]).
+% \]
+% \end{proposition}
+% \begin{proof}
+% \end{proof}
+% \source{The calculation in the proof of \DAGresult{Proposition 2.3.4}, using Corollary~\ref{prop:free-cochains} and Lemma~\ref{lem:finite-biduality}. The second assertion is its finite direct-sum extension.}
+
+% This is the point at which the final tangent identification becomes calculable. A map from a free Lie algebra is determined by the image of its generators, so the values of the eventual moduli problem on split square-zero objects depend linearly on the underlying Lie complex. The rest of the moduli problem retains the brackets through the values of $D$ on nonsplit algebras.
+
+% \begin{corollary}[Biduality for small algebras]
+% \label{cor:small-biduality}
+% For $A\in\Art$, the canonical map $A\to\CE(D(A))$ is an equivalence. If
+% \[
+%  A'\simeq A\mathbin{\times}_{k\oplus k[n+1]}k,
+% \]
+% then
+% \[
+%  D(A')\simeq D(A)\mathbin{\sqcup}_{\Free(k[-n-2])}0.
+% \]
+% Consequently, $D(A)$ admits a model built from zero by finitely many Lie cell attachments in strictly negative degrees.
+% \end{corollary}
+% \begin{proof}
+% \end{proof}
+% \source{Proposition~\ref{prop:weak-duality} applied to Proposition~\ref{prop:good-theory}; compare \DAGresult{Remark 2.4.30}. The finite-cell assertion is stronger than simply belonging to the potentially unbounded good subcategory.}
+
+% \section{The characteristic-zero classification theorem}
+% \label{sec:classification}
+
+% The inputs for the abstract theorem are now in place. The remaining axiom concerns the tangent functor of the comparison $\Psi$. Unlike finite biduality, it must apply to every Lie algebra.
+
+% \begin{proposition}[Tangents on the Lie side]
+% \label{prop:lie-tangent}
+% For $\g\in\Lie_k$, set $\Psi(\g)(A)=\Map_{\Lie_k}(D(A),\g)$. Then
+% \begin{align*}
+%  \Psi(\g)(k\oplus k[n])
+%    &\simeq\Map_{\Mod_k}(k[-n-1],\theta\g)\\
+%    &\simeq\Omega^\infty((\theta\g)[n+1])\qquad(n\geq0),
+% \end{align*}
+% and these equivalences identify the tangent spectrum with $(\theta\g)[1]$. This tangent functor preserves sifted colimits and is conservative.
+% \end{proposition}
+% \begin{proof}
+% \end{proof}
+% \source{The verification of axiom (D4) in the proof of \DAGresult{Theorem 2.3.1}, using Proposition~\ref{prop:lie-sifted}. Compatibility of the displayed equivalences with the spectrum structure is part of the statement.}
+
+% \begin{theorem}[Koszul duality is a deformation theory]
+% \label{thm:koszul-theory}
+% For a field $k$ of characteristic zero, the functor
+% \[
+%  D:(\CAlg_k^{\aug})^{\op}\longrightarrow\Lie_k
+% \]
+% is a deformation theory for the commutative deformation context $(\CAlg_k^{\aug},\{E\})$ with $\Omega^{\infty-n}E=k\oplus k[n]$.
+% \end{theorem}
+% \begin{proof}
+% \end{proof}
+% \source{\DAGresult{Theorem 2.3.1}. Presentability and the adjunction give (D1)--(D2), good objects give (D3), and Proposition~\ref{prop:lie-tangent} gives (D4).}
+
+% \begin{theorem}[Formal moduli problems and Lie algebras]
+% \label{thm:main}
+% Let $k$ be a field of characteristic zero. There is an equivalence of $\infty$-categories
+% \[
+%  \boxed{\ \Psi:\Lie_k\xrightarrow{\ \simeq\ }\FMP_k,\qquad
+%  \Psi(\g)(A)=\Map_{\Lie_k}(D(A),\g).\ }
+% \]
+% Under this equivalence there is a natural identification of $k$-module spectra
+% \[
+%  T_{\Psi(\g)}\simeq(\theta\g)[1].
+% \]
+% Equivalently, the shifted tangent functor $X\mapsto T_X[-1]$ is the underlying-complex functor of the controlling differential graded Lie algebra.
+% \end{theorem}
+% \begin{proof}
+% \end{proof}
+% \source{\DAGresult{Theorem 2.0.2}, obtained from Theorems~\ref{thm:abstract} and~\ref{thm:koszul-theory}. The source is the localization at quasi-isomorphisms, and the target is the category of space-valued functors satisfying the formal moduli axioms.}
+
+% \begin{intuition}
+% The theorem says that the infinitesimal neighborhood contains more than a linear tangent object but less arbitrary information than a general functor on Artinian algebras. Its nonlinear compatibility is exactly encoded by a differential graded Lie algebra up to derived equivalence. The bracket determines how tangent directions interact, while the derived category of Lie algebras retains all homotopies required to compare such data. This is why an equivalence of ordinary homotopy categories would be a weaker conclusion.
+% \end{intuition}
+
+% \begin{remark}[What the inverse means]
+% The notation $X\mapsto T_X[-1]$ suppresses essential structure. The inverse equivalence supplies a Lie algebra whose underlying complex is $T_X[-1]$; it does not declare a bracket on an arbitrary chosen chain model by inspection. Transferring the resulting structure to another chain complex may naturally produce an $L_\infty$ model. Strict differential graded Lie algebras and their derived mapping spaces provide the model used here.
+% \end{remark}
+
+% \begin{corollary}[Mapping spaces are classified]
+% For $\g,\h\in\Lie_k$, the comparison induces an equivalence
+% \[
+%  \Map_{\Lie_k}(\g,\h)
+%    \simeq\Map_{\FMP_k}(\Psi(\g),\Psi(\h)).
+% \]
+% Every formal moduli problem is equivalent to some $\Psi(\g)$, and the space of choices of such a presentation together with an identification is contractible.
+% \end{corollary}
+% \begin{proof}
+% \end{proof}
+% \source{Full faithfulness and essential surjectivity in Theorem~\ref{thm:main}. The contractibility concerns the fiber of an equivalence, including the chosen identification with the given formal moduli problem.}
+
+% \begin{corollary}[A criterion for prorepresentability]
+% \label{cor:procriterion}
+% For $X\in\FMP_k$, the following are equivalent:
+% \begin{enumerate}
+% \item $X$ is prorepresentable in the sense of Section~\ref{sec:hypercovers};
+% \item $\pi_iT_X=0$ for every $i>0$;
+% \item the controlling Lie algebra satisfies $H_i(\g)=0$ for every $i\geq0$.
+% \end{enumerate}
+% \end{corollary}
+% \begin{proof}
+% \end{proof}
+% \source{\DAGresult{Corollary 2.3.6}. This criterion imposes no finite-dimensionality hypothesis on $T_X$; prorepresentability is allowed by arbitrary pro-objects of the small test category.}
+
+% \begin{remark}[Why ordinary cochains do not replace the comparison]
+% There is a natural map
+% \[
+%  \Psi(\g)(A)\longrightarrow
+%  \Map_{\CAlg_k^{\aug}}(\CE(\g),A)\qquad(A\in\Art),
+% \]
+% obtained by applying $\CE$ to $D(A)\to\g$ and using small biduality. The target is naturally $\Psi(D\CE(\g))(A)$, so this comparison is induced by the unit $\g\to D\CE(\g)$. It is an equivalence when that unit is, for example in Lemma~\ref{lem:finite-biduality}, but it is not an unconditional formula for all Lie algebras. The direction of the adjunction in Proposition~\ref{prop:koszul-adjunction} explains the distinction.
+% \end{remark}
+
+% \subsection{The Maurer--Cartan interpretation}
+% \label{sec:mc}
+
+% The abstract construction has a useful concrete interpretation when a test algebra is represented by a differential graded Artinian algebra with a nilpotent augmentation ideal. This interpretation is included for orientation and examples; the proof of Theorem~\ref{thm:main} follows the Koszul-duality route above.
+
+% \begin{definition}[Maurer--Cartan equation]
+% For a homologically graded differential graded Lie algebra $\mathfrak a$, a Maurer--Cartan element is $x\in\mathfrak a_{-1}$ satisfying
+% \[
+%  dx+\frac12[x,x]=0.
+% \]
+% Equivalently, in cohomological grading $x$ has degree $1$. The coefficient and sign here specify our convention for this discussion.
+% \end{definition}
+
+% For a nilpotent model of an augmented differential graded algebra $A$, the complex $\m_A\otimes_k\g$ is a nilpotent differential graded Lie algebra even if $\g$ itself is not nilpotent. Its bracket is
+% \[
+%  [a\otimes x,b\otimes y]=(-1)^{|x||b|}ab\otimes[x,y].
+% \]
+% A model for the relevant space uses Maurer--Cartan elements after tensoring with polynomial differential forms on simplices. In cohomological grading these forms have generators $t_i$ in degree zero and $dt_i$ in degree one, with $\sum t_i=1$ and $\sum dt_i=0$. Faces and degeneracies make the solutions into a simplicial set. This construction encodes paths between solutions as well as higher homotopies; the set of solutions alone is not the formal moduli problem. See the discussion in \DAG{2} and the nilpotent treatment in \cite{Getzler}.
+
+% \begin{proposition}[First-order deformation and automorphism groups]
+% \label{prop:degree-dictionary}
+% Let $X=\Psi(\g)$, and interpret $H^j(\g)$ cohomologically. Then
+% \[
+%  \pi_iX(k\oplus k[n])\cong H^{n+1-i}(\g)
+%  \qquad(i,n\geq0).
+% \]
+% Thus connected components of ordinary first-order deformations give $H^1(\g)$, their first-order automorphisms give $H^0(\g)$, and the elementary obstruction space for a discrete square-zero extension is $H^2(\g)$.
+% \end{proposition}
+% \begin{proof}
+% \end{proof}
+% \source{A specialization of Proposition~\ref{prop:lie-tangent} and Proposition~\ref{prop:obstruction}. No Maurer--Cartan comparison theorem is needed for these identifications.}
+
+% \begin{example}[A linear formal direction]
+% Let $\g=k[-1]$ with zero bracket and differential. Its tangent complex is $k$ in degree zero. At the level of cochains, $\CE(\g)$ is the power-series algebra $k[[t]]$ in degree zero. The corresponding formal moduli problem is the formal affine line. Restricting to ordinary Artinian algebras records elements of their maximal ideals. The power-series ring here describes a prorepresentable functor; it is not itself a small test algebra.
+% \end{example}
+
+% \begin{example}[A bracket creates a quadratic obstruction]
+% Consider the graded vector space generated by $a$ in homological degree $-1$ and $b$ in degree $-2$, with $d=0$, $[a,a]=2b$, and all brackets involving $b$ zero. Compare it with the abelian Lie algebra on the same complex. In the Maurer--Cartan equation over an ordinary Artinian algebra, an element $u a$ in the first algebra must satisfy $u^2b=0$; in the abelian algebra there is no such equation.
+
+% Over $k[t]/(t^2)$ the choice $u=t$ is allowed in both cases. Over $k[t]/(t^3)$ it has a nonzero quadratic obstruction in the first. This example exhibits the different higher-order behavior that an underlying tangent complex alone cannot distinguish. Its purpose is to display the equation and the bracket, rather than to substitute a set of solutions for the derived space of deformations.
+% \end{example}
+
+% \subsection{The role of characteristic zero}
+
+% Several steps of the construction use the characteristic-zero hypothesis in a concrete way. PBW symmetrization involves averaging over a symmetric group. The proof that symmetric powers preserve quasi-isomorphisms uses the exactness of taking invariants or coinvariants for finite groups over $k$. The comparison between strictly commutative differential graded algebras and $E_\infty$-algebras is also a characteristic-zero statement. These are structural inputs to the proof, rather than cosmetic choices of chain model.
+
+% Consequently, the argument does not establish the same classification by ordinary differential graded Lie algebras in positive characteristic. The abstract formal-moduli axioms still make sense there, but the algebraic category and the operations required to reconstruct a problem must be reconsidered. The scope of this thesis is the characteristic-zero theorem.
+
+% \section{Quasi-coherent sheaves and representations}
+% \label{sec:qcoh}
+
+% The equivalence of formal moduli problems and Lie algebras concerns the spaces being deformed. DAG-X \S2.4 asks for a compatible description of linear objects over such spaces. On the geometric side these are quasi-coherent sheaves; on the algebraic side they are representations of the controlling Lie algebra. The comparison is fully faithful and has a stronger statement for connective objects, but it is not asserted to be an equivalence on all representations.
+
+% \begin{definition}[Quasi-coherent sheaves on a formal moduli problem]
+% For $X:\Art\to\cS$, let $\operatorname{Pts}(X)$ be its category of points: objects are pairs $(A,x)$ with $x\in X(A)$, and arrows include a map $A\to B$ and a path from its image of $x$ to the specified point of $X(B)$. Define
+% \[
+%  \QCoh(X)=\limi_{(A,x)\in\operatorname{Pts}(X)}\Mod_A,
+% \]
+% where the transition functor for $A\to B$ is $B\otimes_A-$. An object is thus a coherent family of modules $M_{A,x}$ with equivalences
+% \[
+%  B\otimes_A M_{A,x}\simeq M_{B,y}
+% \]
+% for every such arrow, including coherence for compositions and paths. Tensor product is defined by the tensor products in $\Mod_A$.
+% \end{definition}
+
+% \begin{remark}[The direction of the limit]
+% The category of points is the category of affine test maps to the functor with its arrows reversed relative to algebraic spectra. The transition functors in the displayed definition are extension of scalars. Describing the transitions explicitly avoids an ambiguity in a formula written simply as a limit over $\Spec(A)\to X$. Equivalently, $\QCoh$ is the limit-preserving extension of the module assignment from corepresentables on the opposite of the functor category, as in \DAGresult{Construction 2.4.25}.
+% \end{remark}
+
+% \begin{definition}[Representations]
+% A representation of $\g$ is a chain complex $V$ with a differential-compatible action $\g\otimes V\to V$ satisfying the Lie-module identity. Equivalently it is a left differential graded $\U(\g)$-module. Set
+% \[
+%  \Rep_{\g}=\LMod_{\U(\g)},
+% \]
+% where the right-hand side denotes the derived $\infty$-category of left modules. The tensor product of representations is $V\otimes_k W$ with diagonal action
+% \[
+%  x(v\otimes w)=xv\otimes w+(-1)^{|x||v|}v\otimes xw.
+% \]
+% The unit is the trivial representation $k$.
+% \end{definition}
+
+% \begin{proposition}[Derived representations]
+% The ordinary category of differential graded representations has a combinatorial model structure with quasi-isomorphisms as weak equivalences and degreewise surjections as fibrations. Its localization is the stable presentable category $\Rep_{\g}$ above, equipped with the symmetric monoidal tensor product over $k$ and the diagonal action.
+% \end{proposition}
+% \begin{proof}
+% \end{proof}
+% \source{\DAGresult{Proposition 2.4.5, Notation 2.4.6 and Remark 2.4.17}. The tensor product is not a tensor product of two left modules over an arbitrary associative algebra; it uses the Lie action on the tensor product.}
+
+% \begin{definition}[Cochains with coefficients]
+% For $V\in\Rep_\g$, define
+% \[
+%  \CE(\g;V)=\RHom_{\U(\g)}(k,V).
+% \]
+% The cone resolution gives a chain-level model, and the cochain multiplication equips it with a $\CE(\g)$-module structure.
+% \end{definition}
+
+% \begin{proposition}[The module adjunction]
+% \label{prop:module-adjunction}
+% Cochains with coefficients define a functor
+% \[
+%  \CE(\g;-):\Rep_\g\longrightarrow\Mod_{\CE(\g)}
+% \]
+% which admits a left adjoint $f_\g$. This left adjoint is symmetric monoidal, sends $\CE(\g)$ to the trivial representation $k$, and is natural in $\g$ with the corresponding change-of-algebra and restriction-of-representation functors. A chain-level expression for its derived value is
+% \[
+%  f_\g(M)\simeq
+%  \U(\operatorname{Cn}(\g))\otimes^{\mathbf L}_{\CE(\g)}M,
+% \]
+% with the commuting module actions supplied by the cone construction.
+% \end{proposition}
+% \begin{proof}
+% \end{proof}
+% \source{\DAGresult{Proposition 2.4.10, Remark 2.4.11, Proposition 2.4.23 and Remark 2.4.24}. The ordinary coefficient-cochain functor is right Quillen, unlike the point-set cochain functor in Remark 2.3.2 of DAG-X.}
+
+% \begin{lemma}[Compactness of the trivial module]
+% \label{lem:trivial-compact}
+% Let $B$ be an augmented differential graded associative algebra whose underlying graded algebra is freely generated by a finite sequence of homogeneous elements $x_1,\ldots,x_r$. Suppose $dx_i$ lies in the subalgebra generated by $x_1,\ldots,x_{i-1}$. Then the trivial left $B$-module $k$ is compact in $\LMod_B$.
+% \end{lemma}
+% \begin{proof}
+% \end{proof}
+% \source{\DAGresult{Lemma 2.4.13}. Compactness is a finite-resolution property here, not a claim that $k$ is compact over every augmented algebra.}
+
+% \begin{proposition}[The local fully faithful comparison]
+% \label{prop:local-rep}
+% Suppose the underlying graded Lie algebra of $\g$ is free on a finite sequence $x_1,\ldots,x_r$ with $dx_i$ in the Lie subalgebra on the preceding generators. Then
+% \[
+%  f_\g:\Mod_{\CE(\g)}\longrightarrow\Rep_\g
+% \]
+% is fully faithful. If all generators have strictly negative homological degree, it induces an equivalence between the full subcategories of objects whose underlying spectra are connective.
+% \end{proposition}
+% \begin{proof}
+% \end{proof}
+% \source{\DAGresult{Propositions 2.4.12 and 2.4.16}. For $\g=D(A)$ with $A\in\Art$, Corollary~\ref{cor:small-biduality} supplies the required finite-cell model.}
+
+% \begin{intuition}
+% At a small affine test object the comparison is controlled by the trivial representation. Its endomorphisms recover the cochain algebra, and its compactness lets the comparison extend from perfect modules to all modules. The negative-degree hypothesis further ensures that connective representations can be assembled from copies of the trivial representation in nonnegative shifts. This explains both the local embedding and the stronger connective statement.
+% \end{intuition}
+
+% \begin{definition}[The representation-valued extension]
+% Define
+% \[
+%  \QCoh^!(X)=
+%  \limi_{(A,x)\in\operatorname{Pts}(X)}\Rep_{D(A)}.
+% \]
+% For a map $A\to B$, the transition is restriction along $D(B)\to D(A)$. The local functors $f_{D(A)}$, together with $A\simeq\CE(D(A))$, define a symmetric monoidal comparison $\QCoh(X)\to\QCoh^!(X)$.
+% \end{definition}
+
+% \begin{lemma}[Descent for categories of representations]
+% \label{lem:rep-descent}
+% The functor $\g\mapsto\Rep_\g$ with restriction maps, regarded as a functor $\Lie_k^{\op}\to\mathrm{Cat}_\infty$, preserves limits indexed by weakly contractible simplicial sets. In particular it takes geometric realizations of Lie algebras to limits of their representation categories with restriction transition maps.
+% \end{lemma}
+% \begin{proof}
+% \end{proof}
+% \source{\DAGresult{Lemmas 2.4.32--2.4.33}. The weakly contractible hypothesis must be retained; an unrestricted all-colimits statement would be stronger.}
+
+% \begin{proposition}[Global identification of the enlarged category]
+% \label{prop:qcoh-bang}
+% For $X=\Psi(\g)$ there is a natural symmetric monoidal equivalence
+% \[
+%  \QCoh^!(X)\simeq\Rep_\g.
+% \]
+% \end{proposition}
+% \begin{proof}
+% \end{proof}
+% \source{\DAGresult{Proposition 2.4.31}. Prorepresentable presentations and the smooth hypercovering theorem extend the identification from small corepresentable objects.}
+
+% \begin{theorem}[Quasi-coherent sheaves embed in representations]
+% \label{thm:qcoh}
+% If $X=\Psi(\g)$ is a formal moduli problem over a characteristic-zero field, there is a natural fully faithful symmetric monoidal functor
+% \[
+%  \QCoh(X)\hookrightarrow\Rep_\g.
+% \]
+% It identifies the pullback of a sheaf to the distinguished $k$-point with the underlying $k$-module of the corresponding representation.
+% \end{theorem}
+% \begin{proof}
+% \end{proof}
+% \source{\DAGresult{Theorem 2.4.1}, with the base point compatibility used in the proof of Proposition 2.4.34.}
+
+% \begin{proposition}[Equivalence for connective objects]
+% \label{prop:qcoh-connective}
+% Call $\mathcal F\in\QCoh(X)$ connective when each evaluation $\mathcal F_{A,x}$ is connective as an $A$-module. The functor in Theorem~\ref{thm:qcoh} induces an equivalence
+% \[
+%  \QCoh(X)^{\cn}\xrightarrow{\ \simeq\ }\Rep_\g^{\cn},
+% \]
+% where the right-hand side consists of representations with connective underlying $k$-module.
+% \end{proposition}
+% \begin{proof}
+% \end{proof}
+% \source{\DAGresult{Proposition 2.4.34}. The condition on the geometric side is pointwise connectivity on all small test objects.}
+
+% \appendix
+% \chapter{Tools from Higher Topos Theory}
+% \label{app:htt}
+
+% This appendix collects the categorical tools used in the main text. Statements are given in the forms needed here rather than in their greatest generality. References are to the April 2017 online version of \emph{Higher Topos Theory} \cite{HTT}. The letter T in DAG-X refers to this work. The results below are imports, with empty proof environments reserved for explanations or proofs in the completed thesis.
+
+% \section{Mapping spaces, limits, and Yoneda}
+
+% \begin{definition}[Derived mapping spaces and universal properties]
+% For objects $A,B$ of an $\infty$-category $\cC$, the space $\Map_{\cC}(A,B)$ includes maps and all their coherent homotopies. A limit $L$ of a diagram $F:I\to\cC$ is characterized by natural equivalences
+% \[
+%  \Map_{\cC}(C,L)\simeq\limi_{i\in I}\Map_{\cC}(C,F(i)).
+% \]
+% A colimit is characterized by the dual mapping-out formula. These are statements about spaces, not only about hom-sets in the homotopy category.
+% \end{definition}
+
+% \begin{lemma}[Pasting of pullbacks]
+% \label{lem:pasting}
+% In a commutative diagram
+% \[
+% \begin{tikzcd}
+%  A\ar[r]\ar[d] & B\ar[r]\ar[d] & C\ar[d]\\
+%  A'\ar[r] & B'\ar[r] & C',
+% \end{tikzcd}
+% \]
+% suppose the right square is a pullback. Then the left square is a pullback if and only if the outer rectangle is a pullback. The dual assertion holds for pushouts.
+% \end{lemma}
+% \begin{proof}
+% \end{proof}
+% \source{\HTT{Lemma 4.4.2.1 and its dual}. Used in Proposition~\ref{prop:elementary-test} to pass from elementary maps to finite composites and base changes.}
+
+% \begin{theorem}[Yoneda and evaluation]
+% \label{thm:yoneda}
+% For an essentially small $\infty$-category $\cC$, the Yoneda embedding
+% \[
+%  j:\cC\longrightarrow\Fun(\cC^{\op},\cS)
+% \]
+% is fully faithful. For $F:\cC^{\op}\to\cS$ there is a natural equivalence $\Map(j(C),F)\simeq F(C)$. Dually, if $X:\cC\to\cS$ and $h^A=\Map_{\cC}(A,-)$, then $\Map(h^A,X)\simeq X(A)$.
+% \end{theorem}
+% \begin{proof}
+% \end{proof}
+% \source{\HTT{Proposition 5.1.3.1 and \S5.1.3}. Used to translate infinitesimal lifting properties into maps from corepresentable functors.}
+
+% \begin{theorem}[Free cocompletion by presheaves]
+% \label{thm:presheaf}
+% Let $\cC$ be small and let $\cD$ admit small colimits. Restriction along Yoneda induces an equivalence
+% \[
+%  \Fun^{\mathrm L}(\Fun(\cC^{\op},\cS),\cD)
+%    \simeq\Fun(\cC,\cD),
+% \]
+% where the superscript denotes colimit-preserving functors. Every presheaf is a colimit of representables. Dually, a functor defined on representables with values in a category admitting limits extends to the opposite presheaf category by a limit-preserving functor.
+% \end{theorem}
+% \begin{proof}
+% \end{proof}
+% \source{\HTT{Theorem 5.1.5.6 and Corollary 5.1.5.8}. Used to define $\QCoh$ and $\QCoh^!$ from their values on small affine test objects. The last statement is the opposite-category version, with the variance of the original functor reversed accordingly.}
+
+% \section{Presentability, adjunctions, and localization}
+
+% \begin{definition}[Compactness and presentability]
+% An object $C$ is compact if $\Map(C,-)$ preserves filtered colimits. More generally it is $\kappa$-compact if this holds for $\kappa$-filtered colimits. A category is accessible if it admits suitable filtered colimits and is generated under them by an essentially small collection of compact objects for some regular cardinal. A presentable category is an accessible category admitting all small colimits.
+% \end{definition}
+
+% \begin{theorem}[Adjoint functor theorem]
+% \label{thm:adjoint}
+% For a functor $F:\cC\to\cD$ between presentable $\infty$-categories:
+% \begin{enumerate}
+% \item $F$ admits a right adjoint if and only if it preserves small colimits;
+% \item $F$ admits a left adjoint if and only if it is accessible and preserves small limits.
+% \end{enumerate}
+% In the first assertion, presentability of the target can be weakened to essential local smallness.
+% \end{theorem}
+% \begin{proof}
+% \end{proof}
+% \source{\HTT{Corollary 5.5.2.9 and Remark 5.5.2.10}. Used both for the Koszul duality adjunction and for the left adjoint of the comparison functor in abstract reconstruction. The local-smallness variant is essential for the opposite category in Proposition~\ref{prop:koszul-adjunction}.}
+
+% \begin{proposition}[Accessible localization at a set of maps]
+% \label{prop:localization}
+% Let $\cC$ be presentable and let $S$ be a small set of maps. An object $Z$ is $S$-local if every $s:A\to B$ in $S$ induces an equivalence $\Map(B,Z)\to\Map(A,Z)$. The full subcategory of $S$-local objects is presentable and its inclusion has a left adjoint.
+% \end{proposition}
+% \begin{proof}
+% \end{proof}
+% \source{\HTT{Proposition 5.5.4.15}; compare Lemmas 5.5.4.18--5.5.4.19, cited in DAG-X. The formal-moduli axioms are expressible as locality for a small family of diagrams because the test category is essentially small.}
+
+% \begin{intuition}
+% Presentability packages the existence of enough colimits together with a size bound. The size bound is what permits the small object argument and the adjoint functor theorem. Localization then imposes a controlled set of equations up to homotopy. In the present application those equations say that the value at the residue field is contractible and that designated infinitesimal squares become pullbacks.
+% \end{intuition}
+
+% \section{Filtered and sifted colimits}
+
+% \begin{proposition}[Filtered colimits of spaces are left exact]
+% \label{prop:filtered-exact}
+% Filtered colimits in $\cS$ commute with finite limits. In particular, a filtered colimit of pointed functors satisfying a fixed family of finite-limit conditions satisfies those same conditions.
+% \end{proposition}
+% \begin{proof}
+% \end{proof}
+% \source{\HTT{Proposition 5.3.3.3}, in its filtered case; DAG-X also cites Example 7.3.4.4. Used for pointwise filtered colimits of formal moduli problems and for prorepresentable objects.}
+
+% \begin{definition}[Sifted indexing categories]
+% An indexing $\infty$-category is sifted if colimits over it commute with finite products of spaces. Filtered categories and $\Delta^{\op}$ are the main examples. A geometric realization is a colimit indexed by $\Delta^{\op}$.
+% \end{definition}
+
+% \begin{proposition}[Recognizing preservation of sifted colimits]
+% \label{prop:sifted}
+% Let $F:\cC\to\cD$ be a functor and suppose $\cC$ admits small colimits. Then $F$ preserves sifted colimits if and only if it preserves filtered colimits and geometric realizations.
+% \end{proposition}
+% \begin{proof}
+% \end{proof}
+% \source{\HTT{Corollary 5.5.8.17}. Used in the proof of Proposition~\ref{prop:lie-sifted} and in the distinction between weak deformation theories and deformation theories.}
+
+% \begin{remark}[Products are not all finite limits]
+% Sifted colimits are governed by finite products, whereas filtered colimits commute with all finite limits in spaces. One should therefore not infer that arbitrary geometric realizations preserve the formal-moduli pullback condition. Theorem~\ref{thm:hypercover} supplies a particular class of realizations that does have the required pointwise description.
+% \end{remark}
+
+% \section{Families, simplicial objects, and hyperdescent}
+
+% \begin{theorem}[Straightening and coherent families]
+% \label{thm:straightening}
+% For an $\infty$-category $B$, functors $B\to\mathrm{Cat}_\infty$ classify coCartesian fibrations over $B$, while functors $B^{\op}\to\mathrm{Cat}_\infty$ classify Cartesian fibrations. Space-valued covariant functors classify left fibrations, and space-valued contravariant functors classify right fibrations.
+% \end{theorem}
+% \begin{proof}
+% \end{proof}
+% \source{\HTT{Theorem 3.2.0.1 and \S3.3}. The theorem supplies a precise meaning for families of modules or representations and their change-of-base operations. It underlies the category-of-points description of $\QCoh(X)$.}
+
+% \begin{proposition}[Extending a partial simplicial object]
+% \label{prop:reedy}
+% Suppose a category admits the finite limits and colimits needed for matching and latching objects. Extending a simplicial object specified through degree $n-1$ to degree $n$ amounts to choosing an object $U_n$ and a factorization
+% \[
+%  L_nU\longrightarrow U_n\longrightarrow M_nU
+% \]
+% of the canonical map from latching to matching data, with the coherent simplicial structure encoded by these maps.
+% \end{proposition}
+% \begin{proof}
+% \end{proof}
+% \source{The Reedy construction in \HTT{Appendix A.2.9}, especially Proposition A.2.9.14 and Remark A.2.9.16, as used in \DAGresult{Corollary 1.4.11}. In a model presentation one performs this construction with the corresponding derived latching and matching data.}
+
+% \begin{theorem}[Effectiveness of hypercoverings of spaces]
+% \label{thm:space-hypercover}
+% Let $U_\bullet\to X$ be an augmented simplicial space. If every relative matching map $U_n\to M_nU$ is an effective epimorphism, equivalently surjective on connected components, then $|U_\bullet|\to X$ is an equivalence.
+% \end{theorem}
+% \begin{proof}
+% \end{proof}
+% \source{\HTT{Theorem 6.5.3.12}, specialized to the hypercomplete $\infty$-topos of spaces. Used pointwise in Theorem~\ref{thm:hypercover}. The analogous assertion for an arbitrary $\infty$-topos requires hypercompleteness.}
+
+% \begin{intuition}
+% The degree-zero term covers points. Higher matching maps ensure that identifications, identifications between identifications, and all subsequent coherence data can also be covered. This is why a hypercovering can recover a space from more than a groupoid presentation. Evaluating a smooth prorepresentable resolution on a small algebra gives exactly this kind of higher covering data.
+% \end{intuition}
+
+% \chapter{Tools from Higher Algebra}
+% \label{app:ha}
+
+% This appendix records the stable and algebraic machinery needed in Chapters~\ref{ch:abstract}--\ref{ch:lie}. References are to \emph{Higher Algebra}, September 18, 2017 \cite{HA}. DAG-X was written in 2011 and cites an earlier numbering under the prefix A. For this reason, current references are stated explicitly below; Appendix~\ref{app:dependencies} also supplies a short crosswalk for the most consequential changes.
+
+% \section{Stable categories, spectra, and chain models}
+
+% \begin{definition}[Stable category]
+% An $\infty$-category is stable if it has a zero object, admits fibers and cofibers, and a triangle is a fiber sequence if and only if it is a cofiber sequence. Its suspension and loop functors are inverse equivalences. A functor between stable categories is exact if it preserves finite limits, equivalently finite colimits.
+% \end{definition}
+
+% \begin{proposition}[Bicartesian squares and mapping spectra]
+% \label{prop:stable}
+% In a stable $\infty$-category, finite limits and finite colimits exist and a square is a pullback if and only if it is a pushout. Mapping spaces refine naturally to mapping spectra. Applying a mapping-spectrum functor in either variable to a fiber--cofiber sequence gives a fiber--cofiber sequence, contravariantly in the first variable.
+% \end{proposition}
+% \begin{proof}
+% \end{proof}
+% \source{\HA{\S1.1, especially Proposition 1.1.3.4, and \S1.4}. Used for tangent shifts, cotangent transitivity, and the relation between obstruction spaces and fibers.}
+
+% \begin{proposition}[Stabilization as compatible deloopings]
+% \label{prop:spectrum-model}
+% For an $\infty$-category $\cC$ with finite limits, $\Stab(\cC)$ can be described as the category of sequences of pointed objects $E_n$ with equivalences $E_n\simeq\Omega E_{n+1}$. Equivalently it is the category of reduced excisive functors from finite pointed spaces to $\cC$. In particular, $\Stab(\cS)=\Sp$.
+% \end{proposition}
+% \begin{proof}
+% \end{proof}
+% \source{\HA{\S1.4.2, Proposition 1.4.2.24 and Remark 1.4.2.25}. Used to define tangent spectra from the formal-moduli pullback axiom.}
+
+% \begin{theorem}[Complexes and module spectra]
+% \label{thm:complex-modules}
+% For a commutative ring $R$, the derived $\infty$-category of complexes of $R$-modules is canonically equivalent, as a symmetric monoidal $\infty$-category, to $\Mod_{HR}$. Under this equivalence chain homology corresponds to homotopy groups, shifts correspond to suspensions, and derived tensor products correspond to tensor products of module spectra.
+% \end{theorem}
+% \begin{proof}
+% \end{proof}
+% \source{\HA{Theorem 7.1.2.13}. This is the comparison used when the notation $k$ serves both for a field and its Eilenberg--Mac Lane spectrum.}
+
+% \begin{proposition}[Characteristic-zero commutative rectification]
+% \label{prop:rectification}
+% If a commutative ring $R$ contains $\mathbb Q$, the localization of commutative differential graded $R$-algebras at quasi-isomorphisms is equivalent to $\CAlg_{HR}$. The equivalence restricts to augmented algebras and to the connective subcategories.
+% \end{proposition}
+% \begin{proof}
+% \end{proof}
+% \source{\HA{Propositions 7.1.4.10--7.1.4.11}. Used to interpret Chevalley--Eilenberg cochains in the same category as the test algebras.}
+
+% \begin{proposition}[Model presentations and derived functors]
+% The underlying localization of a combinatorial model category is a presentable $\infty$-category. A Quillen adjunction induces an adjunction of the underlying $\infty$-categories, and homotopy limits and colimits computed in a compatible model presentation agree with the corresponding $\infty$-categorical constructions.
+% \end{proposition}
+% \begin{proof}
+% \end{proof}
+% \source{\HA{\S1.3.4}. Used for the Lie model structure, the coefficient-cochain adjunction, and the free simplicial resolutions. A point-set adjunction must actually be Quillen before this principle applies.}
+
+% \section{Algebra objects and monadic resolutions}
+
+% \begin{proposition}[Limits and sifted colimits of algebras]
+% \label{prop:algebra-limits}
+% Let $\mathcal V$ be a presentable symmetric monoidal $\infty$-category whose tensor product preserves colimits separately in each variable. For algebra objects over an operad in this setting, the forgetful functor detects equivalences and creates limits. It also creates sifted colimits under the usual compatibility of tensor product with those colimits, which holds in $\Mod_k$.
+% \end{proposition}
+% \begin{proof}
+% \end{proof}
+% \source{\HA{Proposition 3.2.2.1 and Proposition 3.2.3.1}, in the presentable module setting. Used to pass between algebra-level limits and their underlying module diagrams. The Lie-specific sifted-colimit result is established separately in DAG-X.}
+
+% \begin{theorem}[The monadicity criterion]
+% \label{prop:barr-beck}
+% Suppose $F:\cC\rightleftarrows\cD:G$ is an adjunction. If $G$ is conservative and $\cD$ admits and $G$ preserves geometric realizations of $G$-split simplicial objects, then $\cD$ is equivalent over $\cC$ to the category of algebras for the monad $GF$. In particular, conservativity and preservation of all geometric realizations suffice. In the monadic situation, the augmented free simplicial resolution realizes to the original object.
+% \end{theorem}
+% \begin{proof}
+% \end{proof}
+% \source{\HA{Theorem 4.7.3.5 and the bar-resolution discussion in \S4.7}. A $G$-split simplicial object is one whose image under $G$ admits the extra degeneracy data of a split augmented simplicial object. Used in Corollary~\ref{cor:free-resolution}.}
+
+% \begin{intuition}
+% The adjunction gives generators and algebraic operations. The free simplicial resolution records relations, then relations between relations, with increasing simplicial degree. Monadicity says that no further data are lost by describing an object through its underlying object equipped with the resulting monad action. It is a controlled way to reduce calculations on arbitrary Lie algebras to calculations on free ones.
+% \end{intuition}
+
+% \section{Cotangent complexes and square-zero extensions}
+
+% \begin{proposition}[Stabilization of augmented commutative algebras]
+% \label{prop:stabilization-algebras}
+% For an $E_\infty$-ring $A$, there are canonical equivalences
+% \[
+%  \Stab(\CAlg_{/A})\simeq\Mod_A,
+%  \qquad \Stab(\CAlg_A^{\aug})\simeq\Mod_A.
+% \]
+% Under the second equivalence the infinite-loop-object functor sends $M$ to the split square-zero algebra $A\oplus M$. Thus the spectrum object associated with $M$ has levels $A\oplus M[n]$.
+% \end{proposition}
+% \begin{proof}
+% \end{proof}
+% \source{\HA{Theorem 7.3.4.13, Corollary 7.3.4.14 and Remark 7.3.4.15}, together with the pointed-object invariance of stabilization. This is the current reference for the stabilization input in DAG-X Example 1.1.4.}
+
+% \begin{definition}[Derived derivations]
+% For a map $R\to A$ of commutative algebras and an $A$-module $M$, the space of $R$-linear derivations is
+% \[
+%  \operatorname{Der}_R(A,M)
+%   =\Map_{(\CAlg_R)_{/A}}(A,A\oplus M).
+% \]
+% The projection to $A$ in the target is fixed, so a point is a section in $R$-algebras together with its coherent identification over $A$.
+% \end{definition}
+
+% \begin{proposition}[The universal derivation]
+% \label{prop:derivations}
+% There is an $A$-module $L_{A/R}$ with natural equivalences
+% \[
+%  \Map_{\Mod_A}(L_{A/R},M)\simeq\operatorname{Der}_R(A,M).
+% \]
+% It is called the relative cotangent complex. For augmented $A$ over $k$, restriction to square-zero targets over $k$ identifies the cotangent fiber $k\otimes_A L_{A/k}$ as the derived indecomposables.
+% \end{proposition}
+% \begin{proof}
+% \end{proof}
+% \source{\HA{\S7.3.3--\S7.3.4}, specialized to commutative algebras; compare \DAGresult{Remark 2.3.11}. Used in the tangent computation and finite biduality.}
+
+% \begin{proposition}[Transitivity and base change]
+% \label{prop:transitivity}
+% For $R\to A\to B$, there is a natural cofiber sequence in $\Mod_B$
+% \[
+%  B\otimes_A L_{A/R}\longrightarrow L_{B/R}\longrightarrow L_{B/A}.
+% \]
+% If $B=A\otimes_R R'$ is a pushout of commutative algebras, then
+% \[
+%  L_{B/R'}\simeq B\otimes_A L_{A/R}.
+% \]
+% All tensor products in these formulas are derived.
+% \end{proposition}
+% \begin{proof}
+% \end{proof}
+% \source{\HA{Corollary 7.3.3.6 and Proposition 7.3.3.7}. For $k\to A\to k$, transitivity gives $L_{k/A}\simeq(k\otimes_A L_{A/k})[1]$, fixing the shift in Proposition~\ref{prop:dual-cotangent}.}
+
+% \begin{definition}[A square-zero extension classified by a derivation]
+% A derivation $\eta:L_{A/R}\to M[1]$ determines a section $d_\eta:A\to A\oplus M[1]$. Its square-zero extension is the pullback
+% \[
+% \begin{tikzcd}
+%  A^\eta\ar[r]\ar[d] & A\ar[d,"0"]\\
+%  A\ar[r,"d_\eta"'] & A\oplus M[1].
+% \end{tikzcd}
+% \]
+% The map $A^\eta\to A$ has fiber $M$. A nonzero derivation can produce a nonsplit extension even though the algebra in the lower-right corner is split.
+% \end{definition}
+
+% \begin{theorem}[Recognition of small square-zero extensions]
+% \label{thm:small-squarezero}
+% Let $f:A'\to A$ be a map of connective commutative $R$-algebras and put $I=\fib(f)$. Suppose for some integer $n\geq0$ that
+% \[
+%  I\in(\Mod_{A'})_{\geq n}\cap(\Mod_{A'})_{\leq2n}
+% \]
+% and that multiplication $I\otimes_{A'}I\to I$ is nullhomotopic. Then $f$ is classified by a square-zero derivation. More precisely, the square-zero-extension construction gives an equivalence between the category of $n$-small derivations and the category of $n$-small extensions.
+% \end{theorem}
+% \begin{proof}
+% \end{proof}
+% \source{\HA{Definition 7.4.1.18, Theorem 7.4.1.26 and Corollary 7.4.1.27}. In this terminology an $n$-small derivation has connective base and coefficient module $M[1]$ in degrees $[n+1,2n+1]$. The term ``$n$-small'' here is a connectivity condition and is distinct from a finite composite of elementary maps in DAG-X.}
+
+% \begin{corollary}[Postnikov layers of a connective algebra]
+% \label{cor:postnikov}
+% For a connective commutative $R$-algebra $A$ and $n\geq1$, the map $\tau_{\leq n}A\to\tau_{\leq n-1}A$ is a square-zero extension with fiber $\pi_nA[n]$. It is classified by a derivation with coefficient $\pi_nA[n+1]$ over $\tau_{\leq n-1}A$.
+% \end{corollary}
+% \begin{proof}
+% \end{proof}
+% \source{\HA{Corollary 7.4.1.28}. Used in Proposition~\ref{prop:artinian}. The action of $\pi_0A$ on $\pi_nA$ is retained in this statement.}
+
+% \begin{proposition}[Relative cotangent connectivity]
+% \label{prop:relative-hurewicz}
+% Let $f:A\to B$ be a morphism of connective commutative algebras, and suppose $\cofib(f)$ is $n$-connective for $n\geq0$. There is a natural map
+% \[
+%  B\otimes_A\cofib(f)\longrightarrow L_{B/A}
+% \]
+% whose fiber is $2n$-connective. In particular, if $K=\fib(f)$ is $r$-connective for $r\geq0$, the induced comparison
+% \[
+%  B\otimes_A K\longrightarrow L_{B/A}[-1]
+% \]
+% has $(2r+1)$-connective fiber.
+% \end{proposition}
+% \begin{proof}
+% \end{proof}
+% \source{\HA{Theorem 7.4.3.1}. Used in Lemma~\ref{lem:small-surjection} to detect a lowest nonzero relative homotopy group by a cotangent class. The connectivity convention here is explicitly stated using fibers.}
+
+% \begin{intuition}
+% The cotangent complex is a linear approximation to an algebra map. When the relative part begins in a high degree, products of relative elements begin in roughly twice that degree. Below that range the nonlinear and linearized relative information agree. This makes the lowest nonzero layer accessible to a derivation, which can then be removed by an elementary extension.
+% \end{intuition}
+
+% \section{Modules, perfect objects, and relative adjunctions}
+
+% \begin{proposition}[Perfect modules generate]
+% \label{prop:perfect}
+% For an associative algebra $B$ in $\Mod_k$, the stable category $\LMod_B$ is generated under colimits by the shifts $B[n]$. Its compact objects are the retracts of finite cell $B$-modules. Writing $\Perf(B)$ for that subcategory, one has
+% \[
+%  \LMod_B\simeq\Ind(\Perf(B)).
+% \]
+% \end{proposition}
+% \begin{proof}
+% \end{proof}
+% \source{\HA{\S7.2.4}, together with the compact-generation formalism of \S1.4.4. Used to extend the module comparison from perfect objects to all objects once images of generators are known to be compact.}
+
+% \begin{proposition}[Extension and restriction of scalars]
+% For an algebra map $A\to B$, extension of scalars $B\otimes_A-:\LMod_A\to\LMod_B$ is left adjoint to restriction. Module categories and these operations form coherent families over the category of algebras. For commutative algebras, extension of scalars is symmetric monoidal for the relative tensor products.
+% \end{proposition}
+% \begin{proof}
+% \end{proof}
+% \source{\HA{\S4.2--\S4.5 and \S7.1.3}. Used in the definition of quasi-coherent sheaves and in the naturality of the local comparison.}
+
+% \begin{proposition}[Relative adjunctions from fiberwise adjunctions]
+% \label{prop:relative-adjunction}
+% Suppose $p:\cD\to B$ and $q:\cC\to B$ are Cartesian fibrations and $G:\cD\to\cC$ is a functor over $B$ preserving Cartesian morphisms. If each fiber functor $G_b$ admits a left adjoint, these left adjoints assemble into a left adjoint relative to $B$. There is a dual formulation for coCartesian fibrations and right adjoints.
+% \end{proposition}
+% \begin{proof}
+% \end{proof}
+% \source{\HA{Proposition 7.3.2.6 and its dual}, used in \DAGresult{Proposition 2.4.23}. Compatibility with monoidal transition maps must also be verified.}
+
+% \chapter{Dependency Guide and Reference Conventions}
+% \label{app:dependencies}
+
+% This appendix provides a guide for filling in the empty proofs. It introduces no additional mathematical assertions. The order follows logical dependence rather than the numerical order of the statements in the two main chapters.
+
+% \section{The route to the main theorem}
+
+% \paragraph{Infinitesimal algebra.}
+% Begin with the square-zero description of the stabilization of augmented algebras, the universal property of the cotangent complex, and the recognition of small extensions in Appendix~\ref{app:ha}. These supply Proposition~\ref{prop:elementary}. The Artinian recognition criterion in Proposition~\ref{prop:artinian} then combines the ordinary maximal-ideal filtration with Postnikov layers. Lemma~\ref{lem:small-surjection} additionally uses relative cotangent connectivity.
+
+% \paragraph{The abstract moduli category.}
+% The pasting lemma reduces the formal-moduli condition to elementary tests. Accessible localization gives the category of formal moduli problems and its reflector. Evaluation on the distinguished spectrum objects gives tangent spectra, while induction over small extensions gives tangent detection. At this stage no Lie algebra has been constructed.
+
+% \paragraph{Abstract reconstruction.}
+% Verify finite biduality and reversal of elementary pullbacks for a weak deformation theory. The small object argument constructs smooth prorepresentable resolutions. Filtered exactness and compactness handle prorepresentable levels; effectiveness of hypercoverings of spaces and the sifted-colimit condition handle their realization. This is the categorical content of Theorem~\ref{thm:abstract}.
+
+% \paragraph{The Lie calculation.}
+% Establish the Lie model structure and the sifted-colimit behavior of its forgetful functor. Use PBW to analyze the cone resolution and compute chains of free Lie algebras. The free resolution then gives the colimit behavior of cochains and the existence of $D$. Derived indecomposables and the completion comparison give Lemma~\ref{lem:finite-biduality}. Good Lie algebras supply (D3); square-zero/free duality identifies the tangent functor and supplies (D4). Theorems~\ref{thm:koszul-theory} and~\ref{thm:abstract} yield Theorem~\ref{thm:main}.
+
+% \paragraph{The sheaf comparison.}
+% After the main theorem, construct representations and the coefficient-cochain adjunction. The local fully faithful comparison uses compactness of the trivial module over finite cell enveloping algebras. Build $\QCoh$ and $\QCoh^!$ by extension from small corepresentables, and use the same prorepresentable resolutions to identify $\QCoh^!(\Psi(\g))$ with $\Rep_\g$. The connective result is the final strengthening and is logically subsequent to the classification theorem.
+
+% \section{A crosswalk for references in DAG-X}
+
+% The original document uses the prefixes T and A for \emph{Higher Topos Theory} and \emph{Higher Algebra}. The following descriptions give the current locations used in this draft. A location is a reference to the needed mathematical statement, not a claim that every older numbered item has exactly the same text in the newer edition.
+
+% \begin{description}[style=nextline,leftmargin=0pt,labelsep=0pt,font=\normalfont\bfseries]
+% \item[Stabilization and square-zero algebras.]
+% DAG-X Example 1.1.4 cites A.7.3.5.14. The current references used here are HA Theorem 7.3.4.13, Corollary 7.3.4.14 and Remark 7.3.4.15. The conclusion needed is $\Stab(\CAlg_k^{\aug})\simeq\Mod_k$ with infinite-loop-object functor $M\mapsto k\oplus M$.
+
+% \item[Spectrum objects.]
+% DAG-X \S1.1 uses A.1.4.4 for stabilization. The current discussion of spectrum objects used here is HA \S1.4.2, especially Proposition 1.4.2.24 and Remark 1.4.2.25.
+
+% \item[Chain complexes and module spectra.]
+% DAG-X \S2.1 cites A.7.1.1.15--A.7.1.1.16. The symmetric monoidal comparison used in this thesis is HA Theorem 7.1.2.13. Commutative differential graded rectification in characteristic zero is recorded separately in HA Proposition 7.1.4.11.
+
+% \item[Monadicity and free resolutions.]
+% DAG-X cites A.6.2 for the monadic formalism and free resolutions. The current location is HA \S4.7; Theorem 4.7.3.5 is the monadicity criterion used here.
+
+% \item[Model-category localizations.]
+% The older references in DAG-X to A.1.3.3 concern the underlying $\infty$-category of a model category and derived functors. The current account used in this draft is HA \S1.3.4.
+
+% \item[Cotangent and extension results.]
+% The central statements HA Theorem 7.4.1.26 and Theorem 7.4.3.1 retain the numbers used in DAG-X. Transitivity and base change are located at HA Corollary 7.3.3.6 and Proposition 7.3.3.7. Always retain the module action and the connectivity hypotheses when applying these statements.
+
+% \item[Presentability and presheaves.]
+% The HTT references used directly include the adjoint functor theorem 5.5.2.9, the presheaf universal property 5.1.5.6, accessible localization 5.5.4.15, and the sifted-colimit criterion 5.5.8.17. Their hypotheses and uses are stated in Appendix~\ref{app:htt}.
+% \end{description}
+
+% \section{Degree and variance checks for future proofs}
+
+% The following identities fix the conventions that must be maintained throughout a completed proof. They collect formulas already stated above:
+% \begin{align*}
+%  \Omega^{\infty-n}E&=k\oplus k[n],\\
+%  D(k\oplus k[n])&\simeq\Free(k[-n-1]),\\
+%  \CE(\Free(V))&\simeq k\oplus V^\vee[-1],\\
+%  L_{k/A}&\simeq(k\otimes_A L_{A/k})[1],\\
+%  \theta D(A)&\simeq L_{k/A}^\vee,\\
+%  T_{\Psi(\g)}&\simeq(\theta\g)[1],\\
+%  \pi_i\Psi(\g)(k\oplus k[n])&\cong H_{i-n-1}(\g)
+%                                       =H^{n+1-i}(\g).
+% \end{align*}
+
+% The adjunction and the classification use different directions of maps:
+% \begin{align*}
+%  \Map_{\Lie_k}(\g,D(A))
+%      &\simeq\Map_{\CAlg_k^{\aug}}(A,\CE(\g)),\\
+%  \Psi(\g)(A)&=\Map_{\Lie_k}(D(A),\g).
+% \end{align*}
+% Finally, the two biduality assertions have different hypotheses. The map $A\to\CE D(A)$ is an equivalence for small $A$. The map $\g\to D\CE(\g)$ has been asserted here only in the negative finite-type range. Neither assertion should be silently promoted to unrestricted duality between all augmented algebras and all Lie algebras.
+
+\clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{Bibliography}
+\begin{thebibliography}{Lur17b}
+\bibitem[Get09]{Getzler}
+Ezra Getzler, \emph{Lie theory for nilpotent $L_\infty$-algebras}, Annals of Mathematics (2) \textbf{170} (2009), no.~1, 271--301.\newline
+\url{https://doi.org/10.4007/annals.2009.170.271}.
+
+\bibitem[Lur11]{DAGX}
+Jacob Lurie, \emph{Derived Algebraic Geometry X: Formal Moduli Problems}, November 5, 2011.\newline
+\url{https://www.math.ias.edu/~lurie/papers/DAG-X.pdf}.
+
+\bibitem[Lur17a]{HA}
+Jacob Lurie, \emph{Higher Algebra}, version of September 18, 2017.\newline
+\url{https://www.math.ias.edu/~lurie/papers/HA.pdf}.
+
+\bibitem[Lur17b]{HTT}
+Jacob Lurie, \emph{Higher Topos Theory}, Annals of Mathematics Studies, vol.~170, Princeton University Press, 2009; online version of April 9, 2017.\newline
+\url{https://www.math.ias.edu/~lurie/papers/HTT.pdf}.
+\end{thebibliography}
+\end{document}
