@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.1)  27 OCT 2026 16:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.1)  2 NOV 2026 19:16
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -760,27 +760,27 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 LaTeX Font Info:    Trying to load font information for U+euf on input line 94.
  (/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/ueuf.fd
 File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
-) [2] [3] [4] [5] Total classes: 0 [6] (./Rigidity of Contangent Complex at Odd Primes.aux)
+) [2] [3] [4] [5] [6] Total classes: 0 [7] (./Rigidity of Contangent Complex at Odd Primes.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
 Package rerunfilecheck Info: File `"Rigidity of Contangent Complex at Odd Primes".out' has not changed.
-(rerunfilecheck)             Checksum: 9C8BE57842229B033AE28BF302936449;956.
+(rerunfilecheck)             Checksum: 24F1A1690F0D73D36C0243EF6ECB65E2;1268.
  ) 
 Here is how much of TeX's memory you used:
- 31875 strings out of 467525
- 719347 string characters out of 5418983
- 1126843 words of memory out of 5000000
- 60242 multiletter control sequences out of 15000+600000
- 638433 words of font info for 82 fonts, out of 8000000 for 9000
+ 31884 strings out of 467525
+ 719441 string characters out of 5418983
+ 1127847 words of memory out of 5000000
+ 60245 multiletter control sequences out of 15000+600000
+ 638740 words of font info for 83 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  102i,11n,107p,5097b,580s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on "Rigidity of Contangent Complex at Odd Primes.pdf" (6 pages, 218137 bytes).
+Output written on "Rigidity of Contangent Complex at Odd Primes.pdf" (7 pages, 224836 bytes).
 PDF statistics:
- 195 PDF objects out of 1000 (max. 8388607)
- 149 compressed objects within 2 object streams
- 37 named destinations out of 1000 (max. 500000)
- 61 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 215 PDF objects out of 1000 (max. 8388607)
+ 168 compressed objects within 2 object streams
+ 43 named destinations out of 1000 (max. 500000)
+ 77 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -156,7 +156,18 @@ This is where Turner needed the assumption that $A$ is Cohen-Macauley, so he cou
     For an odd prime $p$, and a simplicial $\mathbb{F}_p$-algebra $B$, there exists two families of operations 
     \[v_t: \pi_n B\to \pi_{n+2t(p-1)}B \quad \quad 2\leq 2t\leq n \]
     \[\eta_t: \pi_n B\to \pi_{n+2t(p-1)+1}B \quad \quad 3\leq 2t+1\leq n \]
-The operation $v_t$ are additive for $t< n$, and the top operation $v_n$ is the divided power.
+The operations have the following properties 
+\begin{enumerate}
+    \item The operations satisfy
+    \[v_t(a\cdot u)=a^p u\] 
+    for $a\in \pi_0B$
+    \item Except the top operation, all operations are additive. The top operation is the divided power. 
+\end{enumerate}
+
+
+
+
+
 
 
 
@@ -288,11 +299,94 @@ For a fixed ideal $J\subseteq R$, there is a uniform integer $h\geq 0$ such that
     \[J^nF_i\cap \textrm{im}(d_{i+1})\subseteq J^{n-h}\textrm{im}(d_{i+1})\]
 \end{theorem}
 
+
+
+
+Take $J=\mathfrak{m}$, one has the following corollary
 \begin{corollary}
     There is a uniform integer $h\geq 0$, such that for every $q\geq h$ and $i\geq 0$, the reduction
     \[\Tor_i^R(M;R/\mathfrak{m}^q)\to \Tor_i^R(M;k) \]
     is zero.
 \end{corollary}
+
+
+\begin{theorem}[Nilpotence on Local Derived Fiber]
+    There is an integer $l$ such that all composition of operations of length greater than $l$ vanishes on $\pi_* (P\otimes_R k)$.
+\end{theorem}
+\begin{proof}
+    An element $a\in N(P)\otimes_R k$ is a cycle iff $da\in \mathfrak{m}N(P)$. Let $\alpha_I$ be a composition of a length $k$ operation of the form $v_t$. Once we show compatible operations on chain also satisfy 
+    \[d\alpha_I(a)\sim \alpha_I(d(a))\in \mathfrak{m}^{p^t}N(P)\]
+    It follows that $a$ is the image of the reduction map, and by the previous corollary, we know there is a uniform integer such that the reduction map is zero. 
+\end{proof}
+
+
+
+
+
+\section{Chain Model}
+Since the spectral sequence is defined via filtration on chains, we need to have a chain representative of the operations, which a priori is defined via universal homotopy classes, in order to analyze how the operations interact with the differentials. We begin with a quick review of the operations.
+
+Suppose we are looking for homotopy operations on $\pi_*B$ for some simplicial $k$-algebra $B$
+\[\pi_n B\to \pi_{n+t}B\]
+By representability and adjunction, these operations are represented by classes in $\pi_{n+t}(\Sym K(k,n))$. Let $a: K(k,n)\to B$ be a representative of some class $\tilde{a}\in \pi_n B$, and $u: K(k,n+t)\to\Sym(K(k,n))$ to be a representative of $\tilde{u}\in \pi_n B$. The evaluation $u(a)\in \pi_{n+t}B$ is given by the composition
+\[K(k,n+t)\xrightarrow{u} \Sym(K(k,n))\xrightarrow{a} B\]
+Under the Dold-Kan correspondence, operations can be understood more explicitly: they are classes in $H_{n+t}(N(\Sym K(k,n)))$, which can be represented by some chain map 
+\[k[n+t]\to N(\Sym K(k,n))\]
+which corresponds to an explicit degree $n+t$ cycle $z_{n+t}\in N(\Sym K(k,n))$. 
+
+\subsection{Suspension on Chain Complexes}
+
+Let $C$ be the chain complex concentrated in degree $i$. There is an exact sequence of chain complexes 
+\[0\to C\to D\to C[1]\to 0\]
+where $D:= \textrm{Cone}(\id_{C})$ is the cone, which is acyclic. Then the connecting morphism 
+\[\partial: H_{j}(C[1])\to H_{j-1}(C) \]
+is the suspension isomorphism. In the case $C=k[n]$ and under Dold-Kan, the exact sequence becomes
+\[0\to K(k,n)\to K(D_n)\to K(k,n+1)\to 0\]
+We shall refer to these as \textbf{additive suspension}. The non-additive case happens when we apply the reduced symmetric algebra functor: the induced map 
+\[\Sym K(k,n)\to \Sym K(D_n)\]
+is still injective, but the ker
+
+
+
+
+Unfortunately, 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
