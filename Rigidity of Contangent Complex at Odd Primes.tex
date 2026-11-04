@@ -68,30 +68,80 @@
 
 
 \section{Introduction}
-In his seminal work, Quillen proposed the following homology theory for augmented simplicial $R$-algebras, which is now dubbed Quillen homology: there is a Quillen adjunction 
+Quillen stated his conjectures for essentially finite-type maps of
+Noetherian rings, using projective dimension; the flat-dimension formulation
+extends to arbitrary Noetherian homomorphisms. Under the finite-type
+hypotheses, the cotangent complex is pseudo-coherent, and finite flat
+dimension and finite projective dimension agree. The second conjecture
+adds the assumption $\textrm{fd}_A B<\infty$ and predicts that $A\to B$ is locally
+complete intersection. Its conclusion is therefore the stronger bound
+one, under an additional hypothesis on the ring map itself. 
+
+This distinction is substantive. For a field $k$ and
+$A=k[\epsilon]/(\epsilon^2)$, the augmentation $A\to k$ satisfies
 \[
-\operatorname{Ab} :
-\mathrm{sCAlg}_R^{\mathrm{aug}}
-\rightleftarrows
-\mathrm{sMod}_R :
-R \oplus (-)
+ L_{k/A}\simeq k[1]\oplus k[2],
+ \qquad
+ \Tor_i^A(k,k)\ne0\quad\text{for every }i\geq0.
 \]
-For an object $X\in \mathrm{sCAlg}_R^{\mathrm{aug}}$, the Quillen homology of $X$ is defined to be the module homology of $\mathbb{L}\textrm{Ab}(X)$. With this construction, Quillen gave the definition of the cotangent complex $\mathbb{L}_{A/R}$ associated to morphism of commutative rings $R\to A$. let $P\to A$ be a cofibrant replacement of $A$ in $s \textbf{CAlg}_R$. The cotangent complex $\mathbb{L}_{A/R}$ is modelled by the simplicial $A$-module
-\[\mathbb{L}_{A/R}:= \Omega_{P/R}\otimes_{P}A\]
-By the Dold-Kan correspondence, we will use $\mathbb{L}_{A/R}$ to denote both the simplicial $A$-module and its normalization in $\textrm{Ch}^+(A)$.The Quillen homology is defined to be
-\[H_i^Q(A/R;k):= \pi_i(\mathbb{L}_{A/R}\otimes_{A}k)\cong \Tor^A_i(\mathbb{L}_{A/R};k)\]
-In his seminal work, Quillen also proposed the following rigidity conjecture,
+The cotangent calculation follows from transitivity for
+$k\to A\to k$, and the Tor calculation from the periodic resolution with
+differential given by multiplication by $\epsilon$. Thus the bound two
+is sharp, and finite cotangent dimension does not imply finite flat
+dimension of the ring map. Moreover, the finiteness hypothesis concerns
+vanishing of $D_i(B/A;-)$ for all coefficient modules in sufficiently high
+degrees; boundedness of the ordinary homology $H_i(L_{B/A})$ alone is a
+different condition.
 
-\begin{conjecture}
-If $\textrm{pd}(\mathbb{L}_{A/R})<\infty$, then $\textrm{pd}(\mathbb{L}_{A/R})\leq 2$.
-\end{conjecture}
+The complete-intersection conjecture was proved in characteristic zero
+by Avramov and Halperin, and in general by Avramov
+. Avramov's theorem applies to Noetherian
+homomorphisms locally of finite flat dimension. Turner obtained a different
+positive-characteristic proof using an algebraic analogue of Serre's
+theorem \cite{Tur00}. More recently, Briggs and Iyengar proved a stronger
+rigidity theorem: under the same local finite-flat-dimension hypothesis,
+vanishing of a single functor $D_n(B/A;-)$, for $n\geq1$, already forces the
+map to be locally complete intersection \cite[Theorem~A]{BI23}. These
+results do not remove the flat-dimension hypothesis. For the bound-two
+conjecture itself, earlier results include Avramov's theorem when either
+ring is locally complete intersection \cite[Theorem~1.5]{Avr99}, and the
+theorem of Avramov and Iyengar for algebra retracts, that is, surjections
+$A\to B$ admitting a ring section $B\to A$
+\cite[Theorem~I]{AI03}.
 
+Turner's work supplies the homotopical strategy used here
+\cite{Tur02,Tur03,Tur09}. One studies an augmented simplicial algebra over
+a residue field and compares two consequences of its origin and its
+Andr\'e--Quillen homology. Its ring-theoretic origin imposes nilpotence on
+certain homotopy operations. A highest nonzero Andr\'e--Quillen class in
+degree greater than two, on the other hand, can be detected by operations
+that remain nonzero under arbitrarily long iteration. Turner established
+the relevant characteristic-two detection results and proved the bound-two
+conjecture for Noetherian maps in characteristic two with Cohen--Macaulay
+source \cite{Tur09}. His detection argument uses relations among higher
+divided squares. As he explained in \cite{Tur02}, the odd-primary
+relations available there did not give the admissible rewriting required
+by that proof. The issue was not the absence of odd-primary operations:
+Bousfield had already constructed them and computed the homotopy of free
+simplicial commutative algebras \cite{Bou}.
 
+Two recent preprints also bear directly on this question. Sch\"urg
+\cite{Sch26} proposes a proof in characteristic two without the
+Cohen--Macaulay assumption. Liu \cite{Liu26} claims the bound in positive
+residual characteristic, with statements extending beyond the
+equal-characteristic setting considered here. His argument also uses
+universal chain representatives and detection of operation towers in a
+free algebra \cite[Lemma~3.7 and \S4]{Liu26}. The present manuscript develops the nilpotence argument
+directly on the original local derived fiber using uniform syzygetic
+Artin--Rees, and treats detection for connected algebras with a
+finite-dimensional degree-one Andr\'e--Quillen group. We cite these recent
+preprints for comparison; neither is an input to the proof below, and we
+make no claim of priority for the shared constructions.
 
 
 
 \section{Outline}
-Fix a morphism of Noetherian local $k$-algebras $R\to A$. Standard localization techniques reduces the conjecture to the case where we consider a surjection of Noetherian local $k$-algebras $(R,\mathfrak{m})\to (A, \mathfrak{n})$. In this case, the flat dimension of the cotangent complex can be detected by tensoring with the residue field
+Fix a morphism of Noetherian $k$-algebras $R\to A$. Standard localization techniques reduces the conjecture to the case where we consider a surjection of Noetherian local $k$-algebras $(R,\mathfrak{m})\to (A, \mathfrak{n})$. In this case, the flat dimension of the cotangent complex can be detected by tensoring with the residue field
 \begin{proposition}[Stack 15.79.2]
     Let $R$ be a ring. Let $a,b\in \Z$. Let $K^{\bullet}$ be a pseudo-coherent complex of $R$-modules. The following are equivalent: 
     \begin{enumerate}
@@ -295,6 +345,7 @@ Let $(R,\mathfrak{m})$ be Noetherian local ring, $M$ a finitely generated R-modu
 
 
 \begin{theorem}[Uniform Artin–Rees for Syzygies]
+\label{Uniform}
 For a fixed ideal $J\subseteq R$, there is a uniform integer $h\geq 0$ such that for every $n\geq h$, and $i\geq 0$, one has 
     \[J^nF_i\cap \textrm{im}(d_{i+1})\subseteq J^{n-h}\textrm{im}(d_{i+1})\]
 \end{theorem}
@@ -304,19 +355,24 @@ For a fixed ideal $J\subseteq R$, there is a uniform integer $h\geq 0$ such that
 
 Take $J=\mathfrak{m}$, one has the following corollary
 \begin{corollary}
-    There is a uniform integer $h\geq 0$, such that for every $q\geq h$ and $i\geq 0$, the reduction
+\label{tor_reduction}
+    There is a uniform integer $h\geq 0$, such that for every $q> h$ and $i> 0$, the reduction
     \[\Tor_i^R(M;R/\mathfrak{m}^q)\to \Tor_i^R(M;k) \]
     is zero.
 \end{corollary}
-
+\begin{proof}
+    Let $a\in F_i$ represent a cycle in $\Tor_i^R(M; R/\mathfrak{m}^q)$, i.e $da\in \mathfrak{m}^qF_i$. By Theorem \ref{Uniform}, $da$ is also contained in $\mathfrak{m}^{q-h} \textrm{im}(d)$. We can thus find some $b\in \mathfrak{m}^{q-h}F_i$ with $d(a-b)=0$. By exactness, there is some $a'\in F_{i+1}$ such that 
+    \[da'=a-b\]
+    reducing modulo $\mathfrak{m}$, the class $b$ vanishes, and thus $a$ is a boundary mod $\mathfrak{m}$.
+\end{proof}
 
 \begin{theorem}[Nilpotence on Local Derived Fiber]
-    There is an integer $l$ such that all composition of operations of length greater than $l$ vanishes on $\pi_* (P\otimes_R k)$.
+    There is an integer $l$ such that all composition of additive operations of length greater than $l$ vanishes on $\pi_* (P\otimes_R k)$.
 \end{theorem}
 \begin{proof}
-    An element $a\in N(P)\otimes_R k$ is a cycle iff $da\in \mathfrak{m}N(P)$. Let $\alpha_I$ be a composition of a length $k$ operation of the form $v_t$. Once we show compatible operations on chain also satisfy 
-    \[d\alpha_I(a)\sim \alpha_I(d(a))\in \mathfrak{m}^{p^t}N(P)\]
-    It follows that $a$ is the image of the reduction map, and by the previous corollary, we know there is a uniform integer such that the reduction map is zero. 
+    Let $a\in N(P)\otimes_R k$ be a cycle, so that $da\in \mathfrak{m}N(P)$.  Let $\alpha_I =v_{t_1}....v_{t_k}$ be a composition of a length $l$ operation of the form $v_t$. By Lemma \ref{chain_lift}, $\alpha_I(a)$ is represented by iterated chain lifts $V_{t_1}...V_{t_k}(a)\in \mathfrak{m}^{p^l}N(P)$. By Corollary \ref{tor_reduction}, taking $l>h$ will ensure the reduction mod $\mathfrak{m}$ is becomes a boundary, and therefore represents a trivial class in $\pi_*(P\otimes_R k)$.
+
+
 \end{proof}
 
 
@@ -369,6 +425,7 @@ It is clear that $q(w)$ is a cycle since $w$ is coming from the kernel, and the 
 \end{theorem}
 
 \begin{lemma}[Chain Lift with Controlled Differential]
+\label{chain_lift}
 Let $B$ be a simplicial commutative $\mathbb{F}_p$ algebra. Let $a\in N(B)_{n}$ and $2j<n$. There exists a chain lift 
 \[V_j^n(a)\in N(P)_{n+2j(p-1)}\]
 satisfying 
@@ -402,18 +459,43 @@ satisfying
     by $v\mapsto a$, $u\mapsto da$. Since $da=0$, we see the induced normalized algebra map $a_*$ factors through $q$
 
 
-     \[\begin{tikzcd}
-	{N(\textrm{Sym}K(k,n-1))} & \\
-	{N(\textrm{Sym}K(D_n))} & {N(B)} \\
-	{N(\textrm{Sym}K(k,n))}
-	\arrow["{i_*}", from=1-1, to=2-1]
-	\arrow["{a_*}", from=2-1, to=2-2]
+\[\begin{tikzcd}
+	{N(\textrm{Sym}^pK(k,n-1))} & \\
+	{N(\textrm{Sym}^pK(D_n))} & {N(B)} \\
+	{N(\textrm{Sym}^pK(k,n))}
+	\arrow["{{i_*}}", from=1-1, to=2-1]
+	\arrow["{f_{u}}", from=1-1, to=2-2]
+	\arrow["{f_{}}", from=2-1, to=2-2]
 	\arrow["q", from=2-1, to=3-1]
-	\arrow["{\tilde{a}}"', dashed, from=3-1, to=2-2]
+	\arrow["{{f_v}}"', dashed, from=3-1, to=2-2]
 \end{tikzcd}\]
 Let $z^n_j\in N(\textrm{Sym}K(k,n))_{n+2j(p-1)}$ be the cycle representing the operation $v_j$. By Theorem \ref{suspended}, $z^n_j$ is suspended from some $z_j^{n-1}\in  N(\textrm{Sym}K(k,n-1))_{(n-1)+2j(p-1)}$. Choose $\omega_j^n$ such that $d(\omega_j^n)=z_j^{n-1}$, with $q(\omega_j^n)=z_j^n$, we define 
-\[V_j^n(a):= a_*(\omega_j^n)\]
-It is immediate from construction that $V_j^n(a)$ represents the class $v_j(a)$.
+\[V_j^n(a):= f(\omega_j^n)\]
+It is immediate from construction that $V_j^n(a)$ represents the class $v_j(a)$. For $(2)$, we have by construction
+\[dV_j^n(a)=f(d\omega_j^n)=f_u(z_j^{n-1})\]
+The map $f_u$ is induced by sending the degree $n-1$ generator $u$ to $da\in J^m((N(B)))_{n-1}$; the generator $z_j^{n-1}$ is of the form $ s_1(u)\otimes ... \otimes s_p(u) $, where $s_i(u)$ is some linear combination of the image of $u$ under iterated degeneracy maps. The image $d_u(z_j^n)$ is then 
+\[d_u(z_j^n)=s_1(da)...s_p(d_a)\]
+since the degeneracy maps are $R$-linear, and each $da\in J^mB$, it follows that $d_u(z_j^n)$ is in $J^{pm}\in B$. It is clear that normalization respects the ideal filtration. $(3)$ follows from exactly the same argument.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \end{proof}
 
 
