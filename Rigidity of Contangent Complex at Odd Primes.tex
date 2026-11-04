@@ -340,19 +340,81 @@ Let $C$ be the chain complex concentrated in degree $i$. There is an exact seque
 \[0\to C\to D\to C[1]\to 0\]
 where $D:= \textrm{Cone}(\id_{C})$ is the cone, which is acyclic. Then the connecting morphism 
 \[\partial: H_{j}(C[1])\to H_{j-1}(C) \]
-is the suspension isomorphism. In the case $C=k[n]$ and under Dold-Kan, the exact sequence becomes
-\[0\to K(k,n)\to K(D_n)\to K(k,n+1)\to 0\]
-We shall refer to these as \textbf{additive suspension}. The non-additive case happens when we apply the reduced symmetric algebra functor: the induced map 
-\[\Sym K(k,n)\to \Sym K(D_n)\]
-is still injective, but the ker
+is the suspension isomorphism. In the case $C=k[n-1]$ and under Dold-Kan, the exact sequence becomes
+\[0\to K(k,n-1)\to K(D_n)\to K(k,n)\to 0\]
+We shall refer to these as \textbf{additive suspension}. The non-additive case happens when we apply the reduced symmetric algebra functor: we have the commutative diagram of simplicial commutative non-unital algebras
+\[\begin{tikzcd}
+	{} & {\textrm{Sym}K(k,n-1)} & {\textrm{Sym}K(D_n)} & {\textrm{Coker}} \\
+	&& {\textrm{Sym}K(k,n)}
+	\arrow["{i_*}", from=1-2, to=1-3]
+	\arrow[from=1-3, to=1-4]
+	\arrow["q", from=1-3, to=2-3]
+	\arrow[from=2-3, to=1-4]
+\end{tikzcd}\]
 
 
 
 
-Unfortunately, 
+Note that $\Sym K(D_n)$ is still acyclic. After normalization, a class $z\in N({\textrm{Sym}K(k,n-1)})$ still injects to a class $i_*(z)$, which is a boundary. Choose $\omega$ such that $d\omega=i_*(z)$, and define 
+\[\sigma z=q(w)\in N({\textrm{Sym}K(k,n+1)})\]
+It is clear that $q(w)$ is a cycle since $w$ is coming from the kernel, and the choice of $\omega$ does not affect the homology class of $\sigma {z}$. 
+
+\begin{theorem}[Bousfield]
+    \label{suspended}
+    Suppose $z_{pn}$ is the normalized cycle representing the top divided power operation, coming from the universal generator in 
+    \[v_n\in \pi_{pn}(\Sym^p K(k,n))\] 
+    Then, $\sigma z_{pn}$ represents the additive operation from the generator
+    \[\pi_{pn+1}(\Sym^p K(k,n+1))\] 
+    The input degree and output degree are both raised by $1$, and the resulting operations is no longer the top operation. In other words, all the additive operations in $v_t$ family are all suspended from the top divided powers from lower input degree. 
+\end{theorem}
+
+\begin{lemma}[Chain Lift with Controlled Differential]
+Let $B$ be a simplicial commutative $\mathbb{F}_p$ algebra. Let $a\in N(B)_{n}$ and $2j<n$. There exists a chain lift 
+\[V_j^n(a)\in N(P)_{n+2j(p-1)}\]
+satisfying 
+\begin{enumerate}
+    \item If $a$ is a cycle, then $V_j^n(a)$ represents $v_j(a)$. 
+    \item If $P$ is an algebra over discrete commutative ring $R$, $J\subseteq R$ an ideal, and $da\in J^m(N(B))_{n-1}$
+    \[dV_j^n(a)\in J^{pm}(N(B))_{(n-1)+2j(p-1)} \]
+    \item If $P$ is augmented over $k$, with augmentation ideal $I$, and 
+    $a\in N(I^s)_n$ with $da\in N(I^t)_{n-1}$ for some $t\geq s$, then 
+    \[V_j^n(a)\in N(I^{ps})_{n+2j(p-1)}, \quad \quad dV_j^n(a)\in N(I^{pt})_{(n-1)+2j(p-1)}\]
+\end{enumerate}
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+\end{lemma}
+\begin{proof}
+    Let $v$ be the generator in $n$, and $u$ be the generator in degree $n-1$ of $D_n$, with $dv=u$. There is a simplicial $k$-module map 
+    \[D_n\to N(B)\]
+    by $v\mapsto a$, $u\mapsto da$. Since $da=0$, we see the induced normalized algebra map $a_*$ factors through $q$
+
+
+     \[\begin{tikzcd}
+	{N(\textrm{Sym}K(k,n-1))} & \\
+	{N(\textrm{Sym}K(D_n))} & {N(B)} \\
+	{N(\textrm{Sym}K(k,n))}
+	\arrow["{i_*}", from=1-1, to=2-1]
+	\arrow["{a_*}", from=2-1, to=2-2]
+	\arrow["q", from=2-1, to=3-1]
+	\arrow["{\tilde{a}}"', dashed, from=3-1, to=2-2]
+\end{tikzcd}\]
+Let $z^n_j\in N(\textrm{Sym}K(k,n))_{n+2j(p-1)}$ be the cycle representing the operation $v_j$. By Theorem \ref{suspended}, $z^n_j$ is suspended from some $z_j^{n-1}\in  N(\textrm{Sym}K(k,n-1))_{(n-1)+2j(p-1)}$. Choose $\omega_j^n$ such that $d(\omega_j^n)=z_j^{n-1}$, with $q(\omega_j^n)=z_j^n$, we define 
+\[V_j^n(a):= a_*(\omega_j^n)\]
+It is immediate from construction that $V_j^n(a)$ represents the class $v_j(a)$.
+\end{proof}
 
 
 
