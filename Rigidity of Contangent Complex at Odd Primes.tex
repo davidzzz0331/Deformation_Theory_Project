@@ -77,68 +77,6 @@ adds the assumption $\textrm{fd}_A B<\infty$ and predicts that $A\to B$ is local
 complete intersection. Its conclusion is therefore the stronger bound
 one, under an additional hypothesis on the ring map itself. 
 
-This distinction is substantive. For a field $k$ and
-$A=k[\epsilon]/(\epsilon^2)$, the augmentation $A\to k$ satisfies
-\[
- L_{k/A}\simeq k[1]\oplus k[2],
- \qquad
- \Tor_i^A(k,k)\ne0\quad\text{for every }i\geq0.
-\]
-The cotangent calculation follows from transitivity for
-$k\to A\to k$, and the Tor calculation from the periodic resolution with
-differential given by multiplication by $\epsilon$. Thus the bound two
-is sharp, and finite cotangent dimension does not imply finite flat
-dimension of the ring map. Moreover, the finiteness hypothesis concerns
-vanishing of $D_i(B/A;-)$ for all coefficient modules in sufficiently high
-degrees; boundedness of the ordinary homology $H_i(L_{B/A})$ alone is a
-different condition.
-
-The complete-intersection conjecture was proved in characteristic zero
-by Avramov and Halperin, and in general by Avramov
-. Avramov's theorem applies to Noetherian
-homomorphisms locally of finite flat dimension. Turner obtained a different
-positive-characteristic proof using an algebraic analogue of Serre's
-theorem \cite{Tur00}. More recently, Briggs and Iyengar proved a stronger
-rigidity theorem: under the same local finite-flat-dimension hypothesis,
-vanishing of a single functor $D_n(B/A;-)$, for $n\geq1$, already forces the
-map to be locally complete intersection \cite[Theorem~A]{BI23}. These
-results do not remove the flat-dimension hypothesis. For the bound-two
-conjecture itself, earlier results include Avramov's theorem when either
-ring is locally complete intersection \cite[Theorem~1.5]{Avr99}, and the
-theorem of Avramov and Iyengar for algebra retracts, that is, surjections
-$A\to B$ admitting a ring section $B\to A$
-\cite[Theorem~I]{AI03}.
-
-Turner's work supplies the homotopical strategy used here
-\cite{Tur02,Tur03,Tur09}. One studies an augmented simplicial algebra over
-a residue field and compares two consequences of its origin and its
-Andr\'e--Quillen homology. Its ring-theoretic origin imposes nilpotence on
-certain homotopy operations. A highest nonzero Andr\'e--Quillen class in
-degree greater than two, on the other hand, can be detected by operations
-that remain nonzero under arbitrarily long iteration. Turner established
-the relevant characteristic-two detection results and proved the bound-two
-conjecture for Noetherian maps in characteristic two with Cohen--Macaulay
-source \cite{Tur09}. His detection argument uses relations among higher
-divided squares. As he explained in \cite{Tur02}, the odd-primary
-relations available there did not give the admissible rewriting required
-by that proof. The issue was not the absence of odd-primary operations:
-Bousfield had already constructed them and computed the homotopy of free
-simplicial commutative algebras \cite{Bou}.
-
-Two recent preprints also bear directly on this question. Sch\"urg
-\cite{Sch26} proposes a proof in characteristic two without the
-Cohen--Macaulay assumption. Liu \cite{Liu26} claims the bound in positive
-residual characteristic, with statements extending beyond the
-equal-characteristic setting considered here. His argument also uses
-universal chain representatives and detection of operation towers in a
-free algebra \cite[Lemma~3.7 and \S4]{Liu26}. The present manuscript develops the nilpotence argument
-directly on the original local derived fiber using uniform syzygetic
-Artin--Rees, and treats detection for connected algebras with a
-finite-dimensional degree-one Andr\'e--Quillen group. We cite these recent
-preprints for comparison; neither is an input to the proof below, and we
-make no claim of priority for the shared constructions.
-
-
 
 \section{Outline}
 Fix a morphism of Noetherian $k$-algebras $R\to A$. Standard localization techniques reduces the conjecture to the case where we consider a surjection of Noetherian local $k$-algebras $(R,\mathfrak{m})\to (A, \mathfrak{n})$. In this case, the flat dimension of the cotangent complex can be detected by tensoring with the residue field

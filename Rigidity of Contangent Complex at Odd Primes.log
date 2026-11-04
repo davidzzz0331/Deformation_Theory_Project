@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.23)  3 NOV 2026 23:17
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.23)  3 NOV 2026 23:30
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -758,47 +758,8 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 [1
 
 {C:/Users/david/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-
-LaTeX Warning: Citation `Tur00' on page 2 undefined on input line 101.
-
-
-LaTeX Warning: Citation `BI23' on page 2 undefined on input line 104.
-
-
-LaTeX Warning: Citation `Avr99' on page 2 undefined on input line 107.
-
-
-LaTeX Warning: Citation `AI03' on page 2 undefined on input line 110.
-
-
-LaTeX Warning: Citation `Tur02' on page 2 undefined on input line 113.
-
-
-LaTeX Warning: Citation `Tur03' on page 2 undefined on input line 113.
-
-
-LaTeX Warning: Citation `Tur09' on page 2 undefined on input line 113.
-
-
-LaTeX Warning: Citation `Tur09' on page 2 undefined on input line 121.
-
-
-LaTeX Warning: Citation `Tur02' on page 2 undefined on input line 122.
-
-
-LaTeX Warning: Citation `Bou' on page 2 undefined on input line 126.
-
-
-LaTeX Warning: Citation `Sch26' on page 2 undefined on input line 129.
-
-
-LaTeX Warning: Citation `Liu26' on page 2 undefined on input line 130.
-
-
-LaTeX Warning: Citation `Liu26' on page 2 undefined on input line 134.
-
-LaTeX Font Info:    Trying to load font information for U+euf on input line 144.
-(C:\Users\david\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\ueuf.fd
+LaTeX Font Info:    Trying to load font information for U+euf on input line 82.
+ (C:\Users\david\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\ueuf.fd
 File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
 )
 
@@ -812,34 +773,28 @@ File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
 
 [6]
 
-[7]
+[7] Total classes: 0
 
-[8] Total classes: 0
-
-[9] (Rigidity of Contangent Complex at Odd Primes.aux)
+[8] (Rigidity of Contangent Complex at Odd Primes.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-09-02>
  ***********
-
-
-LaTeX Warning: There were undefined references.
-
 Package rerunfilecheck Info: File `"Rigidity of Contangent Complex at Odd Primes".out' has not changed.
 (rerunfilecheck)             Checksum: 24F1A1690F0D73D36C0243EF6ECB65E2;1268.
  ) 
 Here is how much of TeX's memory you used:
- 32027 strings out of 468130
- 726482 string characters out of 5430633
- 1125801 words of memory out of 5000000
- 60092 multiletter control sequences out of 15000+600000
- 638179 words of font info for 84 fonts, out of 8000000 for 9000
+ 32021 strings out of 468130
+ 726423 string characters out of 5430633
+ 1124801 words of memory out of 5000000
+ 60088 multiletter control sequences out of 15000+600000
+ 637844 words of font info for 83 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  102i,17n,107p,5105b,1054s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\david\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/david/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/david/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/david/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/david/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/david/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/david/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/david/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/david/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/david/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/david/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/david/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/david/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/david/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/david/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/david/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/david/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/euler/eufm10.pfb><C:/Users/david/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on "Rigidity of Contangent Complex at Odd Primes.pdf" (9 pages, 254035 bytes).
+<C:/Users/david/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/david/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/david/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/david/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/david/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/david/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/david/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/david/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/david/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/david/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/david/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/david/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/david/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/david/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/david/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/david/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/euler/eufm10.pfb><C:/Users/david/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on "Rigidity of Contangent Complex at Odd Primes.pdf" (8 pages, 247814 bytes).
 PDF statistics:
- 229 PDF objects out of 1000 (max. 8388607)
- 49 named destinations out of 1000 (max. 500000)
+ 219 PDF objects out of 1000 (max. 8388607)
+ 48 named destinations out of 1000 (max. 500000)
  77 words of extra memory for PDF output out of 10000 (max. 10000000)
 
